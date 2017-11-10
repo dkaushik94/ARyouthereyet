@@ -15,12 +15,13 @@
 		4920192A1FB294E900CA476C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492019281FB294E900CA476C /* LaunchScreen.storyboard */; };
 		492019351FB294E900CA476C /* ARYouThereYetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019341FB294E900CA476C /* ARYouThereYetTests.swift */; };
 		492019401FB294E900CA476C /* ARYouThereYetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */; };
-		4920194E1FB3DA0000CA476C /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4920194D1FB3DA0000CA476C /* menu.png */; };
-		492019541FB3FD1900CA476C /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = 492019511FB3FD1800CA476C /* network.png */; };
-		492019551FB3FD1900CA476C /* filter-tool-black-shape.png in Resources */ = {isa = PBXBuildFile; fileRef = 492019521FB3FD1800CA476C /* filter-tool-black-shape.png */; };
-		492019561FB3FD1900CA476C /* binoculars-tool.png in Resources */ = {isa = PBXBuildFile; fileRef = 492019531FB3FD1900CA476C /* binoculars-tool.png */; };
 		4920195D1FB403B300CA476C /* popUpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920195C1FB403B300CA476C /* popUpMenu.swift */; };
-		4920195F1FB4105000CA476C /* close-circular-button-of-a-cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 4920195E1FB4105000CA476C /* close-circular-button-of-a-cross.png */; };
+		4920196F1FB5297F00CA476C /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = 4920196A1FB5297F00CA476C /* network.png */; };
+		492019701FB5297F00CA476C /* funnel.png in Resources */ = {isa = PBXBuildFile; fileRef = 4920196B1FB5297F00CA476C /* funnel.png */; };
+		492019711FB5297F00CA476C /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 4920196C1FB5297F00CA476C /* error.png */; };
+		492019721FB5297F00CA476C /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4920196D1FB5297F00CA476C /* menu.png */; };
+		492019731FB5297F00CA476C /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 4920196E1FB5297F00CA476C /* search.png */; };
+		492019751FB5329200CA476C /* show-apps-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 492019741FB5329200CA476C /* show-apps-button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,16 +56,13 @@
 		4920193B1FB294E900CA476C /* ARYouThereYetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARYouThereYetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARYouThereYetUITests.swift; sourceTree = "<group>"; };
 		492019411FB294E900CA476C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4920194D1FB3DA0000CA476C /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = ../../../../Downloads/menu.png; sourceTree = "<group>"; };
-		492019511FB3FD1800CA476C /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = network.png; path = ../../../../Downloads/network.png; sourceTree = "<group>"; };
-		492019521FB3FD1800CA476C /* filter-tool-black-shape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "filter-tool-black-shape.png"; path = "../../../../Downloads/filter-tool-black-shape.png"; sourceTree = "<group>"; };
-		492019531FB3FD1900CA476C /* binoculars-tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "binoculars-tool.png"; path = "../../../../Downloads/binoculars-tool.png"; sourceTree = "<group>"; };
-		492019581FB3FD3300CA476C /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
-		492019591FB3FD3300CA476C /* filter-tool-black-shape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter-tool-black-shape.png"; sourceTree = "<group>"; };
-		4920195A1FB3FD3300CA476C /* binoculars-tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "binoculars-tool.png"; sourceTree = "<group>"; };
-		4920195B1FB3FD3300CA476C /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
 		4920195C1FB403B300CA476C /* popUpMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpMenu.swift; sourceTree = "<group>"; };
-		4920195E1FB4105000CA476C /* close-circular-button-of-a-cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close-circular-button-of-a-cross.png"; path = "../../../../../Downloads/close-circular-button-of-a-cross.png"; sourceTree = "<group>"; };
+		4920196A1FB5297F00CA476C /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = network.png; path = ../../../../../Downloads/network.png; sourceTree = "<group>"; };
+		4920196B1FB5297F00CA476C /* funnel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = funnel.png; path = ../../../../../Downloads/funnel.png; sourceTree = "<group>"; };
+		4920196C1FB5297F00CA476C /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = error.png; path = ../../../../../Downloads/error.png; sourceTree = "<group>"; };
+		4920196D1FB5297F00CA476C /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = ../../../../../Downloads/menu.png; sourceTree = "<group>"; };
+		4920196E1FB5297F00CA476C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search.png; path = ../../../../../Downloads/search.png; sourceTree = "<group>"; };
+		492019741FB5329200CA476C /* show-apps-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "show-apps-button.png"; path = "../../../../../Downloads/show-apps-button.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,10 +120,6 @@
 				492019231FB294E900CA476C /* Main.storyboard */,
 				4920195C1FB403B300CA476C /* popUpMenu.swift */,
 				492019261FB294E900CA476C /* Assets.xcassets */,
-				4920194D1FB3DA0000CA476C /* menu.png */,
-				492019531FB3FD1900CA476C /* binoculars-tool.png */,
-				492019521FB3FD1800CA476C /* filter-tool-black-shape.png */,
-				492019511FB3FD1800CA476C /* network.png */,
 				492019281FB294E900CA476C /* LaunchScreen.storyboard */,
 				4920192B1FB294E900CA476C /* Info.plist */,
 			);
@@ -153,11 +147,12 @@
 		492019571FB3FD2300CA476C /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				4920195E1FB4105000CA476C /* close-circular-button-of-a-cross.png */,
-				492019581FB3FD3300CA476C /* menu.png */,
-				4920195A1FB3FD3300CA476C /* binoculars-tool.png */,
-				492019591FB3FD3300CA476C /* filter-tool-black-shape.png */,
-				4920195B1FB3FD3300CA476C /* network.png */,
+				4920196C1FB5297F00CA476C /* error.png */,
+				492019741FB5329200CA476C /* show-apps-button.png */,
+				4920196B1FB5297F00CA476C /* funnel.png */,
+				4920196D1FB5297F00CA476C /* menu.png */,
+				4920196A1FB5297F00CA476C /* network.png */,
+				4920196E1FB5297F00CA476C /* search.png */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -269,15 +264,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				492019721FB5297F00CA476C /* menu.png in Resources */,
+				492019731FB5297F00CA476C /* search.png in Resources */,
 				492019201FB294E900CA476C /* art.scnassets in Resources */,
-				4920194E1FB3DA0000CA476C /* menu.png in Resources */,
-				492019541FB3FD1900CA476C /* network.png in Resources */,
-				492019561FB3FD1900CA476C /* binoculars-tool.png in Resources */,
+				492019711FB5297F00CA476C /* error.png in Resources */,
 				4920192A1FB294E900CA476C /* LaunchScreen.storyboard in Resources */,
-				4920195F1FB4105000CA476C /* close-circular-button-of-a-cross.png in Resources */,
 				492019271FB294E900CA476C /* Assets.xcassets in Resources */,
+				492019751FB5329200CA476C /* show-apps-button.png in Resources */,
 				492019251FB294E900CA476C /* Main.storyboard in Resources */,
-				492019551FB3FD1900CA476C /* filter-tool-black-shape.png in Resources */,
+				4920196F1FB5297F00CA476C /* network.png in Resources */,
+				492019701FB5297F00CA476C /* funnel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

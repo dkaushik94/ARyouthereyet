@@ -8,15 +8,25 @@
 
 import UIKit
 
+
 class popUpMenu: UIViewController {
 
     @IBOutlet weak var menuContainer: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        menuContainer.viewWithTag(1)?.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
+        menuContainer.viewWithTag(1)?.backgroundColor = UIColor.clear
+        
         // Do any additional setup after loading the view.
         self.menuAnimation()
+        
+        //Blurring
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = menuContainer.viewWithTag(1)!.frame
+        
+        menuContainer.viewWithTag(1)!.insertSubview(blurEffectView, at: 0)
+        
     }
 
     override func didReceiveMemoryWarning() {
