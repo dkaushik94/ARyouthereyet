@@ -9,10 +9,13 @@
 import UIKit
 import SceneKit
 import ARKit
+import CoreLocation
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDelegate {
 
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet var sceneView: ARSCNView!
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +26,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
-        sceneView.scene = scene
+        //sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +44,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        configuration.worldAlignment = .gravityAndHeading
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -76,5 +85,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // locationManager.requestLocation()
+        locationManager.startUpdatingLocation()
+        let currentLocation = locationManager.location
+        let identityLocation = matrix_identity_float4x4
+        let endLocation = CLLocation(latitude: 41.8713674, longitude: -87.650554)
+        let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation!, location: endLocation)
+        // let finalLocation = SCNMatrix4.init(holder)
+        // let ourLocation = SCNMatrix4.init(m11: 1, m12: 0, m13: 0, m14: 0, m21: 0, m22: 1, m23: 0, m24: 0, m31: 0, m32: 0, m33: 1, m34: 0, m41: Float((currentLocation?.coordinate.latitude)!), m42: 0, m43: Float((currentLocation?.coordinate.longitude)!), m44: 0)
+        
+        // let endLocationMatrix = SCNMatrix4(m11: 1, m12: 0, m13: 0, m14: 0, m21: 0, m22: 1, m23: 0, m24: 0, m31: 0, m32: 0, m33: 1, m34: 0, m41: Float(endLocation.coordinate.latitude), m42: 0, m43: Float(endLocation.coordinate.longitude), m44: 0)
+        
+        let geometry = SCNSphere(radius: 0.5)
+        geometry.firstMaterial?.diffuse.contents = UIColor.blue
+        let sphereNode = SCNNode(geometry: geometry)
+        
+        let testAnchor = ARAnchor(transform: holder)
+        // sphereNode.position = SCNVector3Make(holder.columns.3.x, 0, holder.columns.3.z)
+        // sphereNode.position = SCNVector3(sceneView.pointOfView!.simdWorldFront.x + holder.columns.3.x, sceneView.pointOfView!.simdWorldFront.y + holder.columns.3.y, sceneView.pointOfView!.simdWorldFront.z + holder.columns.3.z)
+        sphereNode.transform = SCNMatrix4.init(testAnchor.transform)
+        sphereNode.position = SCNVector3Make(holder.columns.3.x, holder.columns.3.y, holder.columns.3.z)
+
+        //locationLabel.text = String(testAnchor.transform.columns.3.x)
+        sceneView.scene.rootNode.addChildNode(sphereNode)
+        print("TestAnchor: %s", testAnchor.transform)
+        print("SphereNode: %s", sphereNode.transform)
+        
+        locationLabel.text = "\(testAnchor.transform.columns.3.x, testAnchor.transform.columns.3.y, testAnchor.transform.columns.3.z)"
+        
+        sceneView.session.add(anchor: testAnchor)
     }
 }
