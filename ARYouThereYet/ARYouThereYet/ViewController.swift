@@ -31,7 +31,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDele
         locationManager.requestAlwaysAuthorization()
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
-        locationManager.delegate = self
         // Create a new scene
         //let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
@@ -92,7 +91,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDele
         locationManager.startUpdatingLocation()
         let currentLocation = locationManager.location
         let identityLocation = matrix_identity_float4x4
-        let endLocation = CLLocation(latitude: 41.8713674, longitude: -87.650554)
+        let endLocation = CLLocation(latitude: 41.871117, longitude: -87.664129)
+        // 41.871117, -87.664129
         let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation!, location: endLocation)
         // let finalLocation = SCNMatrix4.init(holder)
         // let ourLocation = SCNMatrix4.init(m11: 1, m12: 0, m13: 0, m14: 0, m21: 0, m22: 1, m23: 0, m24: 0, m31: 0, m32: 0, m33: 1, m34: 0, m41: Float((currentLocation?.coordinate.latitude)!), m42: 0, m43: Float((currentLocation?.coordinate.longitude)!), m44: 0)
