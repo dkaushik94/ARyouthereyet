@@ -11,7 +11,23 @@ import UIKit
 
 class popUpMenu: UIViewController {
 
+   
     @IBOutlet weak var menuContainer: UIView!
+    @IBOutlet weak var filterView: UIView!
+    var filViewController:  filterMenuViewController?
+    
+    //Delegation for communication between containers.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let parentVC = segue.destination as? menuItemsViewController
+        
+        parentVC?.delegate = self
+        if let filterVC = segue.destination as? filterMenuViewController{
+            filViewController = filterVC
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
@@ -26,6 +42,7 @@ class popUpMenu: UIViewController {
         blurEffectView.frame = menuContainer.viewWithTag(1)!.frame
         
         menuContainer.viewWithTag(1)!.insertSubview(blurEffectView, at: 0)
+        
         
     }
 
@@ -72,4 +89,10 @@ class popUpMenu: UIViewController {
     }
     */
 
+}
+extension popUpMenu: menuDelegation {
+    func toggleVisibility() {
+        print("Delegation Successful!")
+        self.filViewController?.updateVisibility()
+    }
 }

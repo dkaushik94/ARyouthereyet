@@ -22,6 +22,9 @@
 		492019721FB5297F00CA476C /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4920196D1FB5297F00CA476C /* menu.png */; };
 		492019731FB5297F00CA476C /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 4920196E1FB5297F00CA476C /* search.png */; };
 		492019751FB5329200CA476C /* show-apps-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 492019741FB5329200CA476C /* show-apps-button.png */; };
+		492019771FB54E5F00CA476C /* menuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019761FB54E5F00CA476C /* menuItemsViewController.swift */; };
+		492019791FB5A02F00CA476C /* filterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019781FB5A02F00CA476C /* filterMenuViewController.swift */; };
+		4920197B1FB6541300CA476C /* menuDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920197A1FB6541300CA476C /* menuDelegation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		4920196D1FB5297F00CA476C /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = ../../../../../Downloads/menu.png; sourceTree = "<group>"; };
 		4920196E1FB5297F00CA476C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search.png; path = ../../../../../Downloads/search.png; sourceTree = "<group>"; };
 		492019741FB5329200CA476C /* show-apps-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "show-apps-button.png"; path = "../../../../../Downloads/show-apps-button.png"; sourceTree = "<group>"; };
+		492019761FB54E5F00CA476C /* menuItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuItemsViewController.swift; sourceTree = "<group>"; };
+		492019781FB5A02F00CA476C /* filterMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filterMenuViewController.swift; sourceTree = "<group>"; };
+		4920197A1FB6541300CA476C /* menuDelegation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuDelegation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +124,10 @@
 				4920191F1FB294E900CA476C /* art.scnassets */,
 				492019211FB294E900CA476C /* ViewController.swift */,
 				492019231FB294E900CA476C /* Main.storyboard */,
+				4920197A1FB6541300CA476C /* menuDelegation.swift */,
+				492019781FB5A02F00CA476C /* filterMenuViewController.swift */,
 				4920195C1FB403B300CA476C /* popUpMenu.swift */,
+				492019761FB54E5F00CA476C /* menuItemsViewController.swift */,
 				492019261FB294E900CA476C /* Assets.xcassets */,
 				492019281FB294E900CA476C /* LaunchScreen.storyboard */,
 				4920192B1FB294E900CA476C /* Info.plist */,
@@ -300,7 +309,10 @@
 			files = (
 				4920195D1FB403B300CA476C /* popUpMenu.swift in Sources */,
 				492019221FB294E900CA476C /* ViewController.swift in Sources */,
+				492019771FB54E5F00CA476C /* menuItemsViewController.swift in Sources */,
 				4920191E1FB294E900CA476C /* AppDelegate.swift in Sources */,
+				4920197B1FB6541300CA476C /* menuDelegation.swift in Sources */,
+				492019791FB5A02F00CA476C /* filterMenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
