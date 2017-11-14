@@ -13,8 +13,14 @@ class menuItemsViewController: UIViewController {
     var filterButton = false
     weak var delegate:menuDelegation?
     
+    //Search Menu Delegation
+    @IBAction func searchMenu(_ sender: Any) {
+        delegate?.toggleVisibility(incomingContainer: "search")
+    }
+    
+    //Filter Menu Delegation
     @IBAction func filterMenu(_ sender: Any) {
-        delegate?.toggleVisibility()
+        delegate?.toggleVisibility(incomingContainer: "filter")
     }
     
     

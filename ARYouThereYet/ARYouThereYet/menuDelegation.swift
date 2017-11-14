@@ -9,5 +9,5 @@
 import Foundation
 
 protocol menuDelegation: class {
-    func toggleVisibility()
+    func toggleVisibility(incomingContainer: String)
 }

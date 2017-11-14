@@ -25,6 +25,7 @@
 		492019771FB54E5F00CA476C /* menuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019761FB54E5F00CA476C /* menuItemsViewController.swift */; };
 		492019791FB5A02F00CA476C /* filterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019781FB5A02F00CA476C /* filterMenuViewController.swift */; };
 		4920197B1FB6541300CA476C /* menuDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920197A1FB6541300CA476C /* menuDelegation.swift */; };
+		4920197D1FBA802400CA476C /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920197C1FBA802400CA476C /* searchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		492019761FB54E5F00CA476C /* menuItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuItemsViewController.swift; sourceTree = "<group>"; };
 		492019781FB5A02F00CA476C /* filterMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filterMenuViewController.swift; sourceTree = "<group>"; };
 		4920197A1FB6541300CA476C /* menuDelegation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuDelegation.swift; sourceTree = "<group>"; };
+		4920197C1FBA802400CA476C /* searchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				4920191F1FB294E900CA476C /* art.scnassets */,
 				492019211FB294E900CA476C /* ViewController.swift */,
 				492019231FB294E900CA476C /* Main.storyboard */,
+				4920197C1FBA802400CA476C /* searchViewController.swift */,
 				4920197A1FB6541300CA476C /* menuDelegation.swift */,
 				492019781FB5A02F00CA476C /* filterMenuViewController.swift */,
 				4920195C1FB403B300CA476C /* popUpMenu.swift */,
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4920197D1FBA802400CA476C /* searchViewController.swift in Sources */,
 				4920195D1FB403B300CA476C /* popUpMenu.swift in Sources */,
 				492019221FB294E900CA476C /* ViewController.swift in Sources */,
 				492019771FB54E5F00CA476C /* menuItemsViewController.swift in Sources */,
@@ -482,7 +486,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LZ8ZK7MYLQ;
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ui.dkaush4.ARYouThereYet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -500,7 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LZ8ZK7MYLQ;
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ui.dkaush4.ARYouThereYet;
 				PRODUCT_NAME = "$(TARGET_NAME)";

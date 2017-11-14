@@ -14,19 +14,26 @@ class popUpMenu: UIViewController {
    
     @IBOutlet weak var menuContainer: UIView!
     @IBOutlet weak var filterView: UIView!
+    
+    var currContainer = ""
+    
     var filViewController:  filterMenuViewController?
+    var serViewController: searchViewController?
     
     //Delegation for communication between containers.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let parentVC = segue.destination as? menuItemsViewController
-        
         parentVC?.delegate = self
+        
+        
         if let filterVC = segue.destination as? filterMenuViewController{
             filViewController = filterVC
         }
+        if let searchVC = segue.destination as? searchViewController{
+            serViewController = searchVC
+        }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +44,11 @@ class popUpMenu: UIViewController {
         self.menuAnimation()
         
         //Blurring
-        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = menuContainer.viewWithTag(1)!.frame
         
         menuContainer.viewWithTag(1)!.insertSubview(blurEffectView, at: 0)
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,7 +83,10 @@ class popUpMenu: UIViewController {
             }
         })
     }
-
+    
+    public func setCurrentContainer(arg: String){
+        self.currContainer = arg
+    }
     /*
     // MARK: - Navigation
 
@@ -88,11 +96,36 @@ class popUpMenu: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 extension popUpMenu: menuDelegation {
-    func toggleVisibility() {
-        print("Delegation Successful!")
-        self.filViewController?.updateVisibility()
+    func toggleVisibility(incomingContainer: String) {
+        if(self.currContainer == "" || self.currContainer == incomingContainer){
+            if (self.currContainer == incomingContainer){
+                self.setCurrentContainer(arg: "")
+            }
+            else if(self.currContainer == ""){
+                self.setCurrentContainer(arg: incomingContainer)
+            }
+            if(incomingContainer == "search"){
+                serViewController?.updateVisibility()
+                self.view.bringSubview(toFront: serViewController!.view)
+            }
+            else if(incomingContainer == "filter"){
+                filViewController?.updateVisibility()
+                self.view.bringSubview(toFront: filViewController!.view)
+            }
+        }
+        else if(currContainer != incomingContainer && currContainer != ""){
+            self.setCurrentContainer(arg: incomingContainer)
+            serViewController?.updateVisibility()
+            filViewController?.updateVisibility()
+
+//            if (incomingContainer == "search"){
+//                serViewController?.updateVisibility)
+//            }
+//            else if(incomingContainer == "filter"){
+//                filViewController?.updateVisibility()
+//            }
+        }
     }
 }
