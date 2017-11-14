@@ -10,8 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 import CoreLocation
+import MapKit
 
-class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet var sceneView: ARSCNView!
@@ -26,11 +27,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDele
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
+        // Config CLLocationManager object
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.requestAlwaysAuthorization()
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
+        
         // Create a new scene
         //let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
@@ -88,34 +91,107 @@ class ViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDele
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // locationManager.requestLocation()
-        locationManager.startUpdatingLocation()
-        let currentLocation = locationManager.location
+        let currentLocation = locationManager.location!
         let identityLocation = matrix_identity_float4x4
-        let endLocation = CLLocation(latitude: 41.871117, longitude: -87.664129)
-        // 41.871117, -87.664129
-        let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation!, location: endLocation)
-        // let finalLocation = SCNMatrix4.init(holder)
-        // let ourLocation = SCNMatrix4.init(m11: 1, m12: 0, m13: 0, m14: 0, m21: 0, m22: 1, m23: 0, m24: 0, m31: 0, m32: 0, m33: 1, m34: 0, m41: Float((currentLocation?.coordinate.latitude)!), m42: 0, m43: Float((currentLocation?.coordinate.longitude)!), m44: 0)
         
-        // let endLocationMatrix = SCNMatrix4(m11: 1, m12: 0, m13: 0, m14: 0, m21: 0, m22: 1, m23: 0, m24: 0, m31: 0, m32: 0, m33: 1, m34: 0, m41: Float(endLocation.coordinate.latitude), m42: 0, m43: Float(endLocation.coordinate.longitude), m44: 0)
+        // MK-MapKit
+        var result = MKLocalSearchResponse()
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = "library"
+        request.region = MKCoordinateRegion(center: currentLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2))
+        let search = MKLocalSearch(request: request)
+        search.start { response, _ in
+            guard let response = response else {
+                return
+            }
+            result = response
+            
+            for i in result.mapItems {
+                let endLocation = CLLocation(latitude: i.placemark.coordinate.latitude, longitude: i.placemark.coordinate.longitude)
+                let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation, location: endLocation)
+                let geometry = SCNSphere(radius: 0.5)
+                geometry.firstMaterial?.diffuse.contents = UIColor.blue
+                let sphereNode = SCNNode(geometry: geometry)
+                let testAnchor = ARAnchor(transform: holder)
+                sphereNode.transform = SCNMatrix4.init(testAnchor.transform)
+                sphereNode.position = SCNVector3Make(holder.columns.3.x, holder.columns.3.y, holder.columns.3.z)
+                self.sceneView.scene.rootNode.addChildNode(sphereNode)
+                self.sceneView.session.add(anchor: testAnchor)
+                print("\(i.placemark)\n")
+            }
+        }
         
+        let localSearch = MKLocalSearch()
+        localSearch.start(completionHandler: {response,_ in
+            guard let response = response else {
+                return
+            }
+            print(response)
+        })
+        
+        /*for i in result.mapItems {
+            // let endLocation = CLLocation(latitude: 41.871876, longitude: -87.650500)
+            let endLocation = CLLocation(latitude: i.placemark.coordinate.latitude, longitude: i.placemark.coordinate.longitude)
+            let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation, location: endLocation)
+            let geometry = SCNSphere(radius: 0.5)
+            geometry.firstMaterial?.diffuse.contents = UIColor.blue
+            let sphereNode = SCNNode(geometry: geometry)
+            let testAnchor = ARAnchor(transform: holder)
+            sphereNode.transform = SCNMatrix4.init(testAnchor.transform)
+            sphereNode.position = SCNVector3Make(holder.columns.3.x, holder.columns.3.y, holder.columns.3.z)
+            sceneView.scene.rootNode.addChildNode(sphereNode)
+            sceneView.session.add(anchor: testAnchor)
+        }*/
+        
+        // print(matchingItems)
+        
+        /*let endLocation = CLLocation(latitude: 41.871876, longitude: -87.650500)
+        let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation, location: endLocation)
         let geometry = SCNSphere(radius: 0.5)
         geometry.firstMaterial?.diffuse.contents = UIColor.blue
         let sphereNode = SCNNode(geometry: geometry)
         
         let testAnchor = ARAnchor(transform: holder)
-        // sphereNode.position = SCNVector3Make(holder.columns.3.x, 0, holder.columns.3.z)
-        // sphereNode.position = SCNVector3(sceneView.pointOfView!.simdWorldFront.x + holder.columns.3.x, sceneView.pointOfView!.simdWorldFront.y + holder.columns.3.y, sceneView.pointOfView!.simdWorldFront.z + holder.columns.3.z)
         sphereNode.transform = SCNMatrix4.init(testAnchor.transform)
         sphereNode.position = SCNVector3Make(holder.columns.3.x, holder.columns.3.y, holder.columns.3.z)
+        sceneView.scene.rootNode.addChildNode(sphereNode)
+        sceneView.session.add(anchor: testAnchor)*/
+        
+        // 41.871876, -87.650500
+        
+        // let finalLocation = SCNMatrix4.init(holder)
+        // let ourLocation = SCNMatrix4.init(m11: 1, m12: 0, m13: 0, m14: 0, m21: 0, m22: 1, m23: 0, m24: 0, m31: 0, m32: 0, m33: 1, m34: 0, m41: Float((currentLocation?.coordinate.latitude)!), m42: 0, m43: Float((currentLocation?.coordinate.longitude)!), m44: 0)
+        
+        // let endLocationMatrix = SCNMatrix4(m11: 1, m12: 0, m13: 0, m14: 0, m21: 0, m22: 1, m23: 0, m24: 0, m31: 0, m32: 0, m33: 1, m34: 0, m41: Float(endLocation.coordinate.latitude), m42: 0, m43: Float(endLocation.coordinate.longitude), m44: 0)
+        
+        
+        // sphereNode.position = SCNVector3Make(holder.columns.3.x, 0, holder.columns.3.z)
+        // sphereNode.position = SCNVector3(sceneView.pointOfView!.simdWorldFront.x + holder.columns.3.x, sceneView.pointOfView!.simdWorldFront.y + holder.columns.3.y, sceneView.pointOfView!.simdWorldFront.z + holder.columns.3.z)
+        
 
         //locationLabel.text = String(testAnchor.transform.columns.3.x)
-        sceneView.scene.rootNode.addChildNode(sphereNode)
-        print("TestAnchor: %s", testAnchor.transform)
-        print("SphereNode: %s", sphereNode.transform)
         
-        locationLabel.text = "\(testAnchor.transform.columns.3.x, testAnchor.transform.columns.3.y, testAnchor.transform.columns.3.z)"
+        // print("TestAnchor: %s", testAnchor.transform)
+        // print("SphereNode: %s", sphereNode.transform)
         
-        sceneView.session.add(anchor: testAnchor)
+        // locationLabel.text = "\(testAnchor.transform.columns.3.x, testAnchor.transform.columns.3.y, testAnchor.transform.columns.3.z)"
+    }
+}
+
+extension ViewController : CLLocationManagerDelegate {
+    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse || status == .authorizedAlways {
+            locationManager.requestLocation()
+        }
+    }
+    
+    private func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.first != nil {
+            print("location:: (location)")
+        }
+    }
+    
+    private func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("error:: (error)")
     }
 }
