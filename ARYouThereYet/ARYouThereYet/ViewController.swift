@@ -11,12 +11,15 @@ import SceneKit
 import ARKit
 import CoreLocation
 import MapKit
+import MapboxARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet var sceneView: ARSCNView!
     let locationManager = CLLocationManager()
+    var annotationManager: AnnotationManager!
+    fileprivate var startedLoadingPOIs = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
+        
+        // Create the annotation manager instance and give it an ARSCNView
+        annotationManager = AnnotationManager(sceneView: sceneView)
+        annotationManager.delegate = self
+        annotationManager.originLocation = locationManager.location
         
         // Create a new scene
         //let scene = SCNScene(named: "art.scnassets/ship.scn")!
@@ -91,13 +99,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // locationManager.requestLocation()
-        let currentLocation = locationManager.location!
-        let identityLocation = matrix_identity_float4x4
+        // let currentLocation = locationManager.location!
+        // let identityLocation = matrix_identity_float4x4
         
-        // MK-MapKit
+        /*// MK-MapKit
         var result = MKLocalSearchResponse()
         let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = "library"
+        request.naturalLanguageQuery = "coffee"
         request.region = MKCoordinateRegion(center: currentLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2))
         let search = MKLocalSearch(request: request)
         search.start { response, _ in
@@ -119,15 +127,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 self.sceneView.session.add(anchor: testAnchor)
                 print("\(i.placemark)\n")
             }
-        }
-        
-        let localSearch = MKLocalSearch()
-        localSearch.start(completionHandler: {response,_ in
-            guard let response = response else {
-                return
-            }
-            print(response)
-        })
+        }*/
         
         /*for i in result.mapItems {
             // let endLocation = CLLocation(latitude: 41.871876, longitude: -87.650500)
@@ -145,6 +145,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // print(matchingItems)
         
+        
+        // 41.870820, -87.650454
+        
         /*let endLocation = CLLocation(latitude: 41.871876, longitude: -87.650500)
         let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation, location: endLocation)
         let geometry = SCNSphere(radius: 0.5)
@@ -156,14 +159,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sphereNode.position = SCNVector3Make(holder.columns.3.x, holder.columns.3.y, holder.columns.3.z)
         sceneView.scene.rootNode.addChildNode(sphereNode)
         sceneView.session.add(anchor: testAnchor)*/
-        
-        // 41.871876, -87.650500
-        
-        // let finalLocation = SCNMatrix4.init(holder)
-        // let ourLocation = SCNMatrix4.init(m11: 1, m12: 0, m13: 0, m14: 0, m21: 0, m22: 1, m23: 0, m24: 0, m31: 0, m32: 0, m33: 1, m34: 0, m41: Float((currentLocation?.coordinate.latitude)!), m42: 0, m43: Float((currentLocation?.coordinate.longitude)!), m44: 0)
-        
-        // let endLocationMatrix = SCNMatrix4(m11: 1, m12: 0, m13: 0, m14: 0, m21: 0, m22: 1, m23: 0, m24: 0, m31: 0, m32: 0, m33: 1, m34: 0, m41: Float(endLocation.coordinate.latitude), m42: 0, m43: Float(endLocation.coordinate.longitude), m44: 0)
-        
         
         // sphereNode.position = SCNVector3Make(holder.columns.3.x, 0, holder.columns.3.z)
         // sphereNode.position = SCNVector3(sceneView.pointOfView!.simdWorldFront.x + holder.columns.3.x, sceneView.pointOfView!.simdWorldFront.y + holder.columns.3.y, sceneView.pointOfView!.simdWorldFront.z + holder.columns.3.z)
@@ -181,17 +176,59 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 extension ViewController : CLLocationManagerDelegate {
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse || status == .authorizedAlways {
-            locationManager.requestLocation()
-        }
-    }
-    
-    private func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if locations.first != nil {
-            print("location:: (location)")
+            manager.requestLocation()
         }
     }
     
     private func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("error:: (error)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.count > 0 {
+            let location = locations.last!
+            if location.horizontalAccuracy < 100 {
+                manager.stopUpdatingLocation()
+                // let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
+                // let region = MKCoordinateRegion(center: location.coordinate, span: span)
+                if !startedLoadingPOIs {
+                    startedLoadingPOIs = true
+                    let loader = PlacesLoader()
+                    loader.loadPOIS(location: location, radius: 500) { placesDict, error in
+                        if let dict = placesDict {
+                            guard let placesArray = dict.object(forKey: "results") as? [NSDictionary] else { return }
+                            for placeDict in placesArray {
+                                let latitude = placeDict.value(forKeyPath: "geometry.location.lat") as! CLLocationDegrees
+                                let longtiude = placeDict.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
+                                let reference = placeDict.object(forKey: "reference") as! String
+                                let name = placeDict.object(forKey: "name") as! String
+                                let address = placeDict.object(forKey: "vicinity") as! String
+                                
+                                let location = CLLocation(latitude: latitude, longitude: longtiude)
+                                print("Name: \(name), Location: \(location)")
+                                DispatchQueue.main.async {
+                                    let annotation = Annotation(location: location, calloutImage: nil)
+                                    self.annotationManager.addAnnotation(annotation: annotation)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+extension ViewController: AnnotationManagerDelegate {
+    
+    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        switch camera.trackingState {
+        case .normal:
+            // Tracking is sufficient to begin experience
+            // allowARInteractions()
+            print("trackingState = normal")
+        default:
+            break
+        }
     }
 }

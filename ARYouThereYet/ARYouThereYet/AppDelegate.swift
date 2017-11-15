@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapboxARKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

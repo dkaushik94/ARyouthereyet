@@ -1,0 +1,6 @@
+framework module Pods_ARYouThereYetUITests {
+  umbrella header "Pods-ARYouThereYetUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
