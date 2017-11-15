@@ -199,17 +199,17 @@ extension ViewController : CLLocationManagerDelegate {
                             guard let placesArray = dict.object(forKey: "results") as? [NSDictionary] else { return }
                             for placeDict in placesArray {
                                 let latitude = placeDict.value(forKeyPath: "geometry.location.lat") as! CLLocationDegrees
-                                let longtiude = placeDict.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
-                                let reference = placeDict.object(forKey: "reference") as! String
-                                let name = placeDict.object(forKey: "name") as! String
-                                let address = placeDict.object(forKey: "vicinity") as! String
+                                 let longtiude = placeDict.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
+                                 let reference = placeDict.object(forKey: "reference") as! String
+                                 let name = placeDict.object(forKey: "name") as! String
+                                 let address = placeDict.object(forKey: "vicinity") as! String
                                 
-                                let location = CLLocation(latitude: latitude, longitude: longtiude)
-                                print("Name: \(name), Location: \(location)")
-                                DispatchQueue.main.async {
-                                    let annotation = Annotation(location: location, calloutImage: nil)
-                                    self.annotationManager.addAnnotation(annotation: annotation)
-                                }
+                                 let location = CLLocation(latitude: latitude, longitude: longtiude)
+                                 print("Name: \(name), Location: \(location)")
+                                 DispatchQueue.main.async {
+                                    let annotation = Annotation(location: location, calloutImage: nil, name: name)
+                                 self.annotationManager.addAnnotation(annotation: annotation)
+                                 }
                             }
                         }
                     }
@@ -230,5 +230,12 @@ extension ViewController: AnnotationManagerDelegate {
         default:
             break
         }
+    }
+    
+    func node(for annotation: Annotation) -> SCNNode? {
+        let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
+        nameNode.font = UIFont(name: "HelveticaNeue", size: 7.0)
+        let mainNode = SCNNode(geometry: nameNode)
+        return mainNode
     }
 }

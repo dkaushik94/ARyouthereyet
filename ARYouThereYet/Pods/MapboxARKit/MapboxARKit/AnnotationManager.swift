@@ -116,10 +116,9 @@ extension AnnotationManager: ARSCNViewDelegate {
     // MARK: - Utility methods for ARSCNViewDelegate
     
     func createDefaultNode() -> SCNNode {
-        // let geometry = SCNSphere(radius: 1.0)
-        let geometry = SCNBox(width: 5.0, height: 5.0, length: 5.0, chamferRadius: 0)
-        geometry.firstMaterial?.diffuse.contents = UIColor.green
-        return SCNNode(geometry: geometry)
+        let sphere = SCNSphere(radius: 2.0)
+        sphere.firstMaterial?.diffuse.contents = UIColor.blue
+        return SCNNode(geometry: sphere)
     }
     
     func createCalloutNode(with image: UIImage, node: SCNNode) -> SCNNode {
@@ -152,5 +151,4 @@ extension AnnotationManager: ARSCNViewDelegate {
         
         return calloutNode
     }
-    
 }
