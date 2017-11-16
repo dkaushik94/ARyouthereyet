@@ -234,7 +234,8 @@ extension ViewController: AnnotationManagerDelegate {
     
     func node(for annotation: Annotation) -> SCNNode? {
         let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
-        nameNode.font = UIFont(name: "HelveticaNeue", size: 7.0)
+        nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
+        // let nameNode = SCNSphere(radius: 1.0)
         let mainNode = SCNNode(geometry: nameNode)
         return mainNode
     }
