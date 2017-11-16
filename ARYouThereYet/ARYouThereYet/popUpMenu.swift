@@ -14,6 +14,7 @@ class popUpMenu: UIViewController {
    
     @IBOutlet weak var menuContainer: UIView!
     @IBOutlet weak var filterView: UIView!
+    @IBOutlet weak var searchView: UIView!
     
     var currContainer = ""
     
@@ -99,26 +100,35 @@ class popUpMenu: UIViewController {
 }
 extension popUpMenu: menuDelegation {
     func toggleVisibility(incomingContainer: String) {
-        if(self.currContainer == "" || self.currContainer == incomingContainer){
-            if (self.currContainer == incomingContainer){
-                self.setCurrentContainer(arg: "")
-            }
-            else if(self.currContainer == ""){
-                self.setCurrentContainer(arg: incomingContainer)
-            }
-            if(incomingContainer == "search"){
-                serViewController?.updateVisibility()
-                self.view.bringSubview(toFront: serViewController!.view)
-            }
-            else if(incomingContainer == "filter"){
-                filViewController?.updateVisibility()
-                self.view.bringSubview(toFront: filViewController!.view)
-            }
+        if(incomingContainer == "search"){
+            filterView.isHidden = true
+            searchView.isHidden = false
+            
         }
-        else if(currContainer != incomingContainer && currContainer != ""){
-            self.setCurrentContainer(arg: incomingContainer)
-            serViewController?.updateVisibility()
-            filViewController?.updateVisibility()
+        else if(incomingContainer == "filter"){
+            filterView.isHidden = false
+            searchView.isHidden = true
+        }
+//        if(self.currContainer == "" || self.currContainer == incomingContainer){
+//            if (self.currContainer == incomingContainer){
+//                self.setCurrentContainer(arg: "")
+//            }
+//            else if(self.currContainer == ""){
+//                self.setCurrentContainer(arg: incomingContainer)
+//            }
+//            if(incomingContainer == "search"){
+//                serViewController?.updateVisibility()
+//                self.view.bringSubview(toFront: serViewController!.view)
+//            }
+//            else if(incomingContainer == "filter"){
+//                filViewController?.updateVisibility()
+//                self.view.bringSubview(toFront: filViewController!.view)
+//            }
+//        }
+//        else if(currContainer != incomingContainer && currContainer != ""){
+//            self.setCurrentContainer(arg: incomingContainer)
+//            serViewController?.updateVisibility()
+//            filViewController?.updateVisibility()
 
 //            if (incomingContainer == "search"){
 //                serViewController?.updateVisibility)
@@ -128,4 +138,3 @@ extension popUpMenu: menuDelegation {
 //            }
         }
     }
-}

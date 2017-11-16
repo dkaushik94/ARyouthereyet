@@ -21,7 +21,7 @@ class filterMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.isHidden = true
+//        self.view.isHidden = true
         // Do any additional setup after loading the view.
         
         //Blurring

@@ -8,18 +8,31 @@
 
 import UIKit
 
-class searchViewController: UIViewController {
-
+class searchViewController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var searchBox: UITextField!
+    
     var searchToggle = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.isHidden = true
-        // Do any additional setup after loading the view.
+        //Blurring.
+        let blur = UIBlurEffect(style: .dark)
+        let blurView = UIVisualEffectView(effect: blur)
+        blurView.frame = self.view.frame
+        blurView.clipsToBounds = true
+        self.view.insertSubview(blurView, at:0)
+        self.searchBox.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.searchBox.resignFirstResponder()
+        return true
     }
 
     public func updateVisibility(){

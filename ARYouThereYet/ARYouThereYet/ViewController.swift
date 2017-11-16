@@ -14,6 +14,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    //Test function for adding a test cube. Checking out AR Kit.
+    @IBAction func addCube(_ sender: Any) {
+        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+        cubeNode.position = SCNVector3(0, 0, -0.3) //Measured in metres.
+        sceneView.scene.rootNode.addChildNode(cubeNode)
+    }
+    
     @IBAction func menuPopUp(_ sender: Any) {
         
         let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popUpMenuVC") as!
@@ -26,6 +33,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Useless BoilerPlate code.
         // Set the view's delegate
         sceneView.delegate = self
         
@@ -37,6 +45,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        //Custom Code.
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,10 +55,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        configuration.planeDetection = .horizontal
         // Run the view's session
         sceneView.session.run(configuration)
     }
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
