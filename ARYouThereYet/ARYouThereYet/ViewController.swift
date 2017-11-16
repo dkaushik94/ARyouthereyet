@@ -14,8 +14,7 @@ import MapKit
 import MapboxARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
-    @IBOutlet weak var locationLabel: UILabel!
+    
     @IBOutlet var sceneView: ARSCNView!
     let locationManager = CLLocationManager()
     var annotationManager: AnnotationManager!
@@ -205,7 +204,7 @@ extension ViewController : CLLocationManagerDelegate {
                                  let address = placeDict.object(forKey: "vicinity") as! String
                                 
                                  let location = CLLocation(latitude: latitude, longitude: longtiude)
-                                 print("Name: \(name), Location: \(location)")
+                                 // print("Name: \(name), Location: \(location)")
                                  DispatchQueue.main.async {
                                     let annotation = Annotation(location: location, calloutImage: nil, name: name)
                                  self.annotationManager.addAnnotation(annotation: annotation)
@@ -235,7 +234,6 @@ extension ViewController: AnnotationManagerDelegate {
     func node(for annotation: Annotation) -> SCNNode? {
         let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
         nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
-        // let nameNode = SCNSphere(radius: 1.0)
         let mainNode = SCNNode(geometry: nameNode)
         return mainNode
     }

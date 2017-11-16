@@ -27,7 +27,19 @@ internal extension simd_float4x4 {
         let position = vector_float4(0.0, 0.0, -distance, 0.0)
         let translationMatrix = matrix_identity_float4x4.translationMatrix(position)
         let rotationMatrix = matrix_identity_float4x4.rotationAroundY(radians: bearing)
-        let transformMatrix = simd_mul(rotationMatrix, translationMatrix)
+        var transformMatrix = simd_mul(rotationMatrix, translationMatrix)
+        
+        switch abs(transformMatrix.columns.3.z) {
+        case 0.0...100.0:
+            transformMatrix.columns.3.y = 0.0
+        case 100.0...250.0:
+            transformMatrix.columns.3.y = 50.0
+        case 250.0...500.0:
+            transformMatrix.columns.3.y = 100.0
+        default:
+            print("sd")
+        }
+        
         return simd_mul(self, transformMatrix)
     }
     

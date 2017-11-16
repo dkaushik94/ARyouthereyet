@@ -43,6 +43,7 @@ public class AnnotationManager: NSObject {
         
         anchors.append(anchor)
         annotation.anchor = anchor
+        
         annotationsByAnchor[anchor] = annotation
     }
     
@@ -102,14 +103,14 @@ extension AnnotationManager: ARSCNViewDelegate {
             
             let scalingFactor = 0.018403680735972+0.015963192638528 * abs(anchor.transform.columns.3.z)
             newNode.scale = SCNVector3(scalingFactor,scalingFactor,scalingFactor)
-                        
+            
             if let calloutImage = annotation.calloutImage {
                 let calloutNode = createCalloutNode(with: calloutImage, node: newNode)
                 newNode.addChildNode(calloutNode)
             }
             
             node.addChildNode(newNode)
-            
+
             annotationsByNode[newNode] = annotation
         }
         
@@ -144,7 +145,7 @@ extension AnnotationManager: ARSCNViewDelegate {
         var nodePosition = node.position
         let (min, max) = node.boundingBox
         let nodeHeight = max.y - min.y
-        nodePosition.y = nodeHeight + 0.5
+        nodePosition.y = nodeHeight + 2.0
         
         calloutNode.position = nodePosition
         
