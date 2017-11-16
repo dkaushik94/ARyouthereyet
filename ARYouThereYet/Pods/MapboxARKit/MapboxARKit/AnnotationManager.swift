@@ -99,6 +99,9 @@ extension AnnotationManager: ARSCNViewDelegate {
             } else {
                 newNode = createDefaultNode()
             }
+            
+            let scalingFactor = 0.018403680735972+0.015963192638528 * abs(anchor.transform.columns.3.z)
+            newNode.scale = SCNVector3(scalingFactor,scalingFactor,scalingFactor)
                         
             if let calloutImage = annotation.calloutImage {
                 let calloutNode = createCalloutNode(with: calloutImage, node: newNode)
