@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P2N-QD-cZZ">
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" sceneName="ARCameraView" translatesAutoresizingMaskIntoConstraints="NO" id="P2N-QD-cZZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </arscnView>
@@ -32,11 +32,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ5-Ns-633">
-                                <rect key="frame" x="16" y="617" width="90" height="30"/>
+                                <rect key="frame" x="8" y="617" width="107" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add a cube"/>
+                                <state key="normal" title="Add Annotation"/>
                                 <connections>
                                     <action selector="addCube:" destination="BV1-FR-VrT" eventType="touchUpInside" id="1jO-mL-beO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfZ-q1-IYK">
+                                <rect key="frame" x="270" y="617" width="89" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add Marker"/>
+                                <connections>
+                                    <action selector="addMenu:" destination="BV1-FR-VrT" eventType="touchUpInside" id="i23-pg-J0F"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -60,20 +68,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="651-Z7-v6N">
-                                <rect key="frame" x="0.0" y="510" width="375" height="104"/>
+                                <rect key="frame" x="0.0" y="492" width="375" height="104"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="xbU-0F-0ch" kind="embed" id="Aca-xG-POz"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwW-13-fJO">
-                                <rect key="frame" x="323" y="467" width="36" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="error.png"/>
-                                <connections>
-                                    <action selector="closeMenu:" destination="IaQ-bb-lWB" eventType="touchUpInside" id="i5h-f0-bpa"/>
-                                </connections>
-                            </button>
                             <containerView hidden="YES" opaque="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DCb-3k-Ytl">
                                 <rect key="frame" x="16" y="81" width="343" height="348"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -89,6 +89,14 @@
                                     <segue destination="DGq-vR-CPg" kind="embed" id="u8t-Zi-69f"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwW-13-fJO">
+                                <rect key="frame" x="323" y="449" width="36" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="error.png"/>
+                                <connections>
+                                    <action selector="closeMenu:" destination="IaQ-bb-lWB" eventType="touchUpInside" id="i5h-f0-bpa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Qyr-bV-aBQ"/>

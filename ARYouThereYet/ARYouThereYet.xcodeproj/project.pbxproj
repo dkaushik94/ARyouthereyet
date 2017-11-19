@@ -26,6 +26,7 @@
 		492019791FB5A02F00CA476C /* filterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019781FB5A02F00CA476C /* filterMenuViewController.swift */; };
 		4920197B1FB6541300CA476C /* menuDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920197A1FB6541300CA476C /* menuDelegation.swift */; };
 		4920197D1FBA802400CA476C /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920197C1FBA802400CA476C /* searchViewController.swift */; };
+		49AC6A271FC1A06600B14C5C /* coffeeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49AC6A261FC1A06500B14C5C /* coffeeIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		492019781FB5A02F00CA476C /* filterMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filterMenuViewController.swift; sourceTree = "<group>"; };
 		4920197A1FB6541300CA476C /* menuDelegation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuDelegation.swift; sourceTree = "<group>"; };
 		4920197C1FBA802400CA476C /* searchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
+		49AC6A261FC1A06500B14C5C /* coffeeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffeeIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				492019741FB5329200CA476C /* show-apps-button.png */,
 				4920196B1FB5297F00CA476C /* funnel.png */,
 				4920196D1FB5297F00CA476C /* menu.png */,
+				49AC6A261FC1A06500B14C5C /* coffeeIcon.png */,
 				4920196A1FB5297F00CA476C /* network.png */,
 				4920196E1FB5297F00CA476C /* search.png */,
 			);
@@ -281,6 +284,7 @@
 				492019201FB294E900CA476C /* art.scnassets in Resources */,
 				492019711FB5297F00CA476C /* error.png in Resources */,
 				4920192A1FB294E900CA476C /* LaunchScreen.storyboard in Resources */,
+				49AC6A271FC1A06600B14C5C /* coffeeIcon.png in Resources */,
 				492019271FB294E900CA476C /* Assets.xcassets in Resources */,
 				492019751FB5329200CA476C /* show-apps-button.png in Resources */,
 				492019251FB294E900CA476C /* Main.storyboard in Resources */,

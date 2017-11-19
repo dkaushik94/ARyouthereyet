@@ -64,11 +64,9 @@ class popUpMenu: UIViewController {
     
     //Menu showing animation.
     func menuAnimation(){
-        menuContainer.viewWithTag(1)?.transform = CGAffineTransform(scaleX:2.0, y:2.0)
         self.view.alpha = 0.0
         UIView.animate(withDuration: 0.3, animations: {
             self.view.alpha = 1
-            self.menuContainer.viewWithTag(1)?.transform = CGAffineTransform(scaleX:1.0, y:1.0)
         })
     }
     
@@ -76,7 +74,6 @@ class popUpMenu: UIViewController {
     func discardMenuAnimation(){
         UIView.animate(withDuration: 0.3, animations: {
             self.view.alpha = 0
-            self.menuContainer.viewWithTag(1)?.transform = CGAffineTransform(scaleX:2.0, y:2.0)
         },completion :{
             (finished: Bool) in
             if(finished){
