@@ -46,6 +46,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         //sceneView.scene = scene
+        
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.numberOfTapsRequired = 1
+        tapRecognizer.numberOfTouchesRequired = 1
+        tapRecognizer.addTarget(self, action:  #selector(tapped))
+        sceneView.gestureRecognizers = [tapRecognizer]
+    }
+    
+    @objc func tapped(recognizer: UITapGestureRecognizer) {
+        let location = recognizer.location(in: sceneView)
+        
+        let hitResults = sceneView.hitTest(location, options: nil)
+        if hitResults.count > 0 {
+            let result = hitResults[0] as SCNHitTestResult
+            let node = result.node
+            
+            if let touchedNode = node as? SCNNode {
+                print("Touched the location node")
+            }
+        }
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -216,6 +237,8 @@ extension ViewController : CLLocationManagerDelegate {
             }
         }
     }
+    
+    
 }
 
 extension ViewController: AnnotationManagerDelegate {
