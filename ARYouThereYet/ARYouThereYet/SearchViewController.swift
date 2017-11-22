@@ -12,7 +12,12 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //Blurring.
+        let blur = UIBlurEffect(style: .dark)
+        let blurView = UIVisualEffectView(effect: blur)
+        blurView.frame = self.view.frame
+        blurView.clipsToBounds = true
+        self.view.insertSubview(blurView, at:0)
         // Do any additional setup after loading the view.
     }
 
