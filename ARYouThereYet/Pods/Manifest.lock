@@ -1,9 +1,13 @@
 PODS:
+  - Alamofire (4.5.1)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
   - MapboxARKit (0.0.1):
     - Turf
   - Turf (0.0.4)
 
 DEPENDENCIES:
+  - AlamofireImage (~> 3.3)
   - MapboxARKit (from `https://github.com/mapbox/mapbox-arkit-ios.git`)
 
 EXTERNAL SOURCES:
@@ -16,9 +20,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/mapbox/mapbox-arkit-ios.git
 
 SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   MapboxARKit: 12a4d1ff584b22feb62f44eed86f9e4522b1da70
   Turf: 6c169618fa671e3f8a7b764b5b3332053ad6110e
 
-PODFILE CHECKSUM: 8f49956fdb4f4e13c5660142b2618a40c001d2f4
+PODFILE CHECKSUM: 994d3c6dc0241e382fe6df2a9a6ea0b239a00659
 
 COCOAPODS: 1.3.1

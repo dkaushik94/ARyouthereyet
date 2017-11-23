@@ -18,6 +18,7 @@
 		492019351FB294E900CA476C /* ARYouThereYetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019341FB294E900CA476C /* ARYouThereYetTests.swift */; };
 		492019401FB294E900CA476C /* ARYouThereYetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */; };
 		8A017BCBDC882F4894500B5E /* Pods_ARYouThereYetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1576E4498CC30F976830864B /* Pods_ARYouThereYetTests.framework */; };
+		F74962361FC6588C00208574 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74962351FC6588C00208574 /* NavViewController.swift */; };
 		F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B6DDC41FBB8FF200DDAE38 /* PlacesLoader.swift */; };
 		F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		6FC8780DEFDC539229EB1357 /* Pods-ARYouThereYet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYet.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet.release.xcconfig"; sourceTree = "<group>"; };
 		78D2C44EE01B4532766493C4 /* Pods_ARYouThereYet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2678B7D9FA1D339468077E2 /* Pods-ARYouThereYetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetTests/Pods-ARYouThereYetTests.release.xcconfig"; sourceTree = "<group>"; };
+		F74962351FC6588C00208574 /* NavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
 		F7B6DDC41FBB8FF200DDAE38 /* PlacesLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesLoader.swift; sourceTree = "<group>"; };
 		F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 				4920191D1FB294E900CA476C /* AppDelegate.swift */,
 				4920191F1FB294E900CA476C /* art.scnassets */,
 				492019211FB294E900CA476C /* ViewController.swift */,
+				F74962351FC6588C00208574 /* NavViewController.swift */,
 				F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */,
 				492019231FB294E900CA476C /* Main.storyboard */,
 				492019261FB294E900CA476C /* Assets.xcassets */,
@@ -402,11 +405,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/MapboxARKit/MapboxARKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Turf/Turf.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxARKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Turf.framework",
 			);
@@ -471,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */,
+				F74962361FC6588C00208574 /* NavViewController.swift in Sources */,
 				F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */,
 				492019221FB294E900CA476C /* ViewController.swift in Sources */,
 				4920191E1FB294E900CA476C /* AppDelegate.swift in Sources */,
@@ -646,7 +654,7 @@
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.Places;
+				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.aryouthere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -665,7 +673,7 @@
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.Places;
+				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.aryouthere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
