@@ -5,8 +5,14 @@ target 'ARYouThereYet' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'MapboxARKit', :git => 'https://github.com/mapbox/mapbox-arkit-ios.git'
+  pod 'AlamofireImage', '~>3.3'
 
+  pod 'MapboxDirections.swift', '~> 0.13'
+
+  pod 'Mapbox-iOS-SDK', '~> 3.7.0'
+
+  pod 'MapboxARKit', :git => 'https://github.com/mapbox/mapbox-arkit-ios.git'
+  
   # Pods for ARYouThereYet
 
   target 'ARYouThereYetTests' do

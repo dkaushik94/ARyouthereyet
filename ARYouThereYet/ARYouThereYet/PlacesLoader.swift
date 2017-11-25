@@ -25,7 +25,7 @@ import CoreLocation
 
 struct PlacesLoader {
   let apiURL = "https://maps.googleapis.com/maps/api/place/"
-  let apiKey = "AIzaSyD7dydqTecwjuLPsRmpoM7JWRxfRzNcU3I"
+  let apiKey = "AIzaSyCx3Y1vXE0PBpdSLCjqGn6G3z8JcOvYfmo"
   
   func loadPOIS(location: CLLocation, radius: Int = 30, handler: @escaping (NSDictionary?, NSError?) -> Void) {
     print("Load pois")
@@ -44,7 +44,8 @@ struct PlacesLoader {
           print(data!)
           
           do {
-            let responseObject = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            // let responseObject = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            let responseObject = try JSONSerialization.jsonObject(with: data!, options: [])
             guard let responseDict = responseObject as? NSDictionary else {
               return
             }

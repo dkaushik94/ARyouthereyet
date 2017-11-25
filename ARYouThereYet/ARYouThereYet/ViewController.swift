@@ -12,6 +12,13 @@ import ARKit
 import CoreLocation
 import MapKit
 import MapboxARKit
+import AlamofireImage
+import Alamofire
+
+struct DistanceMatrix: Decodable {
+    let status: String
+    
+}
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
@@ -21,7 +28,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     let locationManager = CLLocationManager()
     var annotationManager: AnnotationManager!
     fileprivate var startedLoadingPOIs = false
-    
+    var listOfAnnotations: [Annotation] = []
+
+    @IBOutlet weak var navButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,6 +76,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             if let touchedNode = node as? SCNNode {
                 print("Touched the location node")
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController")
+                self.present(nav, animated: true, completion: nil)
             }
         }
     
@@ -146,64 +158,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             guard let response = response else {
                 return
             }
-            result = response
-            
-            for i in result.mapItems {
-                let endLocation = CLLocation(latitude: i.placemark.coordinate.latitude, longitude: i.placemark.coordinate.longitude)
-                let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation, location: endLocation)
-                let geometry = SCNSphere(radius: 0.5)
-                geometry.firstMaterial?.diffuse.contents = UIColor.blue
-                let sphereNode = SCNNode(geometry: geometry)
-                let testAnchor = ARAnchor(transform: holder)
-                sphereNode.transform = SCNMatrix4.init(testAnchor.transform)
-                sphereNode.position = SCNVector3Make(holder.columns.3.x, holder.columns.3.y, holder.columns.3.z)
-                self.sceneView.scene.rootNode.addChildNode(sphereNode)
-                self.sceneView.session.add(anchor: testAnchor)
-                print("\(i.placemark)\n")
-            }
-        }*/
-        
-        /*for i in result.mapItems {
-            // let endLocation = CLLocation(latitude: 41.871876, longitude: -87.650500)
-            let endLocation = CLLocation(latitude: i.placemark.coordinate.latitude, longitude: i.placemark.coordinate.longitude)
-            let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation, location: endLocation)
-            let geometry = SCNSphere(radius: 0.5)
-            geometry.firstMaterial?.diffuse.contents = UIColor.blue
-            let sphereNode = SCNNode(geometry: geometry)
-            let testAnchor = ARAnchor(transform: holder)
-            sphereNode.transform = SCNMatrix4.init(testAnchor.transform)
-            sphereNode.position = SCNVector3Make(holder.columns.3.x, holder.columns.3.y, holder.columns.3.z)
-            sceneView.scene.rootNode.addChildNode(sphereNode)
-            sceneView.session.add(anchor: testAnchor)
-        }*/
-        
-        // print(matchingItems)
-        
-        
-        // 41.870820, -87.650454
-        
-        /*let endLocation = CLLocation(latitude: 41.871876, longitude: -87.650500)
-        let holder = MatrixHelper.transformMatrix(for: identityLocation, originLocation: currentLocation, location: endLocation)
-        let geometry = SCNSphere(radius: 0.5)
-        geometry.firstMaterial?.diffuse.contents = UIColor.blue
-        let sphereNode = SCNNode(geometry: geometry)
-        
-        let testAnchor = ARAnchor(transform: holder)
-        sphereNode.transform = SCNMatrix4.init(testAnchor.transform)
-        sphereNode.position = SCNVector3Make(holder.columns.3.x, holder.columns.3.y, holder.columns.3.z)
-        sceneView.scene.rootNode.addChildNode(sphereNode)
-        sceneView.session.add(anchor: testAnchor)*/
-        
-        // sphereNode.position = SCNVector3Make(holder.columns.3.x, 0, holder.columns.3.z)
-        // sphereNode.position = SCNVector3(sceneView.pointOfView!.simdWorldFront.x + holder.columns.3.x, sceneView.pointOfView!.simdWorldFront.y + holder.columns.3.y, sceneView.pointOfView!.simdWorldFront.z + holder.columns.3.z)
-        
-
-        //locationLabel.text = String(testAnchor.transform.columns.3.x)
-        
-        // print("TestAnchor: %s", testAnchor.transform)
-        // print("SphereNode: %s", sphereNode.transform)
-        
-        // locationLabel.text = "\(testAnchor.transform.columns.3.x, testAnchor.transform.columns.3.y, testAnchor.transform.columns.3.z)"
+            result = response*/
+    }
+    @IBAction func navButtonTouched(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController")
+        self.present(nav, animated: true, completion: nil)
     }
 }
 
@@ -233,17 +193,40 @@ extension ViewController : CLLocationManagerDelegate {
                             guard let placesArray = dict.object(forKey: "results") as? [NSDictionary] else { return }
                             for placeDict in placesArray {
                                 let latitude = placeDict.value(forKeyPath: "geometry.location.lat") as! CLLocationDegrees
-                                 let longtiude = placeDict.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
-                                 let reference = placeDict.object(forKey: "reference") as! String
-                                 let name = placeDict.object(forKey: "name") as! String
-                                 let address = placeDict.object(forKey: "vicinity") as! String
+                                let longitude = placeDict.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
+                                let reference = placeDict.object(forKey: "reference") as! String
+                                let name = placeDict.object(forKey: "name") as! String
+                                let address = placeDict.object(forKey: "vicinity") as! String
+                                let location = CLLocation(latitude: latitude, longitude: longitude)
+                                let rating = placeDict.object(forKey: "rating") as? Double ?? 0.0
+                                let iconURL = placeDict.object(forKey: "icon") as! String
                                 
-                                 let location = CLLocation(latitude: latitude, longitude: longtiude)
-                                 // print("Name: \(name), Location: \(location)")
-                                 DispatchQueue.main.async {
-                                    let annotation = Annotation(location: location, calloutImage: nil, name: name)
-                                 self.annotationManager.addAnnotation(annotation: annotation)
-                                 }
+                                /*if placeDict.object(forKey: "photos") != nil {
+                                    print("\(name) has photo")
+                                    let r = placeDict.value(forKeyPath: "photos.photo_reference") as! NSArray
+                                    Alamofire.request("https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=\(r[0])&key=AIzaSyDp1PcjICOG9kFeORFSesnCmtfCphXpu0U").responseImage { response in
+                                        if let photo = response.result.value {
+                                            self.imageView.image = photo
+                                            
+                                            // self.imageView.image = photo
+                                        } else {
+                                            print("image not downloaded")
+                                        }
+                                    }
+                                } else {
+                                    print("\(name) has no photo")
+                                }*/
+                                
+                                DispatchQueue.main.async {
+                                    Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
+                                        if let icon = response.result.value {
+                                            print("\(name) has icon")
+                                            let annotation = Annotation(location: location, calloutImage: nil, name: name, reference: reference, address: address, latitude: latitude, longitude: longitude, distance: (self.locationManager.location?.distance(from: location))!, rating: rating, icon: icon)
+                                            self.listOfAnnotations.append(annotation)
+                                            self.annotationManager.addAnnotation(annotation: annotation)
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -251,8 +234,6 @@ extension ViewController : CLLocationManagerDelegate {
             }
         }
     }
-    
-    
 }
 
 extension ViewController: AnnotationManagerDelegate {
