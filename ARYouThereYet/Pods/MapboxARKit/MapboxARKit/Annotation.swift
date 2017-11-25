@@ -12,7 +12,7 @@ public class Annotation: NSObject {
     public var longitude: CLLocationDegrees
     public var distance: Double
     public var rating: Double
-    public var icon: UIImage
+    public var icon: UIImage?
     
     public init(location: CLLocation, calloutImage: UIImage?, name: String, reference: String, address: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees, distance: Double, rating: Double, icon: UIImage) {
         self.location = location

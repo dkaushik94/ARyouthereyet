@@ -73,6 +73,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             if let touchedNode = node as? SCNNode {
                 print("Touched the location node")
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController")
+                self.present(nav, animated: true, completion: nil)
             }
         }
     

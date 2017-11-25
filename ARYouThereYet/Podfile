@@ -7,6 +7,10 @@ target 'ARYouThereYet' do
 
   pod 'AlamofireImage', '~>3.3'
 
+  pod 'MapboxDirections.swift', '~> 0.13'
+
+  pod 'Mapbox-iOS-SDK', '~> 3.7.0'
+
   pod 'MapboxARKit', :git => 'https://github.com/mapbox/mapbox-arkit-ios.git'
   
   # Pods for ARYouThereYet
