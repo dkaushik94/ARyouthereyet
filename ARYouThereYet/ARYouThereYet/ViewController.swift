@@ -17,6 +17,8 @@ import Alamofire
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
+    
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet var sceneView: ARSCNView!
     let locationManager = CLLocationManager()
     var annotationManager: AnnotationManager!
@@ -55,6 +57,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         tapRecognizer.numberOfTouchesRequired = 1
         tapRecognizer.addTarget(self, action:  #selector(tapped))
         sceneView.gestureRecognizers = [tapRecognizer]
+        
     }
     
     @objc func tapped(recognizer: UITapGestureRecognizer) {
@@ -76,6 +79,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    @IBAction func showMenu(_ sender: Any) {
+        let mainMenuVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainMenuVC") as! MainMenuViewController
+        
+        self.addChildViewController(mainMenuVC)
+        mainMenuVC.view.frame = self.view.frame
+        self.view.addSubview(mainMenuVC.view)
+        mainMenuVC.didMove(toParentViewController: self)
+
+    }
+    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

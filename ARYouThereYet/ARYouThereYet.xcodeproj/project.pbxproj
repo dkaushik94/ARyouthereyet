@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		19AED87B690F8E8F7205E2F5 /* Pods_ARYouThereYet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D2C44EE01B4532766493C4 /* Pods_ARYouThereYet.framework */; };
+		30B37EFE1FC4D39C000B250A /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37EFD1FC4D39C000B250A /* MainMenuViewController.swift */; };
+		30B37F001FC4D4E3000B250A /* ControlMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */; };
+		30B37F021FC4D972000B250A /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37F011FC4D972000B250A /* FilterViewController.swift */; };
+		30B37F041FC4D97B000B250A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37F031FC4D97B000B250A /* SearchViewController.swift */; };
+		30BD81D41FC4F56C00D3D869 /* menuDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD81D31FC4F56C00D3D869 /* menuDelegation.swift */; };
 		395B724BBCEACA5B7A6BC7E5 /* Pods_ARYouThereYetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA9FF8921C924A92EBB22A9 /* Pods_ARYouThereYetUITests.framework */; };
 		4920191E1FB294E900CA476C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920191D1FB294E900CA476C /* AppDelegate.swift */; };
 		492019201FB294E900CA476C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4920191F1FB294E900CA476C /* art.scnassets */; };
@@ -44,6 +49,11 @@
 		055947DA37BDCB641C69D40D /* Pods-ARYouThereYetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetUITests/Pods-ARYouThereYetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1576E4498CC30F976830864B /* Pods_ARYouThereYetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DA9FF8921C924A92EBB22A9 /* Pods_ARYouThereYetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30B37EFD1FC4D39C000B250A /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlMenuViewController.swift; sourceTree = "<group>"; };
+		30B37F011FC4D972000B250A /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		30B37F031FC4D97B000B250A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		30BD81D31FC4F56C00D3D869 /* menuDelegation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuDelegation.swift; sourceTree = "<group>"; };
 		41216DE4EA08D6DBACC69DF9 /* Pods-ARYouThereYetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetTests/Pods-ARYouThereYetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		41D41A0FBD97E0B5607B39E9 /* Pods-ARYouThereYet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet.debug.xcconfig"; sourceTree = "<group>"; };
 		4920191A1FB294E900CA476C /* ARYouThereYet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARYouThereYet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +159,15 @@
 				4920191D1FB294E900CA476C /* AppDelegate.swift */,
 				4920191F1FB294E900CA476C /* art.scnassets */,
 				492019211FB294E900CA476C /* ViewController.swift */,
+
+				30B37EFD1FC4D39C000B250A /* MainMenuViewController.swift */,
+				30BD81D31FC4F56C00D3D869 /* menuDelegation.swift */,
+				30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */,
+				30B37F011FC4D972000B250A /* FilterViewController.swift */,
+				30B37F031FC4D97B000B250A /* SearchViewController.swift */,
+
 				F74962351FC6588C00208574 /* NavViewController.swift */,
+
 				F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */,
 				492019231FB294E900CA476C /* Main.storyboard */,
 				492019261FB294E900CA476C /* Assets.xcassets */,
@@ -485,11 +503,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30B37F021FC4D972000B250A /* FilterViewController.swift in Sources */,
 				F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */,
+
+				30B37F041FC4D97B000B250A /* SearchViewController.swift in Sources */,
+				30B37EFE1FC4D39C000B250A /* MainMenuViewController.swift in Sources */,
+				30BD81D41FC4F56C00D3D869 /* menuDelegation.swift in Sources */,
+
 				F74962361FC6588C00208574 /* NavViewController.swift in Sources */,
+
 				F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */,
 				492019221FB294E900CA476C /* ViewController.swift in Sources */,
 				4920191E1FB294E900CA476C /* AppDelegate.swift in Sources */,
+				30B37F001FC4D4E3000B250A /* ControlMenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
