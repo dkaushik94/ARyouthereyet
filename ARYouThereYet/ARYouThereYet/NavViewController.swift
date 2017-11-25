@@ -38,6 +38,10 @@ class NavViewController: UIViewController {
     // directions routeline
     var waypointShapeCollectionFeature: MGLShapeCollectionFeature?
     
+    // Location Holder
+    public var destinationLocationCustom: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+    public var currentLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +56,33 @@ class NavViewController: UIViewController {
         // Create an AR annotation manager and give it a reference to the AR scene view
         annotationManager = AnnotationManager(sceneView: sceneView)
         annotationManager.delegate = self
+        
+        if destinationLocationCustom.latitude != 0.0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                self.customRun()
+            })
+        }
+    }
+    
+    func customRun() {
+        let coordinate = self.destinationLocationCustom
+        if let existingAnnotations = mapView.annotations {
+            mapView.removeAnnotations(existingAnnotations)
+        }
+        print(coordinate)
+        // Add an annotation to the map view for the pressed point
+        let annotation = MGLPointAnnotation()
+        annotation.coordinate = coordinate
+        mapView.addAnnotation(annotation)
+        
+        // remove any previously rendered route
+        annotationManager.removeAllAnnotations()
+        resetShapeCollectionFeature(&waypointShapeCollectionFeature)
+        self.updateSource(identifer: "annotationSource", shape: self.waypointShapeCollectionFeature)
+        
+        // Create a CLLocation instance to represent the end location for the directions query
+        let annotationLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+        queryDirections(with: annotationLocation)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,7 +103,7 @@ class NavViewController: UIViewController {
     
     // Handle a long press on the Mapbox map view
     @IBAction func didLongPress(_ recognizer: UILongPressGestureRecognizer) {
-        // Find the geographic coordinate of the point pressed in the map view
+        /*// Find the geographic coordinate of the point pressed in the map view
         let point = recognizer.location(in: mapView)
         let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
         
@@ -88,7 +119,6 @@ class NavViewController: UIViewController {
         
         // When the gesture ends use the annotation location to initiate a query to the Mapbox Directions API
         if recognizer.state == .ended {
-            
             // remove any previously rendered route
             annotationManager.removeAllAnnotations()
             resetShapeCollectionFeature(&waypointShapeCollectionFeature)
@@ -97,7 +127,7 @@ class NavViewController: UIViewController {
             // Create a CLLocation instance to represent the end location for the directions query
             let annotationLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
             queryDirections(with: annotationLocation)
-        }
+        }*/
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -113,7 +143,8 @@ class NavViewController: UIViewController {
     // Query the directions endpoint with waypoints that are the current center location of the map
     // as the start and the passed in location as the end
     func queryDirections(with endLocation: CLLocation) {
-        let currentLocation = CLLocation(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude)
+        // let currentLocation = CLLocation(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude)
+        let currentLocation = CLLocation(latitude: self.currentLocation.latitude, longitude: self.currentLocation.longitude)
         annotationManager.originLocation = currentLocation
         
         let waypoints = [
@@ -149,13 +180,14 @@ class NavViewController: UIViewController {
                     
                     // Add an AR node
                     let annotation = Annotation(location: stepLocation, calloutImage: self.calloutImage(for: step.description), name: "node", reference: "none", address: "none", latitude: stepLocation.coordinate.latitude, longitude: stepLocation.coordinate.longitude, distance: 0.0, rating: 0.0, icon: UIImage())
-                    annotationsToAdd.append(annotation)
+                        annotationsToAdd.append(annotation)
                 }
                 
                 let metersPerNode: CLLocationDistance = 5
                 let turfPolyline = Polyline(polyline)
                 
                 // Walk the route line and add a small AR node and map view annotation every metersPerNode
+                var added: Bool = false
                 for i in stride(from: metersPerNode, to: turfPolyline.distance() - metersPerNode, by: metersPerNode) {
                     // Use Turf to find the coordinate of each incremented distance along the polyline
                     if let nextCoordinate = turfPolyline.coordinateFromStart(distance: i) {
@@ -165,8 +197,14 @@ class NavViewController: UIViewController {
                         self.updateShapeCollectionFeature(&self.waypointShapeCollectionFeature, with: interpolatedStepLocation, typeKey: "waypoint-type", typeAttribute: "small")
                         
                         // Add an AR node
-                        let annotation = Annotation(location: interpolatedStepLocation, calloutImage: nil, name: "node", reference: "none", address: "none", latitude: interpolatedStepLocation.coordinate.latitude, longitude: interpolatedStepLocation.coordinate.longitude, distance: 0.0, rating: 0.0, icon: UIImage())
-                        annotationsToAdd.append(annotation)
+                        if (added == false) {
+                            let annotation = Annotation(location: interpolatedStepLocation, calloutImage: nil, name: "node", reference: "none", address: "none", latitude: interpolatedStepLocation.coordinate.latitude, longitude: interpolatedStepLocation.coordinate.longitude, distance: 0.0, rating: 0.0, icon: UIImage())
+                            annotationsToAdd.append(annotation)
+                            added = true
+                        } else {
+                            added = false
+                            continue
+                        }
                     }
                 }
                 

@@ -22,27 +22,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </arscnView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jdh-X9-M2I">
-                                <rect key="frame" x="162" y="597" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0l-ms-rzb">
-                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Nav"/>
-                                        <connections>
-                                            <action selector="navButtonTouched:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Ul0-n9-45i"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rF0-mq-8Dr"/>
                     </view>
                     <connections>
-                        <outlet property="navButton" destination="v0l-ms-rzb" id="BGf-Vi-i84"/>
                         <outlet property="sceneView" destination="xwT-GU-ZEi" id="FCC-Fs-KIt"/>
                     </connections>
                 </viewController>
@@ -142,7 +126,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="778" y="72"/>
+            <point key="canvasLocation" x="776.79999999999995" y="71.514242878560722"/>
         </scene>
     </scenes>
     <resources>

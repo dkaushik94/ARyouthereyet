@@ -15,11 +15,6 @@ import MapboxARKit
 import AlamofireImage
 import Alamofire
 
-struct DistanceMatrix: Decodable {
-    let status: String
-    
-}
-
 class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
@@ -28,7 +23,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     fileprivate var startedLoadingPOIs = false
     var listOfAnnotations: [Annotation] = []
 
-    @IBOutlet weak var navButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,14 +65,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let result = hitResults[0] as SCNHitTestResult
             let node = result.node
             
-            if let touchedNode = node as? SCNNode {
+            if let touchedNode = node as? customNode {
                 print("Touched the location node")
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController")
+                let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
+                nav.currentLocation = locationManager.location!.coordinate
+                nav.destinationLocationCustom = touchedNode.location!
                 self.present(nav, animated: true, completion: nil)
             }
         }
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -146,11 +141,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             }
             result = response*/
     }
-    @IBAction func navButtonTouched(_ sender: Any) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController")
-        self.present(nav, animated: true, completion: nil)
-    }
 }
 
 extension ViewController : CLLocationManagerDelegate {
@@ -206,7 +196,7 @@ extension ViewController : CLLocationManagerDelegate {
                                 DispatchQueue.main.async {
                                     Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
                                         if let icon = response.result.value {
-                                            print("\(name) has icon")
+                                            // print("\(name) has icon")
                                             let annotation = Annotation(location: location, calloutImage: nil, name: name, reference: reference, address: address, latitude: latitude, longitude: longitude, distance: (self.locationManager.location?.distance(from: location))!, rating: rating, icon: icon)
                                             self.listOfAnnotations.append(annotation)
                                             self.annotationManager.addAnnotation(annotation: annotation)
@@ -238,7 +228,20 @@ extension ViewController: AnnotationManagerDelegate {
     func node(for annotation: Annotation) -> SCNNode? {
         let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
         nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
-        let mainNode = SCNNode(geometry: nameNode)
+        let mainNode = customNode(geometry: nameNode, location: annotation.location.coordinate)
         return mainNode
+    }
+}
+
+class customNode: SCNNode {
+    public var location: CLLocationCoordinate2D?
+    init(geometry: SCNGeometry, location: CLLocationCoordinate2D) {
+        super.init()
+        self.geometry = geometry
+        self.location = location
+    }
+    /* Xcode required this */
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
