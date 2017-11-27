@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoiYW1sYWFuYiIsImEiOiJjajl6MW5qdDMxZnQ4MnFsZ3FrbmV1MDNhIn0.S13idGc0qSFvyalJAgj23A</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -22,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoiYW1sYWFuYiIsImEiOiJjajl6MW5qdDMxZnQ4MnFsZ3FrbmV1MDNhIn0.S13idGc0qSFvyalJAgj23A</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This application will use the camera for Augmented Reality.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

@@ -47,7 +47,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         annotationManager.originLocation = locationManager.location
         
         // Create a new scene
-        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        //let scene = SCNscene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
         //sceneView.scene = scene
@@ -233,17 +233,82 @@ extension ViewController: AnnotationManagerDelegate {
         case .normal:
             // Tracking is sufficient to begin experience
             // allowARInteractions()
-            print("trackingState = normal")
+            print("\n")
         default:
             break
         }
     }
     
     func node(for annotation: Annotation) -> SCNNode? {
-        let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
-        nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
-        let mainNode = customNode(geometry: nameNode, location: annotation.location.coordinate)
-        return mainNode
+//        let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
+//        nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
+//        let mainNode = customNode(geometry: nameNode, location: annotation.location.coordinate)
+        
+        /*
+         Parameters:
+         Z-Depth: Placing the annotation in the field. (Float)
+         Y-Coordinate: Placing the annotation at a height to minimize overlapping. (Float)
+         */
+        
+        //Create annotations on the street.
+        let nameOfPlace = SCNText(string: annotation.name, extrusionDepth: 0.1)        //Replace string with incoming string value for every node.
+        nameOfPlace.font = UIFont(name: "Futura", size: 0.3)        //Fontsize can be played around with. But 0.3 seems fine.
+        nameOfPlace.firstMaterial!.diffuse.contents = UIColor.white
+        nameOfPlace.firstMaterial!.specular.contents = UIColor.white
+        
+        let max = nameOfPlace.boundingBox.max       //fetching min and max vounds of of the created geomtric entity.
+        let min = nameOfPlace.boundingBox.min
+        
+        //Calculate Ditance from user position to every Node.
+        var distanceFromUser = locationManager.location?.distance(from: annotation.location)
+        
+        //Create Another text entity for distance.
+        let compString = String(annotation.distance) + "mts"
+        let dist = SCNText(string: compString, extrusionDepth: 0.1)
+        dist.font = UIFont.init(name: "Futura", size: 0.15)
+        dist.firstMaterial!.diffuse.contents = UIColor.white
+        
+        //Create holding geometry and corresponding node for icon.
+        let icon = SCNPlane(width: 0.5, height: 0.5)
+        let iconMaterial = SCNMaterial()
+        iconMaterial.diffuse.contents = UIImage(named: "coffeeIcon")
+        icon.firstMaterial?.diffuse.contents = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
+        icon.materials = [iconMaterial]
+        let widthOfIcon = icon.boundingBox.max.x - icon.boundingBox.min.x
+        
+        
+        //Bounding values for the place WRT to the Text.
+        let annotX = (max.x - min.x + widthOfIcon) + 0.5
+        let annotY = (max.y - min.y) + 0.5
+        
+        //Scale distance down.
+//        distanceFromUser = distanceFromUser!/400
+//        print(distanceFromUser!)
+        
+        let annotSmall = SCNPlane(width: CGFloat(annotX), height: CGFloat(annotY))      //Create SCNPlane with the width matching the textNode.
+        annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
+        annotSmall.cornerRadius = 0.5
+        let annotNode = SCNNode(geometry: annotSmall)   //Create Node
+//        annotNode.position = SCNVector3(0, 0, -(distanceFromUser!))       //Z-Depth is hardcoded. Again, set according to the incoming value.
+        
+        
+        let posMin = annotSmall.boundingBox.min
+        
+        //Create nodes for all entities.
+        let labelNode = SCNNode(geometry: nameOfPlace)
+        let distNode = SCNNode(geometry: dist)
+        let iconNode = SCNNode(geometry: icon)
+        
+        labelNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.1, posMin.z)
+        distNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.3, posMin.z)
+        iconNode.position = SCNVector3((posMin.x + widthOfIcon/2) + 0.1, 0, posMin.z + 0.01)
+        
+        //Make all nodes children ofa parent SCNPlane.
+        annotNode.addChildNode(labelNode)
+        annotNode.addChildNode(distNode)
+        annotNode.addChildNode(iconNode)
+        
+        return annotNode
     }
 }
 
