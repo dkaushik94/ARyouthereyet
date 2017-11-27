@@ -333,6 +333,14 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WVJ-4e-rtu">
+                                                <rect key="frame" x="325" y="12" width="39" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Close"/>
+                                                <connections>
+                                                    <action selector="closeButtonTouched:" destination="puy-JY-YGT" eventType="touchUpInside" id="b7a-Mh-4KV"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -345,6 +353,13 @@
                                             <constraint firstItem="yjG-Ja-8Cr" firstAttribute="top" secondItem="2m4-1N-Owi" secondAttribute="topMargin" constant="42" id="usU-rM-FfE"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOn-Ka-EY5">
+                                        <rect key="frame" x="8" y="28" width="100" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -366,6 +381,7 @@
                     <connections>
                         <outlet property="cameraStateInfoLabel" destination="vIG-DP-S7K" id="Ysn-zo-tDs"/>
                         <outlet property="controlsContainerView" destination="2m4-1N-Owi" id="tnR-JO-WIh"/>
+                        <outlet property="distanceLabel" destination="GOn-Ka-EY5" id="n0b-q5-Gve"/>
                         <outlet property="mapView" destination="yjG-Ja-8Cr" id="0IQ-40-BjC"/>
                         <outlet property="sceneView" destination="rPq-mS-fEX" id="NZx-Se-dbI"/>
                     </connections>

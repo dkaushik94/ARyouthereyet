@@ -69,11 +69,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let node = result.node
             
             if let touchedNode = node as? customNode {
-                print("Touched the location node")
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
                 nav.currentLocation = locationManager.location!.coordinate
-                nav.destinationLocationCustom = touchedNode.location!
+                let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
+                nav.destinationLocationCustom = destinationLocation
                 self.present(nav, animated: true, completion: nil)
             }
         }
@@ -190,28 +190,13 @@ extension ViewController : CLLocationManagerDelegate {
                                 let location = CLLocation(latitude: latitude, longitude: longitude)
                                 let rating = placeDict.object(forKey: "rating") as? Double ?? 0.0
                                 let iconURL = placeDict.object(forKey: "icon") as! String
-                                
-                                /*if placeDict.object(forKey: "photos") != nil {
-                                    print("\(name) has photo")
-                                    let r = placeDict.value(forKeyPath: "photos.photo_reference") as! NSArray
-                                    Alamofire.request("https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=\(r[0])&key=AIzaSyDp1PcjICOG9kFeORFSesnCmtfCphXpu0U").responseImage { response in
-                                        if let photo = response.result.value {
-                                            self.imageView.image = photo
-                                            
-                                            // self.imageView.image = photo
-                                        } else {
-                                            print("image not downloaded")
-                                        }
-                                    }
-                                } else {
-                                    print("\(name) has no photo")
-                                }*/
+                                let placeID = placeDict.object(forKey: "id") as! String
                                 
                                 DispatchQueue.main.async {
                                     Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
                                         if let icon = response.result.value {
                                             // print("\(name) has icon")
-                                            let annotation = Annotation(location: location, calloutImage: nil, name: name, reference: reference, address: address, latitude: latitude, longitude: longitude, distance: (self.locationManager.location?.distance(from: location))!, rating: rating, icon: icon)
+                                            let annotation = Annotation(location: location, calloutImage: nil, name: name, reference: reference, address: address, latitude: latitude, longitude: longitude, distance: (self.locationManager.location?.distance(from: location))!, rating: rating, icon: icon, id: placeID)
                                             self.listOfAnnotations.append(annotation)
                                             self.annotationManager.addAnnotation(annotation: annotation)
                                         }
@@ -240,6 +225,7 @@ extension ViewController: AnnotationManagerDelegate {
     }
     
     func node(for annotation: Annotation) -> SCNNode? {
+<<<<<<< HEAD
 //        let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
 //        nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
 //        let mainNode = customNode(geometry: nameNode, location: annotation.location.coordinate)
@@ -313,11 +299,11 @@ extension ViewController: AnnotationManagerDelegate {
 }
 
 class customNode: SCNNode {
-    public var location: CLLocationCoordinate2D?
-    init(geometry: SCNGeometry, location: CLLocationCoordinate2D) {
+    public var annotation: Annotation?
+    init(geometry: SCNGeometry, annotation: Annotation) {
         super.init()
         self.geometry = geometry
-        self.location = location
+        self.annotation = annotation
     }
     /* Xcode required this */
     required init(coder aDecoder: NSCoder) {
