@@ -93,7 +93,6 @@ extension AnnotationManager: ARSCNViewDelegate {
             let annotation = annotationsByAnchor[anchor]!
             
             var newNode: SCNNode!
-            var constraints: SCNLookAtConstraint!
             
             // If the delegate supplied a node then use that, otherwise provide a basic default node
             if let suppliedNode = delegate?.node?(for: annotation) {
@@ -105,30 +104,15 @@ extension AnnotationManager: ARSCNViewDelegate {
 //            let scalingFactor = 0.018403680735972+0.015963192638528 * abs(anchor.transform.columns.3.z)
 //            newNode.scale = SCNVector3(20, 20, 20)
             
-//            let cameraNode = sceneView!.pointOfView
 
-//            constraints = SCNLookAtConstraint(target: cameraNode)
-//            constraints.isGimbalLockEnabled = true
-//            newNode.constraints = [constraints]
             newNode.scale = SCNVector3(20, 20, 20)
-            newNode.position = SCNVector3(Float(anchor.transform.columns.3.x)/200,Float(anchor.transform.columns.3.y)/200, -abs(Float(anchor.transform.columns.3.z)/200))
-//            print(anchor.transform.columns.3.z/200)
+            newNode.position = SCNVector3(Float(anchor.transform.columns.3.x),Float(anchor.transform.columns.3.y), -abs(Float(anchor.transform.columns.3.z)))
             
-//            let cameraNode = sceneView?.scene.rootNode
-//            constraints = SCNLookAtConstraint(target:cameraNode)
-//            constraints.
             if let calloutImage = annotation.calloutImage {
                 let calloutNode = createCalloutNode(with: calloutImage, node: newNode)
                 newNode.addChildNode(calloutNode)
             }
             node.addChildNode(newNode)
-//            node.constraints = [constraints]
-//            node.scale = SCNVector3(20, 20, 20)
-            print("Coordinates: \n")
-            print((anchor.transform.columns.3.x)/200)
-            print((anchor.transform.columns.3.y)/200)
-            print((anchor.transform.columns.3.z)/200)
-
             annotationsByNode[newNode] = annotation
         }
         
