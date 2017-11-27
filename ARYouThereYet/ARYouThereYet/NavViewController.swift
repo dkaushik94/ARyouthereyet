@@ -187,7 +187,6 @@ class NavViewController: UIViewController {
                 let turfPolyline = Polyline(polyline)
                 
                 // Walk the route line and add a small AR node and map view annotation every metersPerNode
-                var added: Bool = false
                 for i in stride(from: metersPerNode, to: turfPolyline.distance() - metersPerNode, by: metersPerNode) {
                     // Use Turf to find the coordinate of each incremented distance along the polyline
                     if let nextCoordinate = turfPolyline.coordinateFromStart(distance: i) {
@@ -197,14 +196,8 @@ class NavViewController: UIViewController {
                         self.updateShapeCollectionFeature(&self.waypointShapeCollectionFeature, with: interpolatedStepLocation, typeKey: "waypoint-type", typeAttribute: "small")
                         
                         // Add an AR node
-                        if (added == false) {
-                            let annotation = Annotation(location: interpolatedStepLocation, calloutImage: nil, name: "node", reference: "none", address: "none", latitude: interpolatedStepLocation.coordinate.latitude, longitude: interpolatedStepLocation.coordinate.longitude, distance: 0.0, rating: 0.0, icon: UIImage())
+                        let annotation = Annotation(location: interpolatedStepLocation, calloutImage: nil, name: "node", reference: "none", address: "none", latitude: interpolatedStepLocation.coordinate.latitude, longitude: interpolatedStepLocation.coordinate.longitude, distance: 0.0, rating: 0.0, icon: UIImage())
                             annotationsToAdd.append(annotation)
-                            added = true
-                        } else {
-                            added = false
-                            continue
-                        }
                     }
                 }
                 
@@ -314,7 +307,8 @@ extension NavViewController: AnnotationManagerDelegate {
     }
     
     func createLightBulbNode() -> SCNNode {
-        let lightBulbNode = collada2SCNNode(filepath: "art.scnassets/light-bulb.dae")
+        // let lightBulbNode = collada2SCNNode(filepath: "art.scnassets/light-bulb.dae")
+        let lightBulbNode = SCNNode(geometry: SCNSphere(radius: 1))
         lightBulbNode.scale = SCNVector3Make(0.25, 0.25, 0.25)
         return lightBulbNode
     }

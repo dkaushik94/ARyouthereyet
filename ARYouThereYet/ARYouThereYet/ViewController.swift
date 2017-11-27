@@ -72,6 +72,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 nav.currentLocation = locationManager.location!.coordinate
                 nav.destinationLocationCustom = touchedNode.location!
                 self.present(nav, animated: true, completion: nil)
+                
             }
         }
     }
