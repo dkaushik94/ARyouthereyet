@@ -242,11 +242,10 @@ extension ViewController: AnnotationManagerDelegate {
         nameOfPlace.firstMaterial!.diffuse.contents = UIColor.white
         nameOfPlace.firstMaterial!.specular.contents = UIColor.white
         
+        
         let max = nameOfPlace.boundingBox.max       //fetching min and max vounds of of the created geomtric entity.
         let min = nameOfPlace.boundingBox.min
         
-        //Calculate Ditance from user position to every Node.
-        var distanceFromUser = locationManager.location?.distance(from: annotation.location)
         
         //Create Another text entity for distance.
         let compString = String(annotation.distance) + "mts"
@@ -257,7 +256,7 @@ extension ViewController: AnnotationManagerDelegate {
         //Create holding geometry and corresponding node for icon.
         let icon = SCNPlane(width: 0.5, height: 0.5)
         let iconMaterial = SCNMaterial()
-        iconMaterial.diffuse.contents = UIImage(named: "coffeeIcon")
+        iconMaterial.diffuse.contents = annotation.icon
         icon.firstMaterial?.diffuse.contents = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
         icon.materials = [iconMaterial]
         let widthOfIcon = icon.boundingBox.max.x - icon.boundingBox.min.x
@@ -267,27 +266,22 @@ extension ViewController: AnnotationManagerDelegate {
         let annotX = (max.x - min.x + widthOfIcon) + 0.5
         let annotY = (max.y - min.y) + 0.5
         
-        //Scale distance down.
-//        distanceFromUser = distanceFromUser!/400
-//        print(distanceFromUser!)
-        
         let annotSmall = SCNPlane(width: CGFloat(annotX), height: CGFloat(annotY))      //Create SCNPlane with the width matching the textNode.
         annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
         annotSmall.cornerRadius = 0.5
         let annotNode = SCNNode(geometry: annotSmall)   //Create Node
-//        annotNode.position = SCNVector3(0, 0, -(distanceFromUser!))       //Z-Depth is hardcoded. Again, set according to the incoming value.
         
         
         let posMin = annotSmall.boundingBox.min
         
         //Create nodes for all entities.
-        let labelNode = SCNNode(geometry: nameOfPlace)
-        let distNode = SCNNode(geometry: dist)
-        let iconNode = SCNNode(geometry: icon)
+        let labelNode = customNode(geometry: nameOfPlace, location: annotation.location.coordinate)
+        let distNode = customNode(geometry: dist, location: annotation.location.coordinate)
+        let iconNode = customNode(geometry: icon, location: annotation.location.coordinate)
         
         labelNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.1, posMin.z)
         distNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.3, posMin.z)
-        iconNode.position = SCNVector3((posMin.x + widthOfIcon/2) + 0.1, 0, posMin.z + 0.01)
+        iconNode.position = SCNVector3((posMin.x + widthOfIcon/2) + 0.1, 0, posMin.z + 0.1)
         
         //Make all nodes children ofa parent SCNPlane.
         annotNode.addChildNode(labelNode)
