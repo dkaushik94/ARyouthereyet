@@ -13,8 +13,9 @@ public class Annotation: NSObject {
     public var distance: Double
     public var rating: Double
     public var icon: UIImage?
+    public var id: String
     
-    public init(location: CLLocation, calloutImage: UIImage?, name: String, reference: String, address: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees, distance: Double, rating: Double, icon: UIImage) {
+    public init(location: CLLocation, calloutImage: UIImage?, name: String, reference: String, address: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees, distance: Double, rating: Double, icon: UIImage, id: String) {
         self.location = location
         self.calloutImage = calloutImage
         self.name = name
@@ -25,5 +26,6 @@ public class Annotation: NSObject {
         self.distance = distance
         self.rating = rating
         self.icon = icon
+        self.id = id
     }
 }

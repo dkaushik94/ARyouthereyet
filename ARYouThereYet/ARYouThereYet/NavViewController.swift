@@ -29,6 +29,7 @@ class NavViewController: UIViewController {
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var controlsContainerView: UIView!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     // Create an instance of MapboxDirections to simplify querying the Mapbox Directions API
     let directions = Directions.shared
@@ -64,12 +65,15 @@ class NavViewController: UIViewController {
         }
     }
     
+    @IBAction func closeButtonTouched(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     func customRun() {
         let coordinate = self.destinationLocationCustom
         if let existingAnnotations = mapView.annotations {
             mapView.removeAnnotations(existingAnnotations)
         }
-        print(coordinate)
+        // print(coordinate)
         // Add an annotation to the map view for the pressed point
         let annotation = MGLPointAnnotation()
         annotation.coordinate = coordinate
@@ -103,7 +107,7 @@ class NavViewController: UIViewController {
     
     // Handle a long press on the Mapbox map view
     @IBAction func didLongPress(_ recognizer: UILongPressGestureRecognizer) {
-        /*// Find the geographic coordinate of the point pressed in the map view
+        // Find the geographic coordinate of the point pressed in the map view
         let point = recognizer.location(in: mapView)
         let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
         
@@ -127,7 +131,7 @@ class NavViewController: UIViewController {
             // Create a CLLocation instance to represent the end location for the directions query
             let annotationLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
             queryDirections(with: annotationLocation)
-        }*/
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -167,6 +171,8 @@ class NavViewController: UIViewController {
             
             // If a route is returned:
             if let route = routes?.first, let leg = route.legs.first {
+                let distanceString = "\(route.distance) m"
+                self.distanceLabel.text = distanceString
                 var polyline = [CLLocationCoordinate2D]()
                 
                 // Add an AR node and map view annotation for every defined "step" in the route
@@ -179,7 +185,7 @@ class NavViewController: UIViewController {
                     self.updateShapeCollectionFeature(&self.waypointShapeCollectionFeature, with: stepLocation, typeKey: "waypoint-type", typeAttribute: "big")
                     
                     // Add an AR node
-                    let annotation = Annotation(location: stepLocation, calloutImage: self.calloutImage(for: step.description), name: "node", reference: "none", address: "none", latitude: stepLocation.coordinate.latitude, longitude: stepLocation.coordinate.longitude, distance: 0.0, rating: 0.0, icon: UIImage())
+                    let annotation = Annotation(location: stepLocation, calloutImage: self.calloutImage(for: step.description), name: "node", reference: "none", address: "none", latitude: stepLocation.coordinate.latitude, longitude: stepLocation.coordinate.longitude, distance: 0.0, rating: 0.0, icon: UIImage(), id: "")
                         annotationsToAdd.append(annotation)
                 }
                 
@@ -196,7 +202,7 @@ class NavViewController: UIViewController {
                         self.updateShapeCollectionFeature(&self.waypointShapeCollectionFeature, with: interpolatedStepLocation, typeKey: "waypoint-type", typeAttribute: "small")
                         
                         // Add an AR node
-                        let annotation = Annotation(location: interpolatedStepLocation, calloutImage: nil, name: "node", reference: "none", address: "none", latitude: interpolatedStepLocation.coordinate.latitude, longitude: interpolatedStepLocation.coordinate.longitude, distance: 0.0, rating: 0.0, icon: UIImage())
+                        let annotation = Annotation(location: interpolatedStepLocation, calloutImage: nil, name: "node", reference: "none", address: "none", latitude: interpolatedStepLocation.coordinate.latitude, longitude: interpolatedStepLocation.coordinate.longitude, distance: 0.0, rating: 0.0, icon: UIImage(), id: "")
                             annotationsToAdd.append(annotation)
                     }
                 }
@@ -239,7 +245,23 @@ class NavViewController: UIViewController {
     
     private func configureMapboxMapView() {
         mapView.delegate = self
-        mapView.styleURL = URL(string: "mapbox://styles/mapbox/cj3kbeqzo00022smj7akz3o1e") // "Moonlight" style
+        // mapView.styleURL = URL(string: "mapbox://styles/mapbox/cj3kbeqzo00022smj7akz3o1e") // "Moonlight" style
+        // mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v9")
+        mapView.styleURL = URL(string: "mapbox://styles/mapbox/dark-v9")
+        // mapView.styleURL = URL(string: "mapbox://styles/mapbox/light-v9")
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        switch hour {
+        case 0...7:
+            mapView.styleURL = URL(string: "mapbox://styles/mapbox/dark-v9")
+            break;
+        case 17...23:
+            mapView.styleURL = URL(string: "mapbox://styles/mapbox/dark-v9")
+            break;
+        default:
+            mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v9")
+        }
         mapView.userTrackingMode = .followWithHeading
         mapView.layer.cornerRadius = 10
     }
