@@ -105,7 +105,7 @@ extension AnnotationManager: ARSCNViewDelegate {
 //            newNode.scale = SCNVector3(20, 20, 20)
             
 
-            newNode.scale = SCNVector3(20, 20, 20)
+            // newNode.scale = SCNVector3(10, 10, 10)
             newNode.position = SCNVector3(Float(anchor.transform.columns.3.x),Float(anchor.transform.columns.3.y), -abs(Float(anchor.transform.columns.3.z)))
             
             if let calloutImage = annotation.calloutImage {

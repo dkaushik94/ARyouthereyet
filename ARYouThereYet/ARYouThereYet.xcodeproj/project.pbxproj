@@ -12,7 +12,7 @@
 		30B37F001FC4D4E3000B250A /* ControlMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */; };
 		30B37F021FC4D972000B250A /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37F011FC4D972000B250A /* FilterViewController.swift */; };
 		30B37F041FC4D97B000B250A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37F031FC4D97B000B250A /* SearchViewController.swift */; };
-		30BD81D41FC4F56C00D3D869 /* menuDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD81D31FC4F56C00D3D869 /* menuDelegation.swift */; };
+		30BD81D41FC4F56C00D3D869 /* MenuDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD81D31FC4F56C00D3D869 /* MenuDelegation.swift */; };
 		395B724BBCEACA5B7A6BC7E5 /* Pods_ARYouThereYetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA9FF8921C924A92EBB22A9 /* Pods_ARYouThereYetUITests.framework */; };
 		4920191E1FB294E900CA476C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920191D1FB294E900CA476C /* AppDelegate.swift */; };
 		492019201FB294E900CA476C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4920191F1FB294E900CA476C /* art.scnassets */; };
@@ -53,7 +53,7 @@
 		30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlMenuViewController.swift; sourceTree = "<group>"; };
 		30B37F011FC4D972000B250A /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		30B37F031FC4D97B000B250A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		30BD81D31FC4F56C00D3D869 /* menuDelegation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuDelegation.swift; sourceTree = "<group>"; };
+		30BD81D31FC4F56C00D3D869 /* MenuDelegation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDelegation.swift; sourceTree = "<group>"; };
 		41216DE4EA08D6DBACC69DF9 /* Pods-ARYouThereYetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetTests/Pods-ARYouThereYetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		41D41A0FBD97E0B5607B39E9 /* Pods-ARYouThereYet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet.debug.xcconfig"; sourceTree = "<group>"; };
 		4920191A1FB294E900CA476C /* ARYouThereYet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARYouThereYet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +160,7 @@
 				4920191F1FB294E900CA476C /* art.scnassets */,
 				492019211FB294E900CA476C /* ViewController.swift */,
 				30B37EFD1FC4D39C000B250A /* MainMenuViewController.swift */,
-				30BD81D31FC4F56C00D3D869 /* menuDelegation.swift */,
+				30BD81D31FC4F56C00D3D869 /* MenuDelegation.swift */,
 				30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */,
 				30B37F011FC4D972000B250A /* FilterViewController.swift */,
 				30B37F031FC4D97B000B250A /* SearchViewController.swift */,
@@ -504,7 +504,7 @@
 				F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */,
 				30B37F041FC4D97B000B250A /* SearchViewController.swift in Sources */,
 				30B37EFE1FC4D39C000B250A /* MainMenuViewController.swift in Sources */,
-				30BD81D41FC4F56C00D3D869 /* menuDelegation.swift in Sources */,
+				30BD81D41FC4F56C00D3D869 /* MenuDelegation.swift in Sources */,
 				F74962361FC6588C00208574 /* NavViewController.swift in Sources */,
 				F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */,
 				492019221FB294E900CA476C /* ViewController.swift in Sources */,
@@ -678,11 +678,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LZ8ZK7MYLQ;
+				DEVELOPMENT_TEAM = M678K3T63A;
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.uic.dkaush4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.navtest2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -697,11 +697,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LZ8ZK7MYLQ;
+				DEVELOPMENT_TEAM = M678K3T63A;
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.uic.dkaush4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.navtest2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
