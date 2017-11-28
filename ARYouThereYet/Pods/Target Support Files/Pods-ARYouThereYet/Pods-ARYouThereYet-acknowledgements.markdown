@@ -47,6 +47,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+## GoogleMaps
+
+Copyright 2017 Google
+
+## GooglePlaces
+
+Copyright 2017 Google
+
 ## Mapbox-iOS-SDK
 
 mapbox-gl-native copyright (c) 2014-2017 Mapbox.
