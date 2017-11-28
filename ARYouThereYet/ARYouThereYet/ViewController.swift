@@ -225,7 +225,6 @@ extension ViewController: AnnotationManagerDelegate {
     }
     
     func node(for annotation: Annotation) -> SCNNode? {
-<<<<<<< HEAD
 //        let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
 //        nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
 //        let mainNode = customNode(geometry: nameNode, location: annotation.location.coordinate)
@@ -275,9 +274,9 @@ extension ViewController: AnnotationManagerDelegate {
         let posMin = annotSmall.boundingBox.min
         
         //Create nodes for all entities.
-        let labelNode = customNode(geometry: nameOfPlace, location: annotation.location.coordinate)
-        let distNode = customNode(geometry: dist, location: annotation.location.coordinate)
-        let iconNode = customNode(geometry: icon, location: annotation.location.coordinate)
+        let labelNode = customNode(geometry: nameOfPlace, annotation: annotation)
+        let distNode = customNode(geometry: dist, annotation: annotation)
+        let iconNode = customNode(geometry: icon, annotation: annotation)
         
         labelNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.1, posMin.z)
         distNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.3, posMin.z)
