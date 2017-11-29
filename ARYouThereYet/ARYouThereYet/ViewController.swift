@@ -14,17 +14,21 @@ import MapKit
 import MapboxARKit
 import AlamofireImage
 import Alamofire
+import GooglePlaces
+import AVFoundation
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
     
+    @IBOutlet weak var cameraStateLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet var sceneView: ARSCNView!
     let locationManager = CLLocationManager()
     var annotationManager: AnnotationManager!
     fileprivate var startedLoadingPOIs = false
     var listOfAnnotations: [Annotation] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +44,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
-        
+
         // Create the annotation manager instance and give it an ARSCNView
         annotationManager = AnnotationManager(sceneView: sceneView)
         annotationManager.delegate = self
@@ -52,12 +56,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         //sceneView.scene = scene
         
+        // Declare tap gesture recognizer
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.numberOfTapsRequired = 1
         tapRecognizer.numberOfTouchesRequired = 1
         tapRecognizer.addTarget(self, action:  #selector(tapped))
         sceneView.gestureRecognizers = [tapRecognizer]
-        
     }
     
     @objc func tapped(recognizer: UITapGestureRecognizer) {
@@ -69,10 +73,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let node = result.node
             
             if let touchedNode = node as? customNode {
+                let text = "Navigating to \(touchedNode.annotation!.name)"
+                let utterance = AVSpeechUtterance(string: text)
+                utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+                let synthesizer = AVSpeechSynthesizer()
+                synthesizer.speak(utterance)
+                
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
                 nav.currentLocation = locationManager.location!.coordinate
                 let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
+                nav.locationManager = locationManager
                 nav.destinationLocationCustom = destinationLocation
                 self.present(nav, animated: true, completion: nil)
             }
@@ -89,7 +100,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     }
     
-
+    @IBAction func searchButtonTouched(_ sender: Any) {
+        print("search button pressed")
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -175,6 +192,29 @@ extension ViewController : CLLocationManagerDelegate {
                 manager.stopUpdatingLocation()
                 // let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
                 // let region = MKCoordinateRegion(center: location.coordinate, span: span)
+                
+                DispatchQueue.main.async {
+                    Alamofire.request(URL(string: "http://api.openweathermap.org/data/2.5/weather?APPID=2ea48577574b26c2d63d4e3bfcb19d59&lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)")!, method: .get).responseJSON { response in
+                        if let json = response.result.value as? NSDictionary {
+                            // print(json)
+                            var temp = json.value(forKeyPath: "main.temp") as! Float
+                            temp = temp * (9/5) - 459.67
+                            temp = temp.rounded(.up)
+                            let tempString = "\(temp) f"
+                            let tempNode = SCNText(string: tempString, extrusionDepth: 0.0)
+                            tempNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
+                            let mainTempNode = SCNNode(geometry: tempNode)
+                            // mainTempNode.transform.m41
+                            mainTempNode.transform.m43 = -10.0
+                            // mainTempNode.scale = SCNVector3(20, 20, 20)
+                            self.sceneView.scene.rootNode.addChildNode(mainTempNode)
+                        }
+                        /*if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                            print("data: \(utf8Text)")
+                        }*/
+                    }
+                }
+                
                 if !startedLoadingPOIs {
                     startedLoadingPOIs = true
                     let loader = PlacesLoader()
@@ -190,7 +230,7 @@ extension ViewController : CLLocationManagerDelegate {
                                 let location = CLLocation(latitude: latitude, longitude: longitude)
                                 let rating = placeDict.object(forKey: "rating") as? Double ?? 0.0
                                 let iconURL = placeDict.object(forKey: "icon") as! String
-                                let placeID = placeDict.object(forKey: "id") as! String
+                                let placeID = placeDict.object(forKey: "place_id") as! String
                                 
                                 DispatchQueue.main.async {
                                     Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
@@ -214,20 +254,24 @@ extension ViewController : CLLocationManagerDelegate {
 extension ViewController: AnnotationManagerDelegate {
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        print("camera did change tracking state: \(camera.trackingState)")
+        
         switch camera.trackingState {
         case .normal:
-            // Tracking is sufficient to begin experience
-            // allowARInteractions()
-            print("\n")
+            cameraStateLabel.text = "Ready!"
+            UIView.animate(withDuration: 1, delay: 1, options: [], animations: {
+                self.cameraStateLabel.alpha = 0
+            }, completion: nil)
         default:
-            break
+            cameraStateLabel.alpha = 1
+            cameraStateLabel.text = "Move the camera"
         }
     }
     
     func node(for annotation: Annotation) -> SCNNode? {
 //        let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
-//        nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
-//        let mainNode = customNode(geometry: nameNode, location: annotation.location.coordinate)
+        //        nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
+        //        let mainNode = customNode(geometry: nameNode, location: annotation.location.coordinate)
         
         /*
          Parameters:
@@ -266,10 +310,16 @@ extension ViewController: AnnotationManagerDelegate {
         let annotY = (max.y - min.y) + 0.5
         
         let annotSmall = SCNPlane(width: CGFloat(annotX), height: CGFloat(annotY))      //Create SCNPlane with the width matching the textNode.
-        annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
+        annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 234.0/255.0, green: 67.0/255.0, blue: 53.0/255.0, alpha: 0.7)
+        if annotation.distance < 200.0 {
+            annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 52.0/255.0, green: 168.0/255.0, blue: 83.0/255.0, alpha: 0.7)
+        } else if annotation.distance < 500.0 {
+            annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 251.0/255.0, green: 188.0/255.0, blue: 5.0/255.0, alpha: 0.7)
+        } else {
+            annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 234.0/255.0, green: 67.0/255.0, blue: 53.0/255.0, alpha: 0.7)
+        }
         annotSmall.cornerRadius = 0.5
         let annotNode = SCNNode(geometry: annotSmall)   //Create Node
-        
         
         let posMin = annotSmall.boundingBox.min
         
@@ -302,4 +352,48 @@ class customNode: SCNNode {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension ViewController: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress!)")
+        
+        let text = "Navigating to \(place.name)"
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
+        
+        dismiss(animated: true, completion: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
+        nav.currentLocation = locationManager.location!.coordinate
+        let destinationLocation = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        nav.locationManager = locationManager
+        nav.destinationLocationCustom = destinationLocation
+        self.present(nav, animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
 }

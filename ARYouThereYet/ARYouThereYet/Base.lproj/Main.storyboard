@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,19 +15,41 @@
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TLO-Ti-zCw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwT-GU-ZEi">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXy-3U-wHw">
-                                <rect key="frame" x="127.5" y="484" width="64" height="64"/>
+                                <rect key="frame" x="155.5" y="583" width="64" height="64"/>
                                 <state key="normal" image="menu"/>
                                 <connections>
                                     <action selector="showMenu:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KAt-1Z-7pd"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U2T-dx-15p">
+                                <rect key="frame" x="67" y="525" width="240" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8HK-lT-3Ci">
+                                        <rect key="frame" x="96" y="10" width="48" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Search"/>
+                                        <connections>
+                                            <action selector="searchButtonTouched:" destination="BV1-FR-VrT" eventType="touchUpInside" id="bPd-ZP-mmU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Camera State" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajS-Ym-V6L">
+                                <rect key="frame" x="85" y="20" width="204" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -41,31 +63,33 @@
                         <viewLayoutGuide key="safeArea" id="rF0-mq-8Dr"/>
                     </view>
                     <connections>
+                        <outlet property="cameraStateLabel" destination="ajS-Ym-V6L" id="HJe-YL-cl4"/>
                         <outlet property="menuButton" destination="NXy-3U-wHw" id="v9x-h4-chg"/>
                         <outlet property="sceneView" destination="xwT-GU-ZEi" id="FCC-Fs-KIt"/>
+                        <outlet property="searchButton" destination="8HK-lT-3Ci" id="DJb-8g-qdG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="80.625" y="70.774647887323951"/>
+            <point key="canvasLocation" x="79.200000000000003" y="70.614692653673174"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="Ypk-nP-Ccv">
             <objects>
                 <viewController storyboardIdentifier="mainMenuVC" id="Fdu-Of-woG" customClass="MainMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3a0-0r-8Fn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tES-1T-yTm">
-                                <rect key="frame" x="16" y="403" width="288" height="85"/>
+                                <rect key="frame" x="16" y="502" width="343" height="85"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="JrO-2L-5eh" kind="embed" id="JKO-yF-uju"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oSj-UI-6hx">
-                                <rect key="frame" x="16" y="20" width="288" height="323"/>
+                                <rect key="frame" x="16" y="119" width="343" height="323"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="koB-a4-PcN" kind="embed" id="CEJ-Tv-dOH"/>
@@ -80,7 +104,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cm7-V1-cSf">
-                                <rect key="frame" x="16" y="20" width="288" height="323"/>
+                                <rect key="frame" x="16" y="119" width="343" height="323"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="7ce-Ay-jQK" kind="embed" id="ajb-Uw-WQd"/>
@@ -105,7 +129,7 @@
             <objects>
                 <viewController id="JrO-2L-5eh" customClass="ControlMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="1" contentMode="scaleToFill" id="K1F-nh-pbq">
-                        <rect key="frame" x="0.0" y="0.0" width="288" height="85"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OlL-dF-5q9">
@@ -164,7 +188,7 @@
             <objects>
                 <viewController id="koB-a4-PcN" customClass="SearchViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B7Q-m6-yfh">
-                        <rect key="frame" x="0.0" y="0.0" width="288" height="323"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="323"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Search here" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qof-M6-a28">
@@ -204,7 +228,7 @@
             <objects>
                 <viewController id="7ce-Ay-jQK" customClass="FilterViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CHc-4m-DE3">
-                        <rect key="frame" x="0.0" y="0.0" width="288" height="323"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="323"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AS-IW-9LW">
@@ -294,20 +318,20 @@
                         <viewControllerLayoutGuide type="bottom" id="XaH-QQ-MTu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="caB-hp-2c2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPq-mS-fEX" customClass="ARSCNView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2m4-1N-Owi">
-                                        <rect key="frame" x="0.0" y="259" width="320" height="309"/>
+                                        <rect key="frame" x="0.0" y="358" width="375" height="309"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjG-Ja-8Cr" customClass="MGLMapView">
-                                                <rect key="frame" x="8" y="50" width="304" height="247"/>
+                                                <rect key="frame" x="8" y="50" width="359" height="247"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crosshairs" translatesAutoresizingMaskIntoConstraints="NO" id="5VX-iN-06n">
-                                                        <rect key="frame" x="127" y="98.5" width="50" height="50"/>
+                                                        <rect key="frame" x="154.5" y="98.5" width="50" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="312-QN-CFZ"/>
                                                             <constraint firstAttribute="width" constant="50" id="g6c-9G-isM"/>
@@ -325,7 +349,7 @@
                                                 </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move the camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIG-DP-S7K">
-                                                <rect key="frame" x="59.5" y="11" width="200" height="26.5"/>
+                                                <rect key="frame" x="87" y="11" width="200" height="26.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="fuR-IC-ams"/>
                                                 </constraints>
@@ -353,10 +377,10 @@
                                             <constraint firstItem="yjG-Ja-8Cr" firstAttribute="top" secondItem="2m4-1N-Owi" secondAttribute="topMargin" constant="42" id="usU-rM-FfE"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOn-Ka-EY5">
-                                        <rect key="frame" x="8" y="28" width="100" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calculating distance..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOn-Ka-EY5">
+                                        <rect key="frame" x="11" y="28" width="352" height="76"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -393,7 +417,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="81" y="749"/>
+            <point key="canvasLocation" x="80.799999999999997" y="748.87556221889065"/>
         </scene>
     </scenes>
     <resources>

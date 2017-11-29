@@ -30,7 +30,7 @@ class FilterViewController: UIViewController {
         filterView.insertSubview(blurView, at: 0)
 
     }
-
+    
     @IBAction func sliderValueChanged(_ sender: Any) {
         distanceLabel.text = floor(distanceSlider.value).description
     }

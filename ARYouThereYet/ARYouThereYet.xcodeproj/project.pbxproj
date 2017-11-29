@@ -25,6 +25,7 @@
 		8A017BCBDC882F4894500B5E /* Pods_ARYouThereYetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1576E4498CC30F976830864B /* Pods_ARYouThereYetTests.framework */; };
 		F74962361FC6588C00208574 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74962351FC6588C00208574 /* NavViewController.swift */; };
 		F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B6DDC41FBB8FF200DDAE38 /* PlacesLoader.swift */; };
+		F7C70B0A1FCD22F500A43385 /* WeatherCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C70B091FCD22F500A43385 /* WeatherCall.swift */; };
 		F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		F2678B7D9FA1D339468077E2 /* Pods-ARYouThereYetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetTests/Pods-ARYouThereYetTests.release.xcconfig"; sourceTree = "<group>"; };
 		F74962351FC6588C00208574 /* NavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
 		F7B6DDC41FBB8FF200DDAE38 /* PlacesLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesLoader.swift; sourceTree = "<group>"; };
+		F7C70B091FCD22F500A43385 /* WeatherCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCall.swift; sourceTree = "<group>"; };
 		F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 				4920191D1FB294E900CA476C /* AppDelegate.swift */,
 				4920191F1FB294E900CA476C /* art.scnassets */,
 				492019211FB294E900CA476C /* ViewController.swift */,
+				F7C70B091FCD22F500A43385 /* WeatherCall.swift */,
 				30B37EFD1FC4D39C000B250A /* MainMenuViewController.swift */,
 				30BD81D31FC4F56C00D3D869 /* MenuDelegation.swift */,
 				30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */,
@@ -426,6 +429,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/MapboxARKit/MapboxARKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MapboxDirections.swift/MapboxDirections.framework",
 				"${BUILT_PRODUCTS_DIR}/Polyline/Polyline.framework",
@@ -436,6 +440,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxARKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxDirections.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Polyline.framework",
@@ -509,6 +514,7 @@
 				F74962361FC6588C00208574 /* NavViewController.swift in Sources */,
 				F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */,
 				492019221FB294E900CA476C /* ViewController.swift in Sources */,
+				F7C70B0A1FCD22F500A43385 /* WeatherCall.swift in Sources */,
 				4920191E1FB294E900CA476C /* AppDelegate.swift in Sources */,
 				30B37F001FC4D4E3000B250A /* ControlMenuViewController.swift in Sources */,
 			);

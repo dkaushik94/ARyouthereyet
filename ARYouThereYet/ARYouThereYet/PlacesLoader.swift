@@ -27,7 +27,7 @@ struct PlacesLoader {
   let apiURL = "https://maps.googleapis.com/maps/api/place/"
   let apiKey = "AIzaSyCx3Y1vXE0PBpdSLCjqGn6G3z8JcOvYfmo"
   
-  func loadPOIS(location: CLLocation, radius: Int = 30, handler: @escaping (NSDictionary?, NSError?) -> Void) {
+  func loadPOIS(location: CLLocation, radius: Int, handler: @escaping (NSDictionary?, NSError?) -> Void) {
     print("Load pois")
     let latitude = location.coordinate.latitude
     let longitude = location.coordinate.longitude
@@ -58,7 +58,6 @@ struct PlacesLoader {
         }
       }
     }
-    
     dataTask.resume()
   }
   
