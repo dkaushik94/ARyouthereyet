@@ -32,7 +32,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        sceneView.showsStatistics = false
         
         // Config CLLocationManager object
         locationManager.delegate = self
@@ -192,11 +192,14 @@ extension ViewController : CLLocationManagerDelegate {
                                 let iconURL = placeDict.object(forKey: "icon") as! String
                                 let placeID = placeDict.object(forKey: "id") as! String
                                 
+                                
+                                //Create threads for every node.
                                 DispatchQueue.main.async {
                                     Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
                                         if let icon = response.result.value {
-                                            // print("\(name) has icon")
+                                            
                                             let annotation = Annotation(location: location, calloutImage: nil, name: name, reference: reference, address: address, latitude: latitude, longitude: longitude, distance: (self.locationManager.location?.distance(from: location))!, rating: rating, icon: icon, id: placeID)
+                                            
                                             self.listOfAnnotations.append(annotation)
                                             self.annotationManager.addAnnotation(annotation: annotation)
                                         }
@@ -216,8 +219,6 @@ extension ViewController: AnnotationManagerDelegate {
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         switch camera.trackingState {
         case .normal:
-            // Tracking is sufficient to begin experience
-            // allowARInteractions()
             print("\n")
         default:
             break
@@ -225,24 +226,23 @@ extension ViewController: AnnotationManagerDelegate {
     }
     
     func node(for annotation: Annotation) -> SCNNode? {
-//        let nameNode = SCNText(string: annotation.name, extrusionDepth: 0.0)
-//        nameNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
-//        let mainNode = customNode(geometry: nameNode, location: annotation.location.coordinate)
-        
         /*
          Parameters:
-         Z-Depth: Placing the annotation in the field. (Float)
-         Y-Coordinate: Placing the annotation at a height to minimize overlapping. (Float)
+         Z-Depth: Placing the annotation in the field. (Float),
+         Y-Coordinate: Placing the annotation at a height to minimize overlapping. (Float),
+         Distance(Float)
          */
         
         //Create annotations on the street.
-        let nameOfPlace = SCNText(string: annotation.name, extrusionDepth: 0.1)        //Replace string with incoming string value for every node.
+        
+        //Replace string with incoming string value for every node.
+        let nameOfPlace = SCNText(string: annotation.name, extrusionDepth: 0.1)
         nameOfPlace.font = UIFont(name: "Futura", size: 0.3)        //Fontsize can be played around with. But 0.3 seems fine.
         nameOfPlace.firstMaterial!.diffuse.contents = UIColor.white
         nameOfPlace.firstMaterial!.specular.contents = UIColor.white
         
-        
-        let max = nameOfPlace.boundingBox.max       //fetching min and max vounds of of the created geomtric entity.
+        //fetching min and max vounds of of the created geomtric entity.
+        let max = nameOfPlace.boundingBox.max
         let min = nameOfPlace.boundingBox.min
         
         
@@ -265,11 +265,11 @@ extension ViewController: AnnotationManagerDelegate {
         let annotX = (max.x - min.x + widthOfIcon) + 0.5
         let annotY = (max.y - min.y) + 0.5
         
-        let annotSmall = SCNPlane(width: CGFloat(annotX), height: CGFloat(annotY))      //Create SCNPlane with the width matching the textNode.
+        //Create SCNPlane with the width matching the textNode.
+        let annotSmall = SCNPlane(width: CGFloat(annotX), height: CGFloat(annotY))
         annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
-        annotSmall.cornerRadius = 0.5
+        annotSmall.cornerRadius = 0.3
         let annotNode = SCNNode(geometry: annotSmall)   //Create Node
-        
         
         let posMin = annotSmall.boundingBox.min
         
@@ -278,9 +278,12 @@ extension ViewController: AnnotationManagerDelegate {
         let distNode = customNode(geometry: dist, annotation: annotation)
         let iconNode = customNode(geometry: icon, annotation: annotation)
         
-        labelNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.1, posMin.z)
-        distNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.3, posMin.z)
+        labelNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.1, posMin.z + 0.1)
+        distNode.position = SCNVector3(posMin.x + widthOfIcon + 0.2, -1.3, posMin.z + 0.1)
         iconNode.position = SCNVector3((posMin.x + widthOfIcon/2) + 0.1, 0, posMin.z + 0.1)
+        
+        //calculate scale for each node.
+        
         
         //Make all nodes children ofa parent SCNPlane.
         annotNode.addChildNode(labelNode)

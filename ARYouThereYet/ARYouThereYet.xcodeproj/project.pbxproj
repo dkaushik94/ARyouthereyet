@@ -22,6 +22,7 @@
 		4920192A1FB294E900CA476C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492019281FB294E900CA476C /* LaunchScreen.storyboard */; };
 		492019351FB294E900CA476C /* ARYouThereYetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019341FB294E900CA476C /* ARYouThereYetTests.swift */; };
 		492019401FB294E900CA476C /* ARYouThereYetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */; };
+		49AC6A2B1FCD346700B14C5C /* FilterFieldLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AC6A2A1FCD346700B14C5C /* FilterFieldLoader.swift */; };
 		8A017BCBDC882F4894500B5E /* Pods_ARYouThereYetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1576E4498CC30F976830864B /* Pods_ARYouThereYetTests.framework */; };
 		F74962361FC6588C00208574 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74962351FC6588C00208574 /* NavViewController.swift */; };
 		F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B6DDC41FBB8FF200DDAE38 /* PlacesLoader.swift */; };
@@ -70,6 +71,7 @@
 		4920193B1FB294E900CA476C /* ARYouThereYetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARYouThereYetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARYouThereYetUITests.swift; sourceTree = "<group>"; };
 		492019411FB294E900CA476C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49AC6A2A1FCD346700B14C5C /* FilterFieldLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterFieldLoader.swift; sourceTree = "<group>"; };
 		5F42401BCD1BB9ED2FC7BC18 /* Pods-ARYouThereYetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetUITests/Pods-ARYouThereYetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6FC8780DEFDC539229EB1357 /* Pods-ARYouThereYet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYet.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet.release.xcconfig"; sourceTree = "<group>"; };
 		78D2C44EE01B4532766493C4 /* Pods_ARYouThereYet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 				30B37F031FC4D97B000B250A /* SearchViewController.swift */,
 				F74962351FC6588C00208574 /* NavViewController.swift */,
 				F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */,
+				49AC6A2A1FCD346700B14C5C /* FilterFieldLoader.swift */,
 				492019231FB294E900CA476C /* Main.storyboard */,
 				492019261FB294E900CA476C /* Assets.xcassets */,
 				492019281FB294E900CA476C /* LaunchScreen.storyboard */,
@@ -504,6 +507,7 @@
 				F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */,
 				30B37F041FC4D97B000B250A /* SearchViewController.swift in Sources */,
 				30B37EFE1FC4D39C000B250A /* MainMenuViewController.swift in Sources */,
+				49AC6A2B1FCD346700B14C5C /* FilterFieldLoader.swift in Sources */,
 				30BD81D41FC4F56C00D3D869 /* menuDelegation.swift in Sources */,
 				F74962361FC6588C00208574 /* NavViewController.swift in Sources */,
 				F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */,
