@@ -12,7 +12,6 @@
 		30B37F001FC4D4E3000B250A /* ControlMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */; };
 		30B37F021FC4D972000B250A /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37F011FC4D972000B250A /* FilterViewController.swift */; };
 		30B37F041FC4D97B000B250A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37F031FC4D97B000B250A /* SearchViewController.swift */; };
-		30BD81D41FC4F56C00D3D869 /* MenuDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD81D31FC4F56C00D3D869 /* MenuDelegation.swift */; };
 		395B724BBCEACA5B7A6BC7E5 /* Pods_ARYouThereYetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA9FF8921C924A92EBB22A9 /* Pods_ARYouThereYetUITests.framework */; };
 		4920191E1FB294E900CA476C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920191D1FB294E900CA476C /* AppDelegate.swift */; };
 		492019201FB294E900CA476C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4920191F1FB294E900CA476C /* art.scnassets */; };
@@ -22,11 +21,9 @@
 		4920192A1FB294E900CA476C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492019281FB294E900CA476C /* LaunchScreen.storyboard */; };
 		492019351FB294E900CA476C /* ARYouThereYetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019341FB294E900CA476C /* ARYouThereYetTests.swift */; };
 		492019401FB294E900CA476C /* ARYouThereYetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */; };
-		49AC6A2B1FCD346700B14C5C /* FilterFieldLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AC6A2A1FCD346700B14C5C /* FilterFieldLoader.swift */; };
 		8A017BCBDC882F4894500B5E /* Pods_ARYouThereYetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1576E4498CC30F976830864B /* Pods_ARYouThereYetTests.framework */; };
 		F74962361FC6588C00208574 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74962351FC6588C00208574 /* NavViewController.swift */; };
 		F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B6DDC41FBB8FF200DDAE38 /* PlacesLoader.swift */; };
-		F7C70B0A1FCD22F500A43385 /* WeatherCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C70B091FCD22F500A43385 /* WeatherCall.swift */; };
 		F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +52,6 @@
 		30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlMenuViewController.swift; sourceTree = "<group>"; };
 		30B37F011FC4D972000B250A /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		30B37F031FC4D97B000B250A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		30BD81D31FC4F56C00D3D869 /* MenuDelegation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDelegation.swift; sourceTree = "<group>"; };
 		41216DE4EA08D6DBACC69DF9 /* Pods-ARYouThereYetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetTests/Pods-ARYouThereYetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		41D41A0FBD97E0B5607B39E9 /* Pods-ARYouThereYet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet.debug.xcconfig"; sourceTree = "<group>"; };
 		4920191A1FB294E900CA476C /* ARYouThereYet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARYouThereYet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,14 +68,12 @@
 		4920193B1FB294E900CA476C /* ARYouThereYetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARYouThereYetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARYouThereYetUITests.swift; sourceTree = "<group>"; };
 		492019411FB294E900CA476C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49AC6A2A1FCD346700B14C5C /* FilterFieldLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterFieldLoader.swift; sourceTree = "<group>"; };
 		5F42401BCD1BB9ED2FC7BC18 /* Pods-ARYouThereYetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetUITests/Pods-ARYouThereYetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6FC8780DEFDC539229EB1357 /* Pods-ARYouThereYet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYet.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet.release.xcconfig"; sourceTree = "<group>"; };
 		78D2C44EE01B4532766493C4 /* Pods_ARYouThereYet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2678B7D9FA1D339468077E2 /* Pods-ARYouThereYetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetTests/Pods-ARYouThereYetTests.release.xcconfig"; sourceTree = "<group>"; };
 		F74962351FC6588C00208574 /* NavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
 		F7B6DDC41FBB8FF200DDAE38 /* PlacesLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesLoader.swift; sourceTree = "<group>"; };
-		F7C70B091FCD22F500A43385 /* WeatherCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCall.swift; sourceTree = "<group>"; };
 		F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,15 +157,12 @@
 				4920191D1FB294E900CA476C /* AppDelegate.swift */,
 				4920191F1FB294E900CA476C /* art.scnassets */,
 				492019211FB294E900CA476C /* ViewController.swift */,
-				F7C70B091FCD22F500A43385 /* WeatherCall.swift */,
 				30B37EFD1FC4D39C000B250A /* MainMenuViewController.swift */,
-				30BD81D31FC4F56C00D3D869 /* MenuDelegation.swift */,
 				30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */,
 				30B37F011FC4D972000B250A /* FilterViewController.swift */,
 				30B37F031FC4D97B000B250A /* SearchViewController.swift */,
 				F74962351FC6588C00208574 /* NavViewController.swift */,
 				F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */,
-				49AC6A2A1FCD346700B14C5C /* FilterFieldLoader.swift */,
 				492019231FB294E900CA476C /* Main.storyboard */,
 				492019261FB294E900CA476C /* Assets.xcassets */,
 				492019281FB294E900CA476C /* LaunchScreen.storyboard */,
@@ -513,12 +504,9 @@
 				F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */,
 				30B37F041FC4D97B000B250A /* SearchViewController.swift in Sources */,
 				30B37EFE1FC4D39C000B250A /* MainMenuViewController.swift in Sources */,
-				30BD81D41FC4F56C00D3D869 /* MenuDelegation.swift in Sources */,
-				49AC6A2B1FCD346700B14C5C /* FilterFieldLoader.swift in Sources */,
 				F74962361FC6588C00208574 /* NavViewController.swift in Sources */,
 				F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */,
 				492019221FB294E900CA476C /* ViewController.swift in Sources */,
-				F7C70B0A1FCD22F500A43385 /* WeatherCall.swift in Sources */,
 				4920191E1FB294E900CA476C /* AppDelegate.swift in Sources */,
 				30B37F001FC4D4E3000B250A /* ControlMenuViewController.swift in Sources */,
 			);

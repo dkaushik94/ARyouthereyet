@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainMenuViewController: UIViewController {
 
@@ -16,16 +17,16 @@ class MainMenuViewController: UIViewController {
     
     var filterViewController :FilterViewController?
     var searchViewController :SearchViewController?
+    public let locationManager = CLLocationManager()
     
     //Delegation for communication between containers.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         let parentVC = segue.destination as? ControlMenuViewController
         parentVC?.delegate = self
         
-        
         if let filterVC = segue.destination as? FilterViewController{
             filterViewController = filterVC
+            filterVC.locationManager = locationManager
         }
         if let searchVC = segue.destination as? SearchViewController{
             searchViewController = searchVC
@@ -60,7 +61,6 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func closeMenus(_ sender: Any) {
         self.discardMenuAnimation()
-        
     }
     //Menu showing animation.
     func menuAnimation(){
@@ -72,14 +72,7 @@ class MainMenuViewController: UIViewController {
     
     //Menu quitting animation.
     func discardMenuAnimation(){
-        UIView.animate(withDuration: 0.3, animations: {
-            self.view.alpha = 0
-        },completion :{
-            (finished: Bool) in
-            if(finished){
-                self.view.removeFromSuperview()
-            }
-        })
+        self.dismiss(animated: false, completion: nil)
     }
 
     /*
@@ -91,7 +84,6 @@ class MainMenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 
 extension MainMenuViewController: menuDelegation {
@@ -99,7 +91,6 @@ extension MainMenuViewController: menuDelegation {
         if(incomingContainer == "search"){
             filterView.isHidden = true
             searchView.isHidden = false
-            
         }
         else if(incomingContainer == "filter"){
             filterView.isHidden = false

@@ -43,3 +43,7 @@ class ControlMenuViewController: UIViewController {
     */
 
 }
+
+protocol menuDelegation: class {
+    func toggleVisibility(incomingContainer: String)
+}

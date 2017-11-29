@@ -28,6 +28,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var annotationManager: AnnotationManager!
     fileprivate var startedLoadingPOIs = false
     var listOfAnnotations: [Annotation] = []
+    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +80,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 let synthesizer = AVSpeechSynthesizer()
                 synthesizer.speak(utterance)
                 
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
                 nav.currentLocation = locationManager.location!.coordinate
                 let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
@@ -91,13 +91,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func showMenu(_ sender: Any) {
-        let mainMenuVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainMenuVC") as! MainMenuViewController
-        
-        self.addChildViewController(mainMenuVC)
-        mainMenuVC.view.frame = self.view.frame
+        /*self.addChildViewController(mainMenuVC)
+        storyBoard.view.frame = self.view.frame
         self.view.addSubview(mainMenuVC.view)
-        mainMenuVC.didMove(toParentViewController: self)
-
+        storyBoard.didMove(toParentViewController: self)*/
+        let menu = storyBoard.instantiateViewController(withIdentifier: "MainMenuViewController") as! MainMenuViewController
+        menu.view.backgroundColor = .clear
+        menu.modalPresentationStyle = .overCurrentContext
+        self.present(menu, animated: false, completion: nil)
     }
     
     @IBAction func searchButtonTouched(_ sender: Any) {
@@ -375,7 +376,7 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         synthesizer.speak(utterance)
         
         dismiss(animated: true, completion: nil)
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
         let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
         nav.currentLocation = locationManager.location!.coordinate
         let destinationLocation = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)

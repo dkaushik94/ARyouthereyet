@@ -8,6 +8,7 @@
 
 import Foundation
 
-protocol menuDelegation: class {
-    func toggleVisibility(incomingContainer: String)
-}
+//protocol menuDelegation: class {
+//    func toggleVisibility(incomingContainer: String)
+//}
+
