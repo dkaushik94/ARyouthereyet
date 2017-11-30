@@ -7,28 +7,53 @@
 //
 
 import UIKit
-import MapboxARKit
-import SceneKit
 import ARKit
+import SceneKit
+import MapboxARKit
+import GooglePlaces
+
 
 class DetailViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     public var annotation : Annotation?
+    var placeImage: UIImage?
+    var currentPlace: GMSPlace?
+    var photoIndex : Int = 0;
+    var currentPlaceImages : [GMSPlacePhotoMetadata]? = []
+    var placeImages : [UIImage]? = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Set the view's delegate
         sceneView.delegate = self
         
+        // Show statistics such as fps and timing information
+        sceneView.showsStatistics = true
         
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.numberOfTapsRequired = 1
+        tapRecognizer.numberOfTouchesRequired = 1
+        tapRecognizer.addTarget(self, action:  #selector(tapped))
+        sceneView.gestureRecognizers = [tapRecognizer]
+        
+        GMSPlacesClient.shared().lookUpPlaceID((annotation?.id)!) { (place, err) in
+            
+            if (err != nil) {
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+//            self.augmentDetailsView(place: place!, hasPhoto: true)
+            self.currentPlace = place
+            self.loadFirstPhotoForPlace(placeID: (place?.placeID)!)
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+// street_number route
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         
@@ -42,103 +67,146 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
-
-    // MARK: - ARSCNViewDelegate
     
-    /*
-     // Override to create and configure nodes for anchors added to the view's session.
-     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-     let node = SCNNode()
-     
-     return node
-     }
-     */
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Release any cached data, images, etc that aren't in use.
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
+    func getLocationAddress() -> String {
+        var address : String = ""
+        let addressComps = self.currentPlace?.addressComponents
+        for comp : GMSAddressComponent in addressComps! {
+            if(comp.type == "street_number") {
+                address = address + comp.name + " "
+            }
+            if(comp.type == "route" ) {
+                address = address + comp.name
+            }
+        }
+        return address
     }
     
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    func augmentDetailsView() {
+    func augmentDetailsView(place : GMSPlace, hasPhoto: Bool) {
         let mainAnchor = getMainPaneAnchor()
-        let mainPlane  = getMainPane()
+        let mainPlane  = getMainPane(withPhoto: hasPhoto)
         let mainNode = SCNNode(geometry: mainPlane)
+        mainNode.name = "MainNode"
         mainNode.transform = getMainTransform()
         
-        let locNameNode    = getNodeFor(locationName: "Richard Daley Library")
-        let addressNode    = getNodeFor(address: "1200 W Harrison St, Chicago 60612, IL, USA")
-        let distanceNode   = getNodeFor(distance: 1.8)
-        let openStatusNode = getNodeFor(openStatus: 0)
-        //        if let phNo = place.phoneNumber {
-        let phoneNoNode    = getNodeFor(phoneNo: "+1 312 764 9845")
-        //            mainNode.addChildNode(phoneNoNode)
-        sceneView.scene.rootNode.addChildNode(phoneNoNode)
-        //        }
-        //        if let website = place.website {
-        let websiteNode    = getNodeFor(website: "www.uic.edu")
-        sceneView.scene.rootNode.addChildNode(websiteNode)
-        //            mainNode.addChildNode(websiteNode)
-        //        }
-        //        if ( place.priceLevel.rawValue != -1) {
-        let priceNode      = getNodeFor(priceLevel: 3)
-        sceneView.scene.rootNode.addChildNode(priceNode)
-        //            mainNode.addChildNode(priceNode)
-        //        }
-        //        if (place.rating != nil) {
+        let locNameNode    = getNodeFor(locationName: place.name)
+        let addressNode    = getNodeFor(address: getLocationAddress())
+        let distanceNode   = getNodeFor(distance: Float((annotation?.distance)!))
+        let openStatusNode = getNodeFor(openStatus: place.openNowStatus.rawValue)
         
-        addRatingStars(rating: 4.5, to: sceneView.scene.rootNode, at: [-4.5,3.7,-18.0])
-        //        }
+        if let phNo = place.phoneNumber {
+            let phoneNoNode    = getNodeFor(phoneNo: place.phoneNumber!)
+            sceneView.scene.rootNode.addChildNode(phoneNoNode)
+        }
         
-        let imgNode = getImageNode()
+        if let website = place.website {
+            let websiteNode    = getNodeFor(website: (currentPlace?.website?.absoluteString)!)
+            sceneView.scene.rootNode.addChildNode(websiteNode)
         
-        //        mainNode.addChildNode(locNameNode)
-        //        mainNode.addChildNode(addressNode)
-        //        mainNode.addChildNode(distanceNode)
-        //        mainNode.addChildNode(openStatusNode)
-        //        mainNode.addChildNode(imgNode)
+        }
+        
+        if ( place.priceLevel.rawValue != -1) {
+            let priceNode      = getNodeFor(priceLevel: 3)
+            sceneView.scene.rootNode.addChildNode(priceNode)
+        
+        }
+        
+        if (place.rating != nil) {
+            addRatingStars(rating: 4.5, to: sceneView.scene.rootNode, at: [-4.5,3.7,-18.0])
+        }
+        
+        if(hasPhoto) {
+            let imgNode = getImageNode(forImage: placeImage!)
+            sceneView.scene.rootNode.addChildNode(imgNode)
+        }
+        
+    
+        let backNode = getBackNode()
+        
+        let navNode = getNavigateNode()
         
         
-        //        for node : SCNNode in mainNode.childNodes {
-        //            node.transform.m42 = node.transform.m42 - 7
-        //        }
         sceneView.session.add(anchor: mainAnchor)
         sceneView.scene.rootNode.addChildNode(mainNode)
         sceneView.scene.rootNode.addChildNode(locNameNode)
         sceneView.scene.rootNode.addChildNode(addressNode)
         sceneView.scene.rootNode.addChildNode(distanceNode)
         sceneView.scene.rootNode.addChildNode(openStatusNode)
-        sceneView.scene.rootNode.addChildNode(imgNode)
+        sceneView.scene.rootNode.addChildNode(backNode)
+        sceneView.scene.rootNode.addChildNode(navNode)
+        
+        if(!hasPhoto) {
+            for node : SCNNode in sceneView.scene.rootNode.childNodes {
+                if(node.name != "MainNode") {
+                    print(node.name)
+                    node.transform.m42 = node.transform.m42 - 5
+                }
+                if(node.name == "MainNode") {
+                    node.transform.m42 = -2.5
+                }
+                if(node.name == "backNode" || node.name == "navNode") {
+                    node.transform.m42 = node.transform.m42 + 5.2
+                }
+            }
+        }
         
     }
     
-    func getImageNode() ->SCNNode{
+    
+    
+    func getBackNode() -> SCNNode {
+        
+        let backImgMaterial = SCNMaterial()
+        backImgMaterial.diffuse.contents = UIImage(named: "back")
+        let backPlane = SCNPlane(width: 2.0, height: 2.0)
+        backPlane.cornerRadius = 0.25
+        backPlane.firstMaterial?.diffuse.contents = UIColor(red: 74/255.0, green: 35/255.0, blue: 90/255.0, alpha: 0.8)
+        let backkNode = SCNNode(geometry: backPlane)
+        backkNode.geometry?.materials = [backImgMaterial]
+        
+//        let backText = SCNText(string: "Done", extrusionDepth: 0.04)
+//        backText.font = UIFont(name: "Arial", size: 1.3)
+//        let backNode = SCNNode(geometry: backText)
+//        let backColorMaterial = SCNMaterial()
+//        backColorMaterial.diffuse.contents = UIColor.red
+//        backNode.geometry?.materials = [backColorMaterial]
+        backkNode.name = "backNode"
+        backkNode.transform.m43 = -18.0
+        backkNode.transform.m42 = -7.2
+        backkNode.transform.m41 = -4.5
+        return backkNode
+    }
+    
+    func getNavigateNode() -> SCNNode {
+        let navigateImageMaterial = SCNMaterial()
+        navigateImageMaterial.diffuse.contents = UIImage(named: "navigate")
+        let navPlane = SCNPlane(width: 1.7, height: 1.7)
+        navPlane.cornerRadius = 0.25
+        navPlane.firstMaterial?.diffuse.contents = UIColor(red: 74/255.0, green: 35/255.0, blue: 90/255.0, alpha: 0.8)
+        let navNode = SCNNode(geometry: navPlane)
+        navNode.geometry?.materials = [navigateImageMaterial]
+        navNode.name = "navNode"
+        navNode.transform.m43 = -18.0
+        navNode.transform.m42 = -7.3
+        navNode.transform.m41 = 4.5
+        return navNode
+    }
+    
+    func getImageNode(forImage: UIImage) ->SCNNode{
         let mainImgMaterial = SCNMaterial()
-        mainImgMaterial.diffuse.contents = UIImage(named : "ERFMain")
+        mainImgMaterial.diffuse.contents = forImage
         let mainImgPlane = SCNPlane(width: 9.0, height:5.0)
-        mainImgPlane.cornerRadius = 0.5
+        mainImgPlane.cornerRadius = 0.25
         let mainImgNode = SCNNode(geometry: mainImgPlane)
         mainImgNode.geometry?.materials = [mainImgMaterial]
         mainImgNode.transform.m42 = -3.0
         mainImgNode.transform.m43 = -18.0
+        mainImgNode.name = "ImageNode"
         return mainImgNode
     }
     
@@ -157,6 +225,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
         let priceColorMaterial = SCNMaterial()
         priceColorMaterial.diffuse.contents = UIColor.green
         priceNode.geometry?.materials = [priceColorMaterial]
+        priceNode.name = "PriceNode"
         return priceNode
     }
     
@@ -174,11 +243,12 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
         
         let webSiteText = SCNText(string: webAddr, extrusionDepth: 0.04)
         print(webAddr)
-        webSiteText.font = UIFont(name: "Futura", size: 0.45)
+        webSiteText.font = UIFont(name: "Arial", size: 0.45)
         let websiteNode = SCNNode(geometry: webSiteText)
         websiteNode.transform.m41 = -5.0
         websiteNode.transform.m42 = 0.0
         websiteNode.transform.m43 = -18.0
+        websiteNode.name = "WebsiteNode"
         return websiteNode
     }
     
@@ -190,18 +260,20 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
         phoneNoNode.transform.m41 = 0.8
         phoneNoNode.transform.m42 = 1.2
         phoneNoNode.transform.m43 = -18.0
+        phoneNoNode.name = "PhoneNoNode"
         return phoneNoNode
     }
     
     
     func getNodeFor(distance: Float) -> SCNNode {
-        let distanceString = String(distance) + " miles from here"
+        let distanceString = String(Int(ceil(distance))) + " meters from here"
         let distanceText   = SCNText(string: distanceString, extrusionDepth: 0.04)
         distanceText.font  = UIFont(name: "Futura", size: 0.45)
         let distanceNode   = SCNNode(geometry: distanceText)
         distanceNode.transform.m43 = -18.0
         distanceNode.transform.m42 = 2.5
         distanceNode.transform.m41 = 0.8
+        distanceNode.name = "distanceNode"
         return distanceNode
     }
     
@@ -223,16 +295,18 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
         locNameNode.transform.m43 = -18.0
         locNameNode.transform.m42 = 4.5
         locNameNode.transform.m41 = -5.0
+        locNameNode.name = "LocationNameNode"
         return locNameNode
     }
     
     func getNodeFor(address: String) -> SCNNode {
         let addressText  = SCNText(string: address, extrusionDepth: 0.04)
-        addressText.font = UIFont(name: "Futura", size: 0.45)
+        addressText.font = UIFont(name: "Futura", size: 0.55)
         let addressNode  = SCNNode(geometry: addressText)
         addressNode.transform.m43 = -18.0
         addressNode.transform.m42 = 3.5
         addressNode.transform.m41 = -5.0
+        addressNode.name = "AddressNode"
         return addressNode
     }
     
@@ -252,18 +326,26 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
         openStatusNode.transform.m41 = -5.0
         openStatusNode.transform.m42 = 1.2
         openStatusNode.transform.m43 = -18.0
+        openStatusNode.name = "OpenStatusNode"
         return openStatusNode
     }
     
-    func getMainPane() -> SCNPlane {
+    func getMainPane(withPhoto: Bool) -> SCNPlane {
         // Main semi translucent plane upon which all the details view will be put on
         let mainPlane: SCNPlane = {  // Initialization with a closure
-            let mPlane = SCNPlane(width: 12.0, height: 14.0)
-            mPlane.cornerRadius = 0.5
-            mPlane.firstMaterial?.isDoubleSided = true
+            var plane = SCNPlane()
+            if(withPhoto) {
+                plane = SCNPlane(width: 12.0, height: 14.0)
+            } else {
+                plane = SCNPlane(width: 12.0, height: 8.0)
+                
+            }
+//            let mPlane = SCNPlane(width: 12.0, height: 8.0)
+            plane.cornerRadius = 0.5
+            plane.firstMaterial?.isDoubleSided = true
             //            mPlane.firstMaterial?.diffuse.contents = UIColor(red: CGFloat(0/255), green: CGFloat(0/255), blue: CGFloat(0/255), alpha: 0.8)
-            mPlane.firstMaterial?.diffuse.contents = UIColor(red: 74/255.0, green: 35/255.0, blue: 90/255.0, alpha: 0.8)
-            return mPlane
+            plane.firstMaterial?.diffuse.contents = UIColor(red: 74/255.0, green: 35/255.0, blue: 90/255.0, alpha: 0.8)
+            return plane
         }()
         return mainPlane
     }
@@ -278,7 +360,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
         let mainTransform : SCNMatrix4 = {
             var trans = SCNMatrix4()
             trans.m43 = -20
-            //            trans.m42 = 8.0
+//            trans.m42 = 8.0
             trans.m11 = 1
             trans.m22 = 1
             trans.m33 = 1
@@ -349,5 +431,109 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
         }
         
     }
+    
+    func loadFirstPhotoForPlace(placeID: String) {
+        GMSPlacesClient.shared().lookUpPhotos(forPlaceID: placeID) { (photos, error) -> Void in
+            if let error = error {
+                
+                print("Error: \(error.localizedDescription)")
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                print("No of Photos : \(photos?.results.count)")
+                self.currentPlaceImages = photos?.results
+                if let firstPhoto = photos?.results.first {
+                    self.loadImageForMetadata(photoMetadata: firstPhoto)
+                    self.photoIndex = self.photoIndex + 1
+                } else {
+                    self.augmentDetailsView(place: self.currentPlace!, hasPhoto: false)
+                }
+            }
+        }
+    }
+    
+    func showNextImage(nextImage: UIImage) {
+        let nodes = sceneView.scene.rootNode.childNodes
+        for node : SCNNode in nodes {
+            if (node.name == "ImageNode") {
+                let material = SCNMaterial()
+                material.diffuse.contents = nextImage
+//                node.geometry?.materials = nil
+                node.geometry?.materials = [material]
+            }
+        }
+    }
+    
+    func loadImageForMetadata(photoMetadata: GMSPlacePhotoMetadata) {
+        GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: {
+            (photo, error) -> Void in
+            if let error = error {
+                
+                print("Error: \(error.localizedDescription)")
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                self.placeImage = photo
+                self.augmentDetailsView(place: self.currentPlace!, hasPhoto: true)
+                self.placeImages?.append(photo!)
+            }
+        })
+    }
+    
+    func loadNextImage(photoMetadata: GMSPlacePhotoMetadata) {
+        GMSPlacesClient.shared().loadPlacePhoto(photoMetadata) { (image, err) in
+            if let err = err {
+                print(err.localizedDescription)
+            } else {
+                self.showNextImage(nextImage: image!)
+                self.placeImages?.append(image!)
+            }
+        }
+    }
+    
+    @objc func tapped(recognizer: UITapGestureRecognizer) {
+        let location = recognizer.location(in: sceneView)
+        
+        let hitResults = sceneView.hitTest(location, options: nil)
+        if hitResults.count > 0 {
+            let result = hitResults[0] as SCNHitTestResult
+            let node = result.node
+            
+            if let touchedNode = node as? customNode {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let detailView = storyBoard.instantiateViewController(withIdentifier: "detailsView") as! DetailViewController
+                detailView.annotation = touchedNode.annotation
+                //                let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
+                //                nav.currentLocation = locationManager.location!.coordinate
+                //                let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
+                //                nav.destinationLocationCustom = destinationLocation
+                //                self.present(nav, animated: true, completion: nil)
+                self.present(detailView, animated: true, completion: nil)
+            } else if let touchedNode = node as? SCNNode {
+                if(touchedNode.name == "ImageNode") {
+                    if((self.placeImages!.count - 1) >= self.photoIndex) {
+                        showNextImage(nextImage: self.placeImages![self.photoIndex])
+                    } else {
+                        loadNextImage(photoMetadata: self.currentPlaceImages![self.photoIndex])
+                    }
+                    
+                    if((self.photoIndex + 1) == self.currentPlaceImages?.count) {
+                        self.photoIndex = -1
+                    }
+                    self.photoIndex = self.photoIndex + 1
+                } else if(touchedNode.name == "backNode") {
+                    self.dismiss(animated: false, completion: nil)
+                }
+        }
+    }
+ }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }

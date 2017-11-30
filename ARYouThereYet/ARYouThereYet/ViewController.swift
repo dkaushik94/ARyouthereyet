@@ -70,11 +70,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             if let touchedNode = node as? customNode {
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
-                nav.currentLocation = locationManager.location!.coordinate
-                let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
-                nav.destinationLocationCustom = destinationLocation
-                self.present(nav, animated: true, completion: nil)
+                let detailView = storyBoard.instantiateViewController(withIdentifier: "detailsView") as! DetailViewController
+                detailView.annotation = touchedNode.annotation
+//                let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
+//                nav.currentLocation = locationManager.location!.coordinate
+//                let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
+//                nav.destinationLocationCustom = destinationLocation
+//                self.present(nav, animated: true, completion: nil)
+                self.present(detailView, animated: true, completion: nil)
             }
         }
     }
@@ -190,7 +193,7 @@ extension ViewController : CLLocationManagerDelegate {
                                 let location = CLLocation(latitude: latitude, longitude: longitude)
                                 let rating = placeDict.object(forKey: "rating") as? Double ?? 0.0
                                 let iconURL = placeDict.object(forKey: "icon") as! String
-                                let placeID = placeDict.object(forKey: "id") as! String
+                                let placeID = placeDict.object(forKey: "place_id") as! String
                                 
                                 DispatchQueue.main.async {
                                     Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
@@ -286,6 +289,8 @@ extension ViewController: AnnotationManagerDelegate {
         annotNode.addChildNode(labelNode)
         annotNode.addChildNode(distNode)
         annotNode.addChildNode(iconNode)
+        
+        annotNode.scale = SCNVector3(20,20,20)
         
         return annotNode
     }
