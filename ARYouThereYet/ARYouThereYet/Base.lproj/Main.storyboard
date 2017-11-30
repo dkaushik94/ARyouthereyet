@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWm-YW-N62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="811.875" y="70.774647887323951"/>
+            <point key="canvasLocation" x="812" y="71"/>
         </scene>
         <!--Control Menu View Controller-->
         <scene sceneID="shd-yo-7n1">
@@ -418,6 +418,7 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2903" y="71"/>
+
         </scene>
     </scenes>
     <resources>
