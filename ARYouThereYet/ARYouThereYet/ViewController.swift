@@ -72,12 +72,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let detailView = storyBoard.instantiateViewController(withIdentifier: "detailsView") as! DetailViewController
                 detailView.annotation = touchedNode.annotation
-//                let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
-//                nav.currentLocation = locationManager.location!.coordinate
-//                let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
-//                nav.destinationLocationCustom = destinationLocation
-//                self.present(nav, animated: true, completion: nil)
-                self.present(detailView, animated: true, completion: nil)
+                self.present(detailView, animated: false, completion: nil)
             }
         }
     }

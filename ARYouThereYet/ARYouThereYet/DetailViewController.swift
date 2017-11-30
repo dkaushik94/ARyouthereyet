@@ -13,7 +13,7 @@ import MapboxARKit
 import GooglePlaces
 
 
-class DetailViewController: UIViewController, ARSCNViewDelegate {
+class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManagerDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     public var annotation : Annotation?
@@ -22,7 +22,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
     var photoIndex : Int = 0;
     var currentPlaceImages : [GMSPlacePhotoMetadata]? = []
     var placeImages : [UIImage]? = []
-    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,13 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        
+        // Config CLLocationManager object
+        locationManager.delegate = self as! CLLocationManagerDelegate
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 50
+//        locationManager.startUpdatingLocation()
         
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.numberOfTapsRequired = 1
@@ -497,18 +504,19 @@ class DetailViewController: UIViewController, ARSCNViewDelegate {
             let result = hitResults[0] as SCNHitTestResult
             let node = result.node
             
-            if let touchedNode = node as? customNode {
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let detailView = storyBoard.instantiateViewController(withIdentifier: "detailsView") as! DetailViewController
-                detailView.annotation = touchedNode.annotation
-                //                let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
-                //                nav.currentLocation = locationManager.location!.coordinate
-                //                let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
-                //                nav.destinationLocationCustom = destinationLocation
-                //                self.present(nav, animated: true, completion: nil)
-                self.present(detailView, animated: true, completion: nil)
-            } else if let touchedNode = node as? SCNNode {
-                if(touchedNode.name == "ImageNode") {
+            if let touchedNode = node as? SCNNode {
+                
+                if(touchedNode.name == "navNode") {
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
+                    nav.currentLocation = locationManager.location!.coordinate
+                    let destinationLocation = CLLocationCoordinate2D(latitude: (self.annotation?.latitude)!, longitude: (self.annotation?.longitude)!)
+                    nav.destinationLocationCustom = destinationLocation
+                    self.present(nav, animated: true, completion: nil)
+                    
+                }
+                
+                else if(touchedNode.name == "ImageNode") {
                     if((self.placeImages!.count - 1) >= self.photoIndex) {
                         showNextImage(nextImage: self.placeImages![self.photoIndex])
                     } else {
