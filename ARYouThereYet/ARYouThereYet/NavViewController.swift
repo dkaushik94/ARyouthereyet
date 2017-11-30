@@ -332,6 +332,7 @@ extension NavViewController: AnnotationManagerDelegate {
         // let lightBulbNode = collada2SCNNode(filepath: "art.scnassets/light-bulb.dae")
         let lightBulbNode = SCNNode(geometry: SCNSphere(radius: 1))
         lightBulbNode.scale = SCNVector3Make(0.25, 0.25, 0.25)
+        lightBulbNode.name = "NavigationNode"
         return lightBulbNode
     }
     

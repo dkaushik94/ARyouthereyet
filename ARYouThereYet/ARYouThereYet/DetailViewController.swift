@@ -289,7 +289,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         var name : String = ""
         if(locationName.count >= 32) {
             let index = locationName.index(locationName.startIndex, offsetBy: 32)
-            var name = locationName[..<index]
+            name = String(locationName[..<index])
             name = name + "..."
         } else {
             name = locationName

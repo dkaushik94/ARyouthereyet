@@ -233,8 +233,18 @@ extension ViewController: AnnotationManagerDelegate {
          Y-Coordinate: Placing the annotation at a height to minimize overlapping. (Float)
          */
         
+        
+        var name : String = ""
+        if(String(annotation.name).count >= 10) {
+            let index = annotation.name.index(annotation.name.startIndex, offsetBy: 10)
+            name = String(annotation.name[..<index])
+            name = name + "..."
+        } else {
+            name = annotation.name
+        }
+        print("Test: Name: \(name)")
         //Create annotations on the street.
-        let nameOfPlace = SCNText(string: annotation.name, extrusionDepth: 0.1)        //Replace string with incoming string value for every node.
+        let nameOfPlace = SCNText(string: name, extrusionDepth: 0.04)        //Replace string with incoming string value for every node.
         nameOfPlace.font = UIFont(name: "Futura", size: 0.3)        //Fontsize can be played around with. But 0.3 seems fine.
         nameOfPlace.firstMaterial!.diffuse.contents = UIColor.white
         nameOfPlace.firstMaterial!.specular.contents = UIColor.white
@@ -245,10 +255,10 @@ extension ViewController: AnnotationManagerDelegate {
         
         
         //Create Another text entity for distance.
-        let compString = String(annotation.distance) + "mts"
-        let dist = SCNText(string: compString, extrusionDepth: 0.1)
+        let compString = String(Int(ceil(annotation.distance))) + "mts"
+        let dist = SCNText(string: compString, extrusionDepth: 0.04)
         dist.font = UIFont.init(name: "Futura", size: 0.15)
-        dist.firstMaterial!.diffuse.contents = UIColor.white
+        dist.firstMaterial!.diffuse.contents = UIColor.blue
         
         //Create holding geometry and corresponding node for icon.
         let icon = SCNPlane(width: 0.5, height: 0.5)
