@@ -21,6 +21,7 @@
 		4920192A1FB294E900CA476C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492019281FB294E900CA476C /* LaunchScreen.storyboard */; };
 		492019351FB294E900CA476C /* ARYouThereYetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019341FB294E900CA476C /* ARYouThereYetTests.swift */; };
 		492019401FB294E900CA476C /* ARYouThereYetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */; };
+		49A982E21FCFBCEC00D080D6 /* FilterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A982E11FCFBCEC00D080D6 /* FilterMenuViewController.swift */; };
 		8A017BCBDC882F4894500B5E /* Pods_ARYouThereYetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1576E4498CC30F976830864B /* Pods_ARYouThereYetTests.framework */; };
 		F74962361FC6588C00208574 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74962351FC6588C00208574 /* NavViewController.swift */; };
 		F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B6DDC41FBB8FF200DDAE38 /* PlacesLoader.swift */; };
@@ -68,6 +69,7 @@
 		4920193B1FB294E900CA476C /* ARYouThereYetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARYouThereYetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARYouThereYetUITests.swift; sourceTree = "<group>"; };
 		492019411FB294E900CA476C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49A982E11FCFBCEC00D080D6 /* FilterMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMenuViewController.swift; sourceTree = "<group>"; };
 		5F42401BCD1BB9ED2FC7BC18 /* Pods-ARYouThereYetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYetUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYetUITests/Pods-ARYouThereYetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6FC8780DEFDC539229EB1357 /* Pods-ARYouThereYet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARYouThereYet.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet.release.xcconfig"; sourceTree = "<group>"; };
 		78D2C44EE01B4532766493C4 /* Pods_ARYouThereYet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 				4920191F1FB294E900CA476C /* art.scnassets */,
 				492019211FB294E900CA476C /* ViewController.swift */,
 				30B37EFD1FC4D39C000B250A /* MainMenuViewController.swift */,
+				49A982E11FCFBCEC00D080D6 /* FilterMenuViewController.swift */,
 				30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */,
 				30B37F011FC4D972000B250A /* FilterViewController.swift */,
 				30B37F031FC4D97B000B250A /* SearchViewController.swift */,
@@ -422,8 +425,8 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/CloudTagView/CloudTagView.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
-				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/MapboxARKit/MapboxARKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MapboxDirections.swift/MapboxDirections.framework",
 				"${BUILT_PRODUCTS_DIR}/Polyline/Polyline.framework",
@@ -433,8 +436,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CloudTagView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxARKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxDirections.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Polyline.framework",
@@ -507,6 +510,7 @@
 				F74962361FC6588C00208574 /* NavViewController.swift in Sources */,
 				F7F5C9251FB3ECAD00468816 /* MatrixHelper.swift in Sources */,
 				492019221FB294E900CA476C /* ViewController.swift in Sources */,
+				49A982E21FCFBCEC00D080D6 /* FilterMenuViewController.swift in Sources */,
 				4920191E1FB294E900CA476C /* AppDelegate.swift in Sources */,
 				30B37F001FC4D4E3000B250A /* ControlMenuViewController.swift in Sources */,
 			);
@@ -677,11 +681,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M678K3T63A;
+				DEVELOPMENT_TEAM = LZ8ZK7MYLQ;
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.navtest2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uic.dkaush4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -696,11 +700,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M678K3T63A;
+				DEVELOPMENT_TEAM = LZ8ZK7MYLQ;
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.navtest2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uic.dkaush4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

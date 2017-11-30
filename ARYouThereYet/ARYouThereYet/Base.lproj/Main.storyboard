@@ -10,6 +10,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Filter Menu View Controller-->
+        <scene sceneID="7z1-kd-aiw">
+            <objects>
+                <viewController storyboardIdentifier="filterMenuView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pyq-19-xfo" customClass="FilterMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="ji8-t6-KZm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="ENP-a4-rte"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="filterMenuView" destination="ji8-t6-KZm" id="K08-Qg-iSh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uwu-Eh-ePC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79" y="-607"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -50,6 +69,15 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVE-9a-ZDs">
+                                <rect key="frame" x="164" y="473" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="filterMenuTouched:" destination="BV1-FR-VrT" eventType="touchUpInside" id="cw9-9P-z5o"/>
+                                    <action selector="filterbutton:" destination="F3q-Aj-Dc2" eventType="touchUpInside" id="HzH-iG-EIn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -70,6 +98,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <exit id="F3q-Aj-Dc2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="79.200000000000003" y="70.614692653673174"/>
         </scene>
@@ -392,7 +421,7 @@
                         <outlet property="barFilter" destination="lQr-92-BwN" id="qE3-R4-pfq"/>
                         <outlet property="cafeFilter" destination="eJb-vG-chV" id="CSN-Qe-rGm"/>
                         <outlet property="distanceRangeLabel" destination="NWU-fA-d7J" id="Zca-Ub-wWR"/>
-                        <outlet property="distanceSlider" destination="M0b-Iw-eZJ" id="Dlt-u5-tnZ"/>
+                        <outlet property="distanceSlider" destination="M0b-Iw-eZJ" id="bC3-Ga-JjT"/>
                         <outlet property="doctorFilter" destination="orz-NG-UBf" id="OE9-0h-s9f"/>
                         <outlet property="filterView" destination="CHc-4m-DE3" id="oT9-CH-X5a"/>
                         <outlet property="libraryFilter" destination="ie1-si-nwu" id="doi-UH-kAP"/>

@@ -12,6 +12,8 @@ target 'ARYouThereYet' do
 
   pod 'Mapbox-iOS-SDK', '~> 3.7.0'
 
+  pod 'CloudTagView'
+
   pod 'MapboxARKit', :git => 'https://github.com/mapbox/mapbox-arkit-ios.git'
   
   pod 'GooglePlaces'

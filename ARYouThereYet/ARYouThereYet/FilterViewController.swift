@@ -18,7 +18,6 @@ class FilterViewController: UIViewController {
     public var locationManager: CLLocationManager!
     public var listOfAnnotations: [Annotation] = []
     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
     //Outlets for each filter button.
     @IBOutlet weak var barFilter: UIButton!
     @IBOutlet weak var cafeFilter: UIButton!
@@ -286,8 +285,6 @@ class FilterViewController: UIViewController {
         }
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -300,6 +297,8 @@ class FilterViewController: UIViewController {
         blurView.frame = filterView.frame
         
         filterView.insertSubview(blurView, at: 0)
+        
+        distanceRangeLabel.text = floor(distanceSlider.value).description
     }
     //Method to collect filters selected for filtering the view.
     @IBAction func searchButtonTouched(_ sender: Any){
@@ -318,7 +317,7 @@ class FilterViewController: UIViewController {
                 let apiURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(distanceSlider.value)&type=\(itemText)&key=AIzaSyCx3Y1vXE0PBpdSLCjqGn6G3z8JcOvYfmo"
                 Alamofire.request(apiURL).responseJSON { response in
                     if let json = response.result.value {
-                        print("JSON: \(json)") // serialized json response
+//                        print("JSON: \(json)") // serialized json response
                         guard let responseDict = json as? NSDictionary else {
                             return
                         }

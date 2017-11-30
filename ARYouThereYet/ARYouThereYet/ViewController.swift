@@ -28,7 +28,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var annotationManager: AnnotationManager!
     fileprivate var startedLoadingPOIs = false
     var listOfAnnotations: [Annotation] = []
+    var filterMenu: FilterMenuViewController!
     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    
+    @IBAction func filterMenuTouched(_ sender: Any) {
+        self.filterMenu = storyBoard.instantiateViewController(withIdentifier: "filterMenuView") as! FilterMenuViewController
+        filterMenu.view.isUserInteractionEnabled = true
+        view.addSubview(filterMenu.view)
+    }
+    
+    @objc func handleSwipeDown(){
+            filterMenu.view.isHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +67,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         //sceneView.scene = scene
+        
+        let swipeDownRecogniser = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeDown))
+        swipeDownRecogniser.direction = .down
+        view.addGestureRecognizer(swipeDownRecogniser)
         
         // Declare tap gesture recognizer
         let tapRecognizer = UITapGestureRecognizer()
