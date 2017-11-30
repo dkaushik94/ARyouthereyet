@@ -1,12 +1,15 @@
 {
   "images" : [
     {
+      "idiom" : "universal"
+    },
+    {
       "idiom" : "universal",
-      "filename" : "funnel.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Menu-btn2.pdf",
       "scale" : "2x"
     },
     {

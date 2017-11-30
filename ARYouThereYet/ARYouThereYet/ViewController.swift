@@ -16,13 +16,13 @@ import AlamofireImage
 import Alamofire
 import GooglePlaces
 import AVFoundation
+import CircleMenu
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
     
     
+    @IBOutlet weak var menuButton: CircleMenu!
     @IBOutlet weak var cameraStateLabel: UILabel!
-    @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet var sceneView: ARSCNView!
     let locationManager = CLLocationManager()
     var annotationManager: AnnotationManager!
@@ -30,8 +30,61 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var listOfAnnotations: [Annotation] = []
     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
+    let items: [(icon: String, color: UIColor)] = [
+        ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
+        ("icon_search", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
+        ("nearby-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1))]
+    
+    func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
+        button.backgroundColor = items[atIndex].color
+        
+        button.setImage(UIImage(named: items[atIndex].icon), for: .normal)
+        
+        // set highlited image
+        let highlightedImage  = UIImage(named: items[atIndex].icon)?.withRenderingMode(.alwaysTemplate)
+        button.setImage(highlightedImage, for: .highlighted)
+        button.tintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.3)
+    }
+    
+    func circleMenu(_ circleMenu: CircleMenu, buttonWillSelected button: UIButton, atIndex: Int) {
+        switch atIndex {
+        case 0:
+            print("home button pressed")
+        case 1:
+            print("search button pressed")
+            let autocompleteController = GMSAutocompleteViewController()
+            autocompleteController.delegate = self
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.present(autocompleteController, animated: false, completion: nil)
+            })
+        case 2:
+            print("filter button pressed")
+        default:
+            print("button will selected: \(atIndex)")
+        }
+    }
+    
+    func circleMenu(_ circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
+        print("button did selected: \(atIndex)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /*let menuButton = CircleMenu(
+                        frame: CGRect(x: (self.view.frame.size.width / 2) - 25, y: self.view.frame.size.height - 100, width: 40, height: 40),
+                        normalIcon:"icon_menu",
+                        selectedIcon:"icon_close",
+                        buttonsCount: 3,
+                        duration: 0.25,
+                        distance: 70)
+        menuButton.backgroundColor = UIColor.lightGray
+        menuButton.delegate = self
+        menuButton.layer.cornerRadius = menuButton.frame.size.width / 2.0
+        view.addSubview(menuButton)*/
+        menuButton.backgroundColor = UIColor.lightGray
+        menuButton.layer.cornerRadius = menuButton.frame.size.width / 2.0
+        menuButton.delegate = self
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -85,27 +138,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
                 nav.locationManager = locationManager
                 nav.destinationLocationCustom = destinationLocation
-                self.present(nav, animated: true, completion: nil)
+                self.present(nav, animated: false, completion: nil)
             }
         }
-    }
-    
-    @IBAction func showMenu(_ sender: Any) {
-        /*self.addChildViewController(mainMenuVC)
-        storyBoard.view.frame = self.view.frame
-        self.view.addSubview(mainMenuVC.view)
-        storyBoard.didMove(toParentViewController: self)*/
-        let menu = storyBoard.instantiateViewController(withIdentifier: "MainMenuViewController") as! MainMenuViewController
-        menu.view.backgroundColor = .clear
-        menu.modalPresentationStyle = .overCurrentContext
-        self.present(menu, animated: false, completion: nil)
-    }
-    
-    @IBAction func searchButtonTouched(_ sender: Any) {
-        print("search button pressed")
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        present(autocompleteController, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -375,14 +410,14 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         let synthesizer = AVSpeechSynthesizer()
         synthesizer.speak(utterance)
         
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
         
         let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
         nav.currentLocation = locationManager.location!.coordinate
         let destinationLocation = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         nav.locationManager = locationManager
         nav.destinationLocationCustom = destinationLocation
-        self.present(nav, animated: true, completion: nil)
+        self.present(nav, animated: false, completion: nil)
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
@@ -392,7 +427,7 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     
     // User canceled the operation.
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     // Turn the network activity indicator on and off again.
@@ -403,5 +438,14 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
-    
+}
+
+extension UIColor {
+    static func color(_ red: Int, green: Int, blue: Int, alpha: Float) -> UIColor {
+        return UIColor(
+            red: 1.0 / 255.0 * CGFloat(red),
+            green: 1.0 / 255.0 * CGFloat(green),
+            blue: 1.0 / 255.0 * CGFloat(blue),
+            alpha: CGFloat(alpha))
+    }
 }

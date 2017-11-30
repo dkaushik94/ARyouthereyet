@@ -69,7 +69,7 @@ class NavViewController: UIViewController {
     }
     
     @IBAction func closeButtonTouched(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     func customRun() {
         let coordinate = self.destinationLocationCustom
