@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "search.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "settings-btn.pdf",
       "scale" : "2x"
     },
     {

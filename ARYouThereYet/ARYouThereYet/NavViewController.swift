@@ -35,6 +35,9 @@ class NavViewController: UIViewController {
     let directions = Directions.shared
     var annotationManager: AnnotationManager!
     
+    // locationManager
+    public var locationManager: CLLocationManager!
+    
     // Define a shape collection that will be used to hold the point geometries that define the
     // directions routeline
     var waypointShapeCollectionFeature: MGLShapeCollectionFeature?
@@ -66,7 +69,7 @@ class NavViewController: UIViewController {
     }
     
     @IBAction func closeButtonTouched(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     func customRun() {
         let coordinate = self.destinationLocationCustom
@@ -171,8 +174,13 @@ class NavViewController: UIViewController {
             
             // If a route is returned:
             if let route = routes?.first, let leg = route.legs.first {
+                self.distanceLabel.text = "Calculating distance..."
+                self.distanceLabel.alpha = 1
                 let distanceString = "\(route.distance) m"
                 self.distanceLabel.text = distanceString
+                UIView.animate(withDuration: 1, delay: 3, options: [], animations: {
+                    self.distanceLabel.alpha = 0
+                }, completion: nil)
                 var polyline = [CLLocationCoordinate2D]()
                 
                 // Add an AR node and map view annotation for every defined "step" in the route
@@ -312,7 +320,7 @@ extension NavViewController: AnnotationManagerDelegate {
             return createLightBulbNode()
         } else {
             let firstColor = UIColor(red: 0.0, green: 99/255.0, blue: 175/255.0, alpha: 1.0)
-            return createSphereNode(with: 0.5, firstColor: firstColor, secondColor: UIColor.green)
+            return createSphereNode(with: 0.1, firstColor: firstColor, secondColor: UIColor.green)
         }
     }
     
@@ -324,15 +332,16 @@ extension NavViewController: AnnotationManagerDelegate {
         
         let sphereNode = SCNNode(geometry: geometry)
         sphereNode.animateInterpolatedColor(from: firstColor, to: secondColor, duration: 1)
-        
         return sphereNode
     }
     
     func createLightBulbNode() -> SCNNode {
         // let lightBulbNode = collada2SCNNode(filepath: "art.scnassets/light-bulb.dae")
-        let lightBulbNode = SCNNode(geometry: SCNSphere(radius: 1))
-        lightBulbNode.scale = SCNVector3Make(0.25, 0.25, 0.25)
+        // let lightBulbNode = SCNNode(geometry: SCNSphere(radius: 0.1))
+        let lightBulbNode = SCNNode(geometry: SCNBox(width: 1.0, height: 0.1, length: 1.0, chamferRadius: 0.0))
+        lightBulbNode.scale = SCNVector3Make(1, 1, 1)
         lightBulbNode.name = "NavigationNode"
+
         return lightBulbNode
     }
     
@@ -451,4 +460,3 @@ extension UIColor {
     }
     
 }
-

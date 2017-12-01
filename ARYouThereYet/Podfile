@@ -19,6 +19,8 @@ target 'ARYouThereYet' do
   pod 'PARTagPicker'
 
   pod 'CircularSlider'
+
+  pod 'CircleMenu'
   
   # Pods for ARYouThereYet
 
