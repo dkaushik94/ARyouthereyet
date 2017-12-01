@@ -60,6 +60,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
+    @IBAction func filterMenuClicked(_ sender: Any) {
+        
+        let filterView = storyboard?.instantiateViewController(withIdentifier: "filterMenuVC") as! FilterMenuViewController
+//        self.present(filterView, animated: false, completion: nil)
+        self.view.addSubview(filterView.view)
+        filterView.view.isHidden = false
+    }
+    
+    
     @objc func tapped(recognizer: UITapGestureRecognizer) {
         let location = recognizer.location(in: sceneView)
         

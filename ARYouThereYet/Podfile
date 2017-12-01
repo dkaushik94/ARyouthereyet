@@ -15,6 +15,10 @@ target 'ARYouThereYet' do
   pod 'MapboxARKit', :git => 'https://github.com/mapbox/mapbox-arkit-ios.git'
   
   pod 'GooglePlaces'
+
+  pod 'PARTagPicker'
+
+  pod 'CircularSlider'
   
   # Pods for ARYouThereYet
 

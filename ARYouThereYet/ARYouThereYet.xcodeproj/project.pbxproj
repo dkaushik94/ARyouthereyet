@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		19AED87B690F8E8F7205E2F5 /* Pods_ARYouThereYet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D2C44EE01B4532766493C4 /* Pods_ARYouThereYet.framework */; };
 		30B167921FCCE8C300EBC386 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B167911FCCE8C300EBC386 /* DetailViewController.swift */; };
+		30B167D01FD0BBFF00EBC386 /* FilterMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B167CF1FD0BBFF00EBC386 /* FilterMenuViewController.swift */; };
 		30B37EFE1FC4D39C000B250A /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37EFD1FC4D39C000B250A /* MainMenuViewController.swift */; };
 		30B37F001FC4D4E3000B250A /* ControlMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */; };
 		30B37F021FC4D972000B250A /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B37F011FC4D972000B250A /* FilterViewController.swift */; };
@@ -51,6 +52,7 @@
 		1576E4498CC30F976830864B /* Pods_ARYouThereYetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DA9FF8921C924A92EBB22A9 /* Pods_ARYouThereYetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B167911FCCE8C300EBC386 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		30B167CF1FD0BBFF00EBC386 /* FilterMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMenuViewController.swift; sourceTree = "<group>"; };
 		30B37EFD1FC4D39C000B250A /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		30B37EFF1FC4D4E3000B250A /* ControlMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlMenuViewController.swift; sourceTree = "<group>"; };
 		30B37F011FC4D972000B250A /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				30B37F031FC4D97B000B250A /* SearchViewController.swift */,
 				F74962351FC6588C00208574 /* NavViewController.swift */,
 				F7F5C9241FB3ECAD00468816 /* MatrixHelper.swift */,
+				30B167CF1FD0BBFF00EBC386 /* FilterMenuViewController.swift */,
 				492019231FB294E900CA476C /* Main.storyboard */,
 				492019261FB294E900CA476C /* Assets.xcassets */,
 				492019281FB294E900CA476C /* LaunchScreen.storyboard */,
@@ -428,9 +431,11 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ARYouThereYet/Pods-ARYouThereYet-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/CircularSlider/CircularSlider.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
 				"${BUILT_PRODUCTS_DIR}/MapboxARKit/MapboxARKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MapboxDirections.swift/MapboxDirections.framework",
+				"${BUILT_PRODUCTS_DIR}/PARTagPicker/PARTagPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/Polyline/Polyline.framework",
 				"${BUILT_PRODUCTS_DIR}/Turf/Turf.framework",
 			);
@@ -438,9 +443,11 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CircularSlider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxARKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxDirections.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PARTagPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Polyline.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Turf.framework",
 			);
@@ -507,6 +514,7 @@
 				30B167921FCCE8C300EBC386 /* DetailViewController.swift in Sources */,
 				30B37F021FC4D972000B250A /* FilterViewController.swift in Sources */,
 				F7B6DDC51FBB8FF200DDAE38 /* PlacesLoader.swift in Sources */,
+				30B167D01FD0BBFF00EBC386 /* FilterMenuViewController.swift in Sources */,
 				30B37F041FC4D97B000B250A /* SearchViewController.swift in Sources */,
 				30B37EFE1FC4D39C000B250A /* MainMenuViewController.swift in Sources */,
 				30BD81D41FC4F56C00D3D869 /* MenuDelegation.swift in Sources */,

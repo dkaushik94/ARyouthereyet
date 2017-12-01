@@ -28,6 +28,17 @@
                                     <action selector="showMenu:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KAt-1Z-7pd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEg-f5-dR3">
+                                <rect key="frame" x="93" y="410" width="135" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Filter Menu">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterMenuClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G7r-k5-9bJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -222,6 +233,72 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1905" y="324.82394366197184"/>
+        </scene>
+        <!--Filter Menu View Controller-->
+        <scene sceneID="al0-Hv-4t6">
+            <objects>
+                <viewController storyboardIdentifier="filterMenuVC" id="dlc-F2-cbD" customClass="FilterMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yQq-Q3-xrZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kQl-YB-OeR" customClass="CircularSlider" customModule="CircularSlider">
+                                <rect key="frame" x="55" y="267" width="210" height="210"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" red="0.0039215686274509803" green="0.19607843137254902" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="pgNormalColor">
+                                        <color key="value" red="0.0039215686269999999" green="0.1960784314" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="pgHighlightedColor">
+                                        <color key="value" red="0.32941176470588235" green="0.98039215686274506" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Distance"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                        <real key="value" value="1020"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fractionDigits">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="highlighted" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="knobRadius">
+                                        <real key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="divisa" value="Mts"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                        <real key="value" value="200"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                        <real key="value" value="200"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeE-n9-FeA">
+                                <rect key="frame" x="142" y="518" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneClicked:" destination="dlc-F2-cbD" eventType="touchUpInside" id="d6H-Ft-Udg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="oF2-OH-yKm"/>
+                    </view>
+                    <connections>
+                        <outlet property="distanceSelector" destination="kQl-YB-OeR" id="Phm-P0-Qut"/>
+                        <outlet property="doneBtn" destination="KeE-n9-FeA" id="TTW-iZ-a75"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IAY-bL-DtK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="80.625" y="-1034.1549295774648"/>
         </scene>
         <!--Filter View Controller-->
         <scene sceneID="Jz5-hc-bVO">
@@ -418,7 +495,6 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2903" y="71"/>
-
         </scene>
     </scenes>
     <resources>
