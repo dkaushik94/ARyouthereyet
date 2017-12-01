@@ -119,11 +119,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
     }
     
     @IBAction func filterMenuClicked(_ sender: Any) {
-        
         let filterView = storyboard?.instantiateViewController(withIdentifier: "filterMenuVC") as! FilterMenuViewController
-//        self.present(filterView, animated: false, completion: nil)
-        self.view.addSubview(filterView.view)
-        filterView.view.isHidden = false
+        self.present(filterView, animated: true, completion: nil)
     }
     
     

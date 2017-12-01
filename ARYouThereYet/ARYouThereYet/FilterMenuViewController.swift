@@ -136,7 +136,19 @@ class FilterMenuViewController: UIViewController {
         doneBtn.backgroundColor = UIColor.cyan
         
         
+        self.doneBtn.isUserInteractionEnabled = true
         
+        self.view.backgroundColor = UIColor.color(240, green: 128, blue: 128, alpha: 1)
+        
+    }
+    
+    func buttonAction(_ sender: Any) {
+        print("DONE CLICKED")
+        self.view.isHidden = true
+    }
+    
+    @objc private func buttonClicked() {
+        print("DONE CLICKED")
     }
 
     @IBOutlet weak var distanceSelector: CircularSlider!
@@ -151,7 +163,7 @@ class FilterMenuViewController: UIViewController {
     
     @IBAction func doneClicked(_ sender: Any) {
         print("DONE DONE")
-        self.view.isHidden = true
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet weak var doneBtn: UIButton!

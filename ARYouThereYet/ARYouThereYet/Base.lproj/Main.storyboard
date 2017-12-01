@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BV1-FR-VrT" customClass="ViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TLO-Ti-zCw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwT-GU-ZEi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </arscnView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Camera State" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajS-Ym-V6L">
                                 <rect key="frame" x="85" y="20" width="204" height="50"/>
@@ -83,18 +83,18 @@
             <objects>
                 <viewController storyboardIdentifier="mainMenuVC" id="Fdu-Of-woG" customClass="MainMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3a0-0r-8Fn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tES-1T-yTm">
-                                <rect key="frame" x="16" y="502" width="343" height="85"/>
+                                <rect key="frame" x="16" y="403" width="288" height="85"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="JrO-2L-5eh" kind="embed" id="JKO-yF-uju"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oSj-UI-6hx">
-                                <rect key="frame" x="16" y="119" width="343" height="323"/>
+                                <rect key="frame" x="16" y="20" width="288" height="323"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="koB-a4-PcN" kind="embed" id="CEJ-Tv-dOH"/>
@@ -109,7 +109,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cm7-V1-cSf">
-                                <rect key="frame" x="16" y="119" width="343" height="323"/>
+                                <rect key="frame" x="16" y="20" width="288" height="323"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="7ce-Ay-jQK" kind="embed" id="ajb-Uw-WQd"/>
@@ -134,7 +134,7 @@
             <objects>
                 <viewController id="JrO-2L-5eh" customClass="ControlMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="1" contentMode="scaleToFill" id="K1F-nh-pbq">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="85"/>
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OlL-dF-5q9">
@@ -193,7 +193,7 @@
             <objects>
                 <viewController storyboardIdentifier="detailsView" id="q1Q-cY-q10" customClass="DetailViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Fq-bd-awz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uva-eP-Fay">
@@ -217,7 +217,7 @@
             <objects>
                 <viewController id="koB-a4-PcN" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B7Q-m6-yfh">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="323"/>
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="323"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Search here" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qof-M6-a28">
@@ -257,11 +257,11 @@
             <objects>
                 <viewController storyboardIdentifier="filterMenuVC" id="dlc-F2-cbD" customClass="FilterMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yQq-Q3-xrZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kQl-YB-OeR" customClass="CircularSlider" customModule="CircularSlider">
-                                <rect key="frame" x="55" y="267" width="210" height="210"/>
+                                <rect key="frame" x="55" y="222" width="210" height="210"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -297,12 +297,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeE-n9-FeA">
-                                <rect key="frame" x="142" y="518" width="37" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2g-xi-B5f">
+                                <rect key="frame" x="137" y="482" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Done"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="doneClicked:" destination="dlc-F2-cbD" eventType="touchUpInside" id="d6H-Ft-Udg"/>
+                                    <action selector="doneClicked:" destination="dlc-F2-cbD" eventType="touchUpInside" id="S9I-aS-EeO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -311,7 +311,7 @@
                     </view>
                     <connections>
                         <outlet property="distanceSelector" destination="kQl-YB-OeR" id="Phm-P0-Qut"/>
-                        <outlet property="doneBtn" destination="KeE-n9-FeA" id="TTW-iZ-a75"/>
+                        <outlet property="doneBtn" destination="X2g-xi-B5f" id="7KQ-uq-ZPj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IAY-bL-DtK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -323,7 +323,7 @@
             <objects>
                 <viewController id="7ce-Ay-jQK" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CHc-4m-DE3">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="323"/>
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="323"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AS-IW-9LW">

@@ -46,7 +46,8 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     self = [super initWithNibName:nibNameOrNil bundle:assetBundle];
     if (self) {
         self.tapToEraseTags = YES;
-        self.textfieldEnabled = NO;
+        [self setTextfieldEnabled:NO];
+        
         self.shouldAutomaticallyChangeVisibilityState = YES;
         self.placeholderText = @"";
         self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
@@ -144,9 +145,9 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 }
 
 - (void)setTextfieldEnabled:(BOOL)textfieldEnabled {
-    _textfieldEnabled = textfieldEnabled;
-    self.cellTextField.userInteractionEnabled = textfieldEnabled;
-    [self reloadCollectionViews]; // In order to fix the phontom text fields.
+//    _textfieldEnabled = textfieldEnabled;
+//    self.cellTextField.userInteractionEnabled = textfieldEnabled;
+//    [self reloadCollectionViews]; // In order to fix the phontom text fields.
 }
 
 #pragma mark - Tag Filtering
@@ -230,11 +231,11 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 }
 
 - (void)addPlaceholderTextToCellTextField {
-    UIColor *textColor = [UIColor colorWithWhite:0.7 alpha:0.7];
-    if (self.textfieldPlaceholderTextColor) {
-        textColor = self.textfieldPlaceholderTextColor;
-    }
-    self.cellTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholderText attributes:@{NSForegroundColorAttributeName: textColor}];
+//    UIColor *textColor = [UIColor colorWithWhite:0.7 alpha:0.7];
+//    if (self.textfieldPlaceholderTextColor) {
+//        textColor = self.textfieldPlaceholderTextColor;
+//    }
+//    self.cellTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholderText attributes:@{NSForegroundColorAttributeName: textColor}];
 }
 
 - (void)removeChosenTagFromIndexPath:(NSIndexPath *)indexPath {
@@ -250,7 +251,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             [self.delegate chosenTagsWereUpdatedInTagPicker:self];
         }
         if (self.chosenTags.count == 0) {
-            [self addPlaceholderTextToCellTextField];
+//            [self addPlaceholderTextToCellTextField];
         }
         
         self.numItemsSelected = self.numItemsSelected - 1;
@@ -289,7 +290,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == self.chosenTagCollectionView && indexPath.row == self.chosenTags.count) {
         PARTextFieldCollectionViewCell *textFieldCell = [collectionView dequeueReusableCellWithReuseIdentifier:PARTextFieldCollectionViewCellIdentifier forIndexPath:indexPath];
-        self.cellTextField = textFieldCell.tagTextField;
+//        self.cellTextField = textFieldCell.tagTextField;
         textFieldCell.useFilteringColors = !self.allowsNewTags;
         textFieldCell.delegate = self;
         textFieldCell.tagTextField.backspaceDelegate = self;
@@ -366,8 +367,8 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         //if it's the available tags
         //then add that tag to the chose tags and remove it from the available ones.
         self.searchString = nil;
-        self.cellTextField.text = @"";
-        self.cellTextField.placeholder = self.placeholderText;
+//        self.cellTextField.text = @"";
+//        self.cellTextField.placeholder = self.placeholderText;
         [self addChosenTagFromIndexPath:indexPath];
     }
     return NO;
@@ -376,14 +377,14 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 #pragma mark - RBTagCollectionViewCellDelegate
 
 - (void)editingDidChangeInTagCollectionViewCell:(PARTagCollectionViewCell *)cell {
-    NSIndexPath *selectedIndexPath = [self.chosenTagCollectionView indexPathsForSelectedItems].firstObject;
-    if (selectedIndexPath) {
-        [self.chosenTagCollectionView deselectItemAtIndexPath:selectedIndexPath animated:YES];
-    }
-    if (self.textfieldEnabled) {
-        [self.cellTextField becomeFirstResponder];
-        self.cellTextField.text = cell.phantomTextField.text;
-    }
+//    NSIndexPath *selectedIndexPath = [self.chosenTagCollectionView indexPathsForSelectedItems].firstObject;
+//    if (selectedIndexPath) {
+//        [self.chosenTagCollectionView deselectItemAtIndexPath:selectedIndexPath animated:YES];
+//    }
+//    if (self.textfieldEnabled) {
+//        [self.cellTextField becomeFirstResponder];
+//        self.cellTextField.text = cell.phantomTextField.text;
+//    }
 }
 
 #pragma mark - RBTextFieldCollectionViewCellDelegate
@@ -425,6 +426,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 }
 
 - (void)editingDidChangeInTextFieldCollectionViewCell:(PARTextFieldCollectionViewCell *)cell {
+    
     NSIndexPath *selectedPath = (NSIndexPath *)[self.chosenTagCollectionView indexPathsForSelectedItems].firstObject;
     if (selectedPath) {
         [self.chosenTagCollectionView deselectItemAtIndexPath:selectedPath animated:YES];
@@ -455,6 +457,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 #pragma mark - RBBackspaceTextFieldDelegate
 
 - (void)textFieldDidBackspace:(UITextField *)textField {
+    return;
     if (self.chosenTags.count < 1 || (textField == self.cellTextField && self.cellTextField.text.length > 0)) {
         return;
     }
