@@ -13,7 +13,8 @@ import CircularSlider
 class FilterMenuViewController: UIViewController {
 
     var tagView : PARTagPickerViewController?
-    
+    var distanceRadius: Float?
+    var collectedFilters: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,8 +135,7 @@ class FilterMenuViewController: UIViewController {
 //        distanceSelector.si
         distanceSelector.backgroundColor = UIColor.clear
         doneBtn.backgroundColor = UIColor.cyan
-        
-        
+    
         self.doneBtn.isUserInteractionEnabled = true
         
         self.view.backgroundColor = UIColor.color(240, green: 128, blue: 128, alpha: 1)
@@ -159,23 +159,24 @@ class FilterMenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func collectFilters(){
+        self.distanceRadius = distanceSelector.value
+        self.collectedFilters = [String]()
+        collectedFilters = self.tagView?.chosenTags as? [String]
+        self.filterRequest(radius: distanceRadius!, filters: collectedFilters!)
+    }
     
+    func filterRequest(radius: Float, filters: [String]){
+        
+    }
     
     @IBAction func doneClicked(_ sender: Any) {
-        print("DONE DONE")
         self.dismiss(animated: true, completion: nil)
+        
+        self.collectFilters()
+        
     }
     
     @IBOutlet weak var doneBtn: UIButton!
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
