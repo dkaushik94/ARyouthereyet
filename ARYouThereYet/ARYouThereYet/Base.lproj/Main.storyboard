@@ -28,8 +28,19 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEg-f5-dR3">
+                                <rect key="frame" x="93" y="452" width="135" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Filter Menu">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterMenuClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G7r-k5-9bJ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTs-l6-15T" customClass="CircleMenu" customModule="CircleMenu">
-                                <rect key="frame" x="162" y="534" width="50" height="50"/>
+                                <rect key="frame" x="126" y="498" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="icon_menu"/>
                                 <userDefinedRuntimeAttributes>
@@ -46,17 +57,6 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEg-f5-dR3">
-                                <rect key="frame" x="93" y="410" width="135" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Filter Menu">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="filterMenuClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G7r-k5-9bJ"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -230,10 +230,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Uva-eP-Fay" firstAttribute="bottom" secondItem="IdF-SI-QRP" secondAttribute="bottom" id="8aP-sT-jxI"/>
-                            <constraint firstItem="Uva-eP-Fay" firstAttribute="leading" secondItem="IdF-SI-QRP" secondAttribute="leading" id="Fzj-gJ-Ydn"/>
-                            <constraint firstItem="Uva-eP-Fay" firstAttribute="trailing" secondItem="IdF-SI-QRP" secondAttribute="trailing" id="QBF-E0-POt"/>
-                            <constraint firstItem="Uva-eP-Fay" firstAttribute="top" secondItem="9Fq-bd-awz" secondAttribute="top" id="md8-Vo-BaW"/>
+
+                            <constraint firstItem="IdF-SI-QRP" firstAttribute="bottom" secondItem="Uva-eP-Fay" secondAttribute="bottom" id="5mn-KJ-84U"/>
+                            <constraint firstItem="Uva-eP-Fay" firstAttribute="top" secondItem="9Fq-bd-awz" secondAttribute="top" id="8Y9-Lf-S1u"/>
+                            <constraint firstItem="Uva-eP-Fay" firstAttribute="leading" secondItem="IdF-SI-QRP" secondAttribute="leading" id="ahy-mu-3vF"/>
+                            <constraint firstItem="IdF-SI-QRP" firstAttribute="trailing" secondItem="Uva-eP-Fay" secondAttribute="trailing" id="kNV-gi-EHc"/>
+
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IdF-SI-QRP"/>
                     </view>
@@ -349,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IAY-bL-DtK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="80.625" y="-1034.1549295774648"/>
+            <point key="canvasLocation" x="77.599999999999994" y="-663.41829085457277"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Jz5-hc-bVO">
@@ -551,9 +553,9 @@
     <resources>
         <image name="crosshairs" width="640" height="638"/>
         <image name="error" width="256" height="256"/>
-        <image name="funnel" width="16" height="16"/>
+        <image name="funnel" width="256" height="256"/>
         <image name="icon_menu" width="120" height="120"/>
-        <image name="network 2" width="16" height="16"/>
-        <image name="search" width="16" height="16"/>
+        <image name="network 2" width="256" height="256"/>
+        <image name="search" width="256" height="256"/>
     </resources>
 </document>
