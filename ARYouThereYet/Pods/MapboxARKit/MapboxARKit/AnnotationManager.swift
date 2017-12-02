@@ -107,6 +107,8 @@ extension AnnotationManager: ARSCNViewDelegate {
             } else {
                 newNode = createDefaultNode()
             }
+            
+            
 
             if(newNode.name != "NavigationNode") {
             
@@ -131,7 +133,8 @@ extension AnnotationManager: ARSCNViewDelegate {
                                 for key in keys {
                                     if(directionDict[key]?.contains(i))! {
                                         // There is a node in this direction already noted
-                                        ystretchValue = (directionDict[key]?.count)! * 85 + (-255)
+                                        let Y = 0.1130 * abs(anchor.transform.columns.3.z) + 9.574
+                                        ystretchValue = (directionDict[key]?.count)! * Int(Y) + (-150)
                                         directionDict[key]?.append(xValues.count)
                                         break
                                     }
@@ -145,7 +148,7 @@ extension AnnotationManager: ARSCNViewDelegate {
                                 directionDict[currentKey] = [Int]()
                                 directionDict[currentKey]?.append(xValues.count)
                                 directionDict[currentKey]?.append(i)
-                                ystretchValue = -255
+                                ystretchValue = -200
                             }
                             yIncreaseValue = ystretchValue
                             newNode.position.y = newNode.position.y + Float(ystretchValue)
@@ -158,6 +161,8 @@ extension AnnotationManager: ARSCNViewDelegate {
                 //            let linS = 4.13778 + 0.17944 * abs(anchor.transform.columns.3.z)
                 //            let linS = 8.41220 + 0.18595 * abs(anchor.transform.columns.3.z)
                 let linS = 8.41220 + 0.18595 * realDistance
+                
+
                 //            let scalingFactor = 0.018403680735972+0.015963192638528 * abs(anchor.transform.columns.3.z)
                 let newS = 45.0/426.0
                 //            let scalingFactor = 45

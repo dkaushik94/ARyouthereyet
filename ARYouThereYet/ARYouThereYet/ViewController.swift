@@ -30,10 +30,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
     var listOfAnnotations: [Annotation] = []
     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
+    
+    
     let items: [(icon: String, color: UIColor)] = [
         ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
         ("icon_search", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
-        ("nearby-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1))]
+        ("nearby-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
+        ("starFilled",UIColor.green)]
     
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
         button.backgroundColor = items[atIndex].color
@@ -50,6 +53,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
         switch atIndex {
         case 0:
             print("home button pressed")
+            break
         case 1:
             print("search button pressed")
             let autocompleteController = GMSAutocompleteViewController()
@@ -57,10 +61,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.present(autocompleteController, animated: false, completion: nil)
             })
+            break
         case 2:
             print("filter button pressed")
+            break
+        case 3:
+            print("Favs")
+            break
         default:
             print("button will selected: \(atIndex)")
+            break
         }
     }
     

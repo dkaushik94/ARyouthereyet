@@ -24,6 +24,9 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
     var placeImages : [UIImage]? = []
     let locationManager = CLLocationManager()
     
+    let addFavMaterial = SCNMaterial()
+    let remFavMaterial = SCNMaterial()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -137,6 +140,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         
         let navNode = getNavigateNode()
         
+        let favNode = getfavoriteNode()
         
         sceneView.session.add(anchor: mainAnchor)
         sceneView.scene.rootNode.addChildNode(mainNode)
@@ -146,6 +150,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         sceneView.scene.rootNode.addChildNode(openStatusNode)
         sceneView.scene.rootNode.addChildNode(backNode)
         sceneView.scene.rootNode.addChildNode(navNode)
+        sceneView.scene.rootNode.addChildNode(favNode)
         
         if(!hasPhoto) {
             for node : SCNNode in sceneView.scene.rootNode.childNodes {
@@ -166,6 +171,24 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
     
     
     
+    
+    
+    func getfavoriteNode() -> SCNNode {
+        
+        self.addFavMaterial.diffuse.contents = UIImage(named: "star")
+        let favPlane = SCNPlane(width: 2.0, height: 2.0)
+        favPlane.cornerRadius = 0.25
+        favPlane.firstMaterial?.diffuse.contents = UIColor(red: 74/255.0, green: 35/255.0, blue: 90/255.0, alpha: 0.8)
+        let favNode = SCNNode(geometry: favPlane)
+        favNode.geometry?.materials = [addFavMaterial]
+        favNode.name = "addFavNode"
+        favNode.transform.m43 = -18.0
+        favNode.transform.m42 = -7.2
+        favNode.transform.m41 = 0.0
+        return favNode
+    }
+    
+    
     func getBackNode() -> SCNNode {
         
         let backImgMaterial = SCNMaterial()
@@ -176,12 +199,6 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         let backkNode = SCNNode(geometry: backPlane)
         backkNode.geometry?.materials = [backImgMaterial]
         
-//        let backText = SCNText(string: "Done", extrusionDepth: 0.04)
-//        backText.font = UIFont(name: "Arial", size: 1.3)
-//        let backNode = SCNNode(geometry: backText)
-//        let backColorMaterial = SCNMaterial()
-//        backColorMaterial.diffuse.contents = UIColor.red
-//        backNode.geometry?.materials = [backColorMaterial]
         backkNode.name = "backNode"
         backkNode.transform.m43 = -18.0
         backkNode.transform.m42 = -7.2
@@ -529,6 +546,29 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
                     self.photoIndex = self.photoIndex + 1
                 } else if(touchedNode.name == "backNode") {
                     self.dismiss(animated: false, completion: nil)
+                } else if(touchedNode.name == "addFavNode") {
+                    remFavMaterial.diffuse.contents = UIImage(named: "starFilled")
+                    touchedNode.geometry?.materials = [remFavMaterial]
+                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                    let place = Place(context: context)
+                    place.name = currentPlace?.name
+                    place.address = currentPlace?.formattedAddress
+                    place.lattitude = (currentPlace?.coordinate.latitude)!
+                    place.longitude = (currentPlace?.coordinate.longitude)!
+                    place.placeID = currentPlace?.placeID
+                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                    do {
+                        try context.save()
+                    } catch {
+                        let nserror = error as NSError
+                        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                    }
+                    
+                    touchedNode.name = "remFavNode"
+                } else if (touchedNode.name == "remFavNode") {
+                    addFavMaterial.diffuse.contents = UIImage(named: "star")
+                    touchedNode.geometry?.materials = [addFavMaterial]
+                    touchedNode.name = "addFavNode"
                 }
         }
     }
