@@ -523,9 +523,9 @@
     <resources>
         <image name="crosshairs" width="640" height="638"/>
         <image name="error" width="256" height="256"/>
-        <image name="funnel" width="16" height="16"/>
+        <image name="funnel" width="256" height="256"/>
         <image name="icon_menu" width="120" height="120"/>
-        <image name="network 2" width="16" height="16"/>
-        <image name="search" width="16" height="16"/>
+        <image name="network 2" width="256" height="256"/>
+        <image name="search" width="256" height="256"/>
     </resources>
 </document>

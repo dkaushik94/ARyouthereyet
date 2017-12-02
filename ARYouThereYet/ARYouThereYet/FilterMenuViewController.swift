@@ -15,6 +15,7 @@ class FilterMenuViewController: UIViewController {
     var tagView : PARTagPickerViewController?
     var distanceRadius: Float?
     var collectedFilters: [String]?
+    var delegate: delegateForFilterView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,24 +160,56 @@ class FilterMenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //Invoke request method for parent view.
     func collectFilters(){
         self.distanceRadius = distanceSelector.value
         self.collectedFilters = [String]()
         collectedFilters = self.tagView?.chosenTags as? [String]
-        self.filterRequest(radius: distanceRadius!, filters: collectedFilters!)
+        let parentVC = self.parent as! ViewController
+        parentVC.passFilters(radius: self.distanceRadius!, filters: self.collectedFilters!)
     }
     
-    func filterRequest(radius: Float, filters: [String]){
-        
-    }
     
     @IBAction func doneClicked(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        
         self.collectFilters()
-        
+        self.view.isHidden = true
     }
     
     @IBOutlet weak var doneBtn: UIButton!
 
 }
+
+protocol delegateForFilterView: class {
+    func passFilters(radius: Float, filters: [String])
+}
+
+
+//let location = locationManager.location!
+//let latitude = location.coordinate.latitude
+//let longitude = location.coordinate.longitude
+//let itemTitleLabel = item.titleLabel!
+//var itemText = itemTitleLabel.text!
+//itemText = itemText.lowercased()
+//let apiURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(distanceSlider.value)&type=\(itemText)&key=AIzaSyCx3Y1vXE0PBpdSLCjqGn6G3z8JcOvYfmo"
+//Alamofire.request(apiURL).responseJSON { response in
+//    if let json = response.result.value {
+//        print("JSON: \(json)") // serialized json response
+//        guard let responseDict = json as? NSDictionary else {
+//            return
+//        }
+//        guard let placesArray = responseDict.object(forKey: "results") as? [NSDictionary] else { return }
+//        for placeDict in placesArray {
+//            let latitude = placeDict.value(forKeyPath: "geometry.location.lat") as! CLLocationDegrees
+//            let longitude = placeDict.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
+//            let reference = placeDict.object(forKey: "reference") as! String
+//            let name = placeDict.object(forKey: "name") as! String
+//            let address = placeDict.object(forKey: "vicinity") as! String
+//            let location = CLLocation(latitude: latitude, longitude: longitude)
+//            let rating = placeDict.object(forKey: "rating") as? Double ?? 0.0
+//            let iconURL = placeDict.object(forKey: "icon") as! String
+//            let placeID = placeDict.object(forKey: "place_id") as! String
+//        }
+//    }
+//}
+//}
+

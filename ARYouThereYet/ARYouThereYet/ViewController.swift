@@ -18,7 +18,10 @@ import GooglePlaces
 import AVFoundation
 import CircleMenu
 
-class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, delegateForFilterView {
+    
+
+    
     
     
     @IBOutlet weak var menuButton: CircleMenu!
@@ -30,10 +33,22 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
     var listOfAnnotations: [Annotation] = []
     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
+    var distanceRadius: Float? = 200
+    
+    var filters: [String]?
+    
     let items: [(icon: String, color: UIColor)] = [
         ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
         ("icon_search", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
         ("nearby-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1))]
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let filterView = segue.destination as? FilterMenuViewController {
+            filterView.delegate = self
+        }
+    }
+    
     
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
         button.backgroundColor = items[atIndex].color
@@ -44,6 +59,64 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
         let highlightedImage  = UIImage(named: items[atIndex].icon)?.withRenderingMode(.alwaysTemplate)
         button.setImage(highlightedImage, for: .highlighted)
         button.tintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.3)
+    }
+    
+    
+    //Delegate method invoke by child filterView.
+    func passFilters(radius: Float, filters: [String]) {
+        print(radius, filters)
+//        radius = floor(radius)
+        
+        //Request goes here.
+        if(filters.count > 0 || distanceRadius != radius){
+            if(filters.count > 0){
+                for item in filters{
+                    let location = locationManager.location!
+                    let latitude = location.coordinate.latitude
+                    let longitude = location.coordinate.longitude
+                    annotationManager.removeAllAnnotations()
+//                    print("here is the distance", item)
+                    let apiURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(radius)&type=\(item)&key=AIzaSyCx3Y1vXE0PBpdSLCjqGn6G3z8JcOvYfmo"
+//                    print("APIURL: ", apiURL)
+                    Alamofire.request(apiURL).responseJSON { response in
+                        if let json = response.result.value {
+//                            print("JSON: \(json)") // serialized json response
+                            guard let responseDict = json as? NSDictionary else {
+                                return
+                            }
+                            guard let placesArray = responseDict.object(forKey: "results") as? [NSDictionary] else { return }
+                            for placeDict in placesArray {
+                                let latitude = placeDict.value(forKeyPath: "geometry.location.lat") as! CLLocationDegrees
+                                let longitude = placeDict.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
+                                let reference = placeDict.object(forKey: "reference") as! String
+                                let name = placeDict.object(forKey: "name") as! String
+                                let address = placeDict.object(forKey: "vicinity") as! String
+                                let location = CLLocation(latitude: latitude, longitude: longitude)
+                                let rating = placeDict.object(forKey: "rating") as? Double ?? 0.0
+                                let iconURL = placeDict.object(forKey: "icon") as! String
+                                let placeID = placeDict.object(forKey: "place_id") as! String
+                            
+                                print("This is the name:", name)
+                                print("distance", radius)
+                                //Create threads for every node.
+                                DispatchQueue.main.async {
+                                    Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
+                                        if let icon = response.result.value {
+                                            print("Creating annotations.")
+                                            
+                                            let annotation = Annotation(location: location, calloutImage: nil, name: name, reference: reference, address: address, latitude: latitude, longitude: longitude, distance: (self.locationManager.location?.distance(from: location))!, rating: rating, icon: icon, id: placeID)
+                                            
+                                            self.listOfAnnotations.append(annotation)
+                                            self.annotationManager.addAnnotation(annotation: annotation)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func circleMenu(_ circleMenu: CircleMenu, buttonWillSelected button: UIButton, atIndex: Int) {
@@ -104,11 +177,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
         annotationManager.delegate = self
         annotationManager.originLocation = locationManager.location
         
-        // Create a new scene
-        //let scene = SCNscene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        //sceneView.scene = scene
         
         // Declare tap gesture recognizer
         let tapRecognizer = UITapGestureRecognizer()
@@ -120,7 +188,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
     
     @IBAction func filterMenuClicked(_ sender: Any) {
         let filterView = storyboard?.instantiateViewController(withIdentifier: "filterMenuVC") as! FilterMenuViewController
-        self.present(filterView, animated: true, completion: nil)
+        self.addChildViewController(filterView)
+//        self.present(filterView, animated: true, completion: nil)
+        self.view.addSubview(filterView.view)
     }
     
     
@@ -138,19 +208,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
                 let detailView = storyBoard.instantiateViewController(withIdentifier: "detailsView") as! DetailViewController
                 detailView.annotation = touchedNode.annotation
                 self.present(detailView, animated: false, completion: nil)
-
-               // let text = "Navigating to \(touchedNode.annotation!.name)"
-               // let utterance = AVSpeechUtterance(string: text)
-               // utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-               // let synthesizer = AVSpeechSynthesizer()
-               // synthesizer.speak(utterance)
-                
-               // let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
-               // nav.currentLocation = locationManager.location!.coordinate
-               // let destinationLocation = CLLocationCoordinate2D(latitude: (touchedNode.annotation?.latitude)!, longitude: (touchedNode.annotation?.longitude)!)
-               // nav.locationManager = locationManager
-               //nav.destinationLocationCustom = destinationLocation
-               // self.present(nav, animated: false, completion: nil)
 
             }
         }
@@ -461,6 +518,7 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
+    
 }
 
 extension UIColor {

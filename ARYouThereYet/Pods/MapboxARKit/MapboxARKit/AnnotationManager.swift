@@ -67,6 +67,7 @@ public class AnnotationManager: NSObject {
         
         anchors.removeAll()
         annotationsByAnchor.removeAll()
+        annotationsByNode.removeAll()
     }
     
     public func removeAnnotations(annotations: [Annotation]) {
