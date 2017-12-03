@@ -299,7 +299,7 @@ class NavViewController: UIViewController {
 extension NavViewController: AnnotationManagerDelegate {
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
-        print("camera did change tracking state: \(camera.trackingState)")
+//        print("camera did change tracking state: \(camera.trackingState)")
         
         switch camera.trackingState {
         case .normal:

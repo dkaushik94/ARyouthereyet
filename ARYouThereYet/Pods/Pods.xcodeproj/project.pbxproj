@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -252,14 +252,14 @@
 		1D6366DA71CB4CD449B9DD7E63B37859 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		1F6DA9C46F98C66E1A3EF2F7CD173637 /* MBDirections.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MBDirections.swift; path = MapboxDirections/MBDirections.swift; sourceTree = "<group>"; };
 		2160905DC4A28B1BE113E9E4F6E79353 /* AlamofireImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlamofireImage-dummy.m"; sourceTree = "<group>"; };
-		21BC7448CC1CF388A3D993A40CC368E2 /* Turf.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Turf.modulemap; sourceTree = "<group>"; };
+		21BC7448CC1CF388A3D993A40CC368E2 /* Turf.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Turf.modulemap; sourceTree = "<group>"; };
 		2290BA252F5FB46A379ADA9975220EC5 /* MapboxARKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MapboxARKit.h; path = MapboxARKit/MapboxARKit.h; sourceTree = "<group>"; };
-		229586EA93FF6BFC0343461E6686753F /* MapboxARKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MapboxARKit.modulemap; sourceTree = "<group>"; };
+		229586EA93FF6BFC0343461E6686753F /* MapboxARKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MapboxARKit.modulemap; sourceTree = "<group>"; };
 		24926CBBD116FB41F657E74E846240EA /* Pods-ARYouThereYet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARYouThereYet.debug.xcconfig"; sourceTree = "<group>"; };
 		25C1F17BD0A74BE4CADEA7295EAA4757 /* MBSpokenInstruction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MBSpokenInstruction.swift; path = MapboxDirections/MBSpokenInstruction.swift; sourceTree = "<group>"; };
 		270BD2373304DD5243C81E32CAC9DDA4 /* CircularSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircularSlider-prefix.pch"; sourceTree = "<group>"; };
-		28F5E71A1276779635371286E0709878 /* CircleMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CircleMenu.framework; path = CircleMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D21FBC2608ED6E491FF8C6680382F4C /* PARTagPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PARTagPicker.framework; path = PARTagPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28F5E71A1276779635371286E0709878 /* CircleMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CircleMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D21FBC2608ED6E491FF8C6680382F4C /* PARTagPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PARTagPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E09C58536BE7EA8FE92139A48397164 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F853F56A3F329CA6FD4757F6B5AC36C /* Turf-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Turf-prefix.pch"; sourceTree = "<group>"; };
 		306698517FE10A6FB111DF4EDFE51EBC /* Pods-ARYouThereYet-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARYouThereYet-frameworks.sh"; sourceTree = "<group>"; };
@@ -277,24 +277,24 @@
 		4189F64762E17255AB89A1FBBCAF30EB /* UIView+NibInitable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+NibInitable.m"; path = "PARTagPicker/Classes/UIView+NibInitable.m"; sourceTree = "<group>"; };
 		424D866ABD5B4C5953E051E742C62187 /* UIButton+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIButton+AlamofireImage.swift"; path = "Source/UIButton+AlamofireImage.swift"; sourceTree = "<group>"; };
 		4255EF4930A505211A7879A12115F567 /* Annotation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Annotation.swift; path = MapboxARKit/Annotation.swift; sourceTree = "<group>"; };
-		44AAEA9DA6A48262E0465814EB12654A /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		44AAEA9DA6A48262E0465814EB12654A /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		45D56A994D37603F45E12CBEFDB35A56 /* CircularSlider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CircularSlider.xcconfig; sourceTree = "<group>"; };
 		45E819CE6EA339569531C2353E546151 /* Turf-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Turf-umbrella.h"; sourceTree = "<group>"; };
 		461C60F7C3B7F5A19E0203323D86F003 /* MBRoute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MBRoute.swift; path = MapboxDirections/MBRoute.swift; sourceTree = "<group>"; };
 		4873A29004BCAC3B8034C61B6181E2FB /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		498F34C4C5CE5EF1808A9DF6BA25C739 /* MapboxDirections.swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MapboxDirections.swift-prefix.pch"; sourceTree = "<group>"; };
 		499C1EA20A785496943A0DE2F25F8FEF /* Pods-ARYouThereYetTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ARYouThereYetTests-umbrella.h"; sourceTree = "<group>"; };
-		4B416175F21AB0373BE49C65A66FD7FF /* MapboxDirections.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MapboxDirections.swift.modulemap; sourceTree = "<group>"; };
+		4B416175F21AB0373BE49C65A66FD7FF /* MapboxDirections.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MapboxDirections.swift.modulemap; sourceTree = "<group>"; };
 		4EFCDA0368170277455434A7F43A6C26 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		4F5521C15F0A29FBF95D1AE34C89E537 /* Pods_ARYouThereYetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ARYouThereYetTests.framework; path = "Pods-ARYouThereYetTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		51CEF1B655BCBE2CCDF7CCA20901EB61 /* Polyline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Polyline.framework; path = Polyline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5521C15F0A29FBF95D1AE34C89E537 /* Pods_ARYouThereYetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		51CEF1B655BCBE2CCDF7CCA20901EB61 /* Polyline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Polyline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53437EFDF8A7087E76FE0883C708CF2C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53B38D0B72D8F0A880DAAE0FC3D9CCC9 /* PARTagCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = PARTagCollectionViewCell.xib; path = PARTagPicker/Resources/PARTagCollectionViewCell.xib; sourceTree = "<group>"; };
 		570F64A7E67DCB1E4ABEF78145601E6A /* MBAttribute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MBAttribute.swift; path = MapboxDirections/MBAttribute.swift; sourceTree = "<group>"; };
 		57C16AC845337C89E09F25401D9F55D6 /* Pods-ARYouThereYet-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ARYouThereYet-acknowledgements.plist"; sourceTree = "<group>"; };
 		59F0C646281258B83F31D91F47A41A77 /* CircleMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CircleMenu-dummy.m"; sourceTree = "<group>"; };
 		5B5BD0F6C520273707CBA96674DCD957 /* Pods-ARYouThereYet-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ARYouThereYet-umbrella.h"; sourceTree = "<group>"; };
-		5B8527D9811379839BA237E1F6D51858 /* Pods-ARYouThereYetUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ARYouThereYetUITests.modulemap"; sourceTree = "<group>"; };
+		5B8527D9811379839BA237E1F6D51858 /* Pods-ARYouThereYetUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ARYouThereYetUITests.modulemap"; sourceTree = "<group>"; };
 		5C8258C1987A3AD2AE0A570A6BC444E3 /* MBIntersection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MBIntersection.swift; path = MapboxDirections/MBIntersection.swift; sourceTree = "<group>"; };
 		5DB0B743BE11DA8FDA02584349CE085E /* MBLaneIndication.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MBLaneIndication.h; path = MapboxDirections/MBLaneIndication.h; sourceTree = "<group>"; };
 		5E394FE0493D63D91D55775595DCB351 /* MapboxDirections.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MapboxDirections.h; path = MapboxDirections/MapboxDirections.h; sourceTree = "<group>"; };
@@ -314,29 +314,29 @@
 		6DF7ECF48DBAD696FD1FD546D76BB1DE /* PARTextFieldCollectionViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PARTextFieldCollectionViewCell.m; path = PARTagPicker/Classes/PARTextFieldCollectionViewCell.m; sourceTree = "<group>"; };
 		6E314E22ADB309E799A4CD5D0E8DA5CD /* Request+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Request+AlamofireImage.swift"; path = "Source/Request+AlamofireImage.swift"; sourceTree = "<group>"; };
 		6EB149FB9A0F8167330BA12DD06244FB /* ResourceBundle-PARTagPicker-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-PARTagPicker-Info.plist"; sourceTree = "<group>"; };
-		6F1D7D513D3D347D2CA6597616EA041E /* Turf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Turf.framework; path = Turf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F1D7D513D3D347D2CA6597616EA041E /* Turf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Turf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F9C89A9906ECD81B5CE4EC83EEF00D7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = Turf/Info.plist; sourceTree = "<group>"; };
 		70CF393337BDBDBA787B4D776D26BFDD /* Polyline.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Polyline.xcconfig; sourceTree = "<group>"; };
 		71E39CF3BA325C944AD275521B949089 /* PARTagPickerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PARTagPickerViewController.h; path = PARTagPicker/Classes/PARTagPickerViewController.h; sourceTree = "<group>"; };
 		725604E36CC558E95F29367EC9EBC0A1 /* Polyline-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Polyline-dummy.m"; sourceTree = "<group>"; };
-		72DA4E676FEB17D356E5957D61DA6F2C /* Pods-ARYouThereYetTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ARYouThereYetTests.modulemap"; sourceTree = "<group>"; };
+		72DA4E676FEB17D356E5957D61DA6F2C /* Pods-ARYouThereYetTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ARYouThereYetTests.modulemap"; sourceTree = "<group>"; };
 		78B18903D79EEF64A040B41968CBF090 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78C6ECB2F38AF95B9E2FCC81C7E6BB16 /* MBWaypoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MBWaypoint.swift; path = MapboxDirections/MBWaypoint.swift; sourceTree = "<group>"; };
 		799C8EB49CF3CB81153734DAC4B8D57D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A61759916EDE1FFF5C77A44B4074A20 /* Pods-ARYouThereYetUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARYouThereYetUITests-resources.sh"; sourceTree = "<group>"; };
-		7A8C34FD4A7FBFB6723487D3C0C96E87 /* Pods_ARYouThereYetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ARYouThereYetUITests.framework; path = "Pods-ARYouThereYetUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A8C34FD4A7FBFB6723487D3C0C96E87 /* Pods_ARYouThereYetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDC63CF39CAB3857BD5DA0B0DFCF7F0 /* MapboxARKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MapboxARKit.xcconfig; sourceTree = "<group>"; };
 		7C2B986149C63EDF3DE052EA412C71F4 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
-		82E55FFF358D8D7AC5F5FEB9C66406D3 /* PARTagPicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PARTagPicker.modulemap; sourceTree = "<group>"; };
-		857DEBC97EC135AFFBC57824B7250245 /* PARTagPicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PARTagPicker.bundle; path = PARTagPicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		879AB0846377A3F296635E9A8F634E20 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82E55FFF358D8D7AC5F5FEB9C66406D3 /* PARTagPicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PARTagPicker.modulemap; sourceTree = "<group>"; };
+		857DEBC97EC135AFFBC57824B7250245 /* PARTagPicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PARTagPicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		879AB0846377A3F296635E9A8F634E20 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F659E9341749687F2549B91D9CA12F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = MapboxARKit/Info.plist; sourceTree = "<group>"; };
 		8B3FED8BBEA48ADAE9DF3F9232447346 /* PARTextFieldCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = PARTextFieldCollectionViewCell.xib; path = PARTagPicker/Resources/PARTextFieldCollectionViewCell.xib; sourceTree = "<group>"; };
 		8EA7C89136975405585EBC339CD9E96C /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		8FB19F0730BEDC5AB11583560197398D /* Pods-ARYouThereYet-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARYouThereYet-resources.sh"; sourceTree = "<group>"; };
 		907E6D28136936B4E8CF835379699728 /* Polyline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Polyline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9364ED91F491F4DA2461FD27BA2611E4 /* MapboxARKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MapboxARKit-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		977DC5FBD029AFE9F567D4F0810BEDD2 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		979E8F9144197CB30234E32CD2692F28 /* UIImage+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+AlamofireImage.swift"; path = "Source/UIImage+AlamofireImage.swift"; sourceTree = "<group>"; };
 		97A8DE38292B542D82E9E5D892B30C76 /* CircleMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircleMenu-umbrella.h"; sourceTree = "<group>"; };
@@ -357,20 +357,20 @@
 		B0C24CAE63FA324038B1D40063434F7B /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		B1394CD5C61324AF7342203789FADA5D /* Polyline-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Polyline-prefix.pch"; sourceTree = "<group>"; };
 		B16CA7E95B42FCB3643D189F303D5A56 /* PARTagColorReference.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PARTagColorReference.h; path = PARTagPicker/Classes/PARTagColorReference.h; sourceTree = "<group>"; };
-		B1B054E72C79C271331F584C8DD98095 /* Pods-ARYouThereYet.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ARYouThereYet.modulemap"; sourceTree = "<group>"; };
+		B1B054E72C79C271331F584C8DD98095 /* Pods-ARYouThereYet.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ARYouThereYet.modulemap"; sourceTree = "<group>"; };
 		B2D3558FE1F2A90970047408661D60A4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2E3E2556C433D3B48D1C1C8BC4AF0A6 /* MapboxDirections.swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MapboxDirections.swift-dummy.m"; sourceTree = "<group>"; };
 		B736557ED122C91A2BB602E4F0810594 /* MBRouteStep.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MBRouteStep.swift; path = MapboxDirections/MBRouteStep.swift; sourceTree = "<group>"; };
-		B8F4B831754A187EDA1B52605BC3ABEE /* AlamofireImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AlamofireImage.framework; path = AlamofireImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F4B831754A187EDA1B52605BC3ABEE /* AlamofireImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93835FF1A62C3C92AB57226C7127875 /* Turf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Turf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BC2E207763BE23C0A55B7AE7C9FBA6 /* AlamofireImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireImage-umbrella.h"; sourceTree = "<group>"; };
 		BA14A86AC9C299888BA49AAF15044990 /* PARTextFieldCollectionViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PARTextFieldCollectionViewCell.h; path = PARTagPicker/Classes/PARTextFieldCollectionViewCell.h; sourceTree = "<group>"; };
 		C02BF116FB70A408BD9EEE63AE6BD528 /* UIView+NibInitable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+NibInitable.h"; path = "PARTagPicker/Classes/UIView+NibInitable.h"; sourceTree = "<group>"; };
 		C043667C9F03AB73F4F48C0B354FC11F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C226E79256A7C6F3AEC05A9344E7A578 /* Pods_ARYouThereYet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ARYouThereYet.framework; path = "Pods-ARYouThereYet.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C226E79256A7C6F3AEC05A9344E7A578 /* Pods_ARYouThereYet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARYouThereYet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37FDB383BC67F5F026DEF4F7797D24D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		C4B8467F87AB385582D033685D26F993 /* Turf-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Turf-dummy.m"; sourceTree = "<group>"; };
-		C4DEE4293C40A4D48FECFA1CEBBAB40E /* CircularSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CircularSlider.modulemap; sourceTree = "<group>"; };
+		C4DEE4293C40A4D48FECFA1CEBBAB40E /* CircularSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CircularSlider.modulemap; sourceTree = "<group>"; };
 		C6C288FE6E7724323FE78449D2A6A7E8 /* MBLane.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MBLane.swift; path = MapboxDirections/MBLane.swift; sourceTree = "<group>"; };
 		C6D9E4DC6152B0CF6FB7AD0A58B4F5F1 /* PARBackspaceTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PARBackspaceTextField.m; path = PARTagPicker/Classes/PARBackspaceTextField.m; sourceTree = "<group>"; };
 		C70BDF03FD6311301FAACD22933DE9C4 /* PARTagPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PARTagPicker-prefix.pch"; sourceTree = "<group>"; };
@@ -384,18 +384,18 @@
 		D49B5DC53DC4455AB2BC82F831EB2785 /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = CircularSlider/Classes/Utils.swift; sourceTree = "<group>"; };
 		D4B53C685809F4B7019E07EA141699A3 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		D4BC9EEB39E8A69052DC229612AA18DA /* Turf.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Turf.xcconfig; sourceTree = "<group>"; };
-		D760BB26A3B1790690635A7BC1F9F84F /* Polyline.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Polyline.modulemap; sourceTree = "<group>"; };
+		D760BB26A3B1790690635A7BC1F9F84F /* Polyline.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Polyline.modulemap; sourceTree = "<group>"; };
 		D92B1E0845B6751E45539B8C28EE5497 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		DAEA52E29B32C9D8ABCB30DE423EF101 /* ImageFilter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageFilter.swift; path = Source/ImageFilter.swift; sourceTree = "<group>"; };
 		DB898A049D9F2512F906E98AC9593640 /* ImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = Source/ImageDownloader.swift; sourceTree = "<group>"; };
 		DD13EEC45705CAED67049020C073CC3A /* CircleMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircleMenu-prefix.pch"; sourceTree = "<group>"; };
-		DD8AD219FB78991BBEF3627AB12146ED /* AlamofireImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = AlamofireImage.modulemap; sourceTree = "<group>"; };
-		DDA858C51FE31B318E545AFB95CAFBE7 /* CircularSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CircularSlider.framework; path = CircularSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE23570F9A6185FC39C028EA92FFB7E3 /* MapboxARKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MapboxARKit.framework; path = MapboxARKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD8AD219FB78991BBEF3627AB12146ED /* AlamofireImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AlamofireImage.modulemap; sourceTree = "<group>"; };
+		DDA858C51FE31B318E545AFB95CAFBE7 /* CircularSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CircularSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE23570F9A6185FC39C028EA92FFB7E3 /* MapboxARKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MapboxARKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE726C03ACD887991F8118C31A8C9592 /* Pods-ARYouThereYetUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ARYouThereYetUITests-umbrella.h"; sourceTree = "<group>"; };
 		DEB7699AA88B3A7730C6F0547FFF432A /* PARTagCollectionViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PARTagCollectionViewCell.h; path = PARTagPicker/Classes/PARTagCollectionViewCell.h; sourceTree = "<group>"; };
 		E04707F45B798E30BF8304F83292DCBD /* Pods-ARYouThereYetTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ARYouThereYetTests-dummy.m"; sourceTree = "<group>"; };
-		E28983D115871393ADE983A3D7D439B9 /* MapboxDirections.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MapboxDirections.framework; path = MapboxDirections.swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E28983D115871393ADE983A3D7D439B9 /* MapboxDirections.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MapboxDirections.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A9DC13DDBF9B05F6DC03610F735B86 /* MBRoadClasses.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MBRoadClasses.h; path = MapboxDirections/MBRoadClasses.h; sourceTree = "<group>"; };
 		E44F70C5A02D059335F171D8AD9C81FD /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		E47DF23DB498806C346B79CF95973B4E /* NSString+PARStrings.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+PARStrings.m"; path = "PARTagPicker/Classes/NSString+PARStrings.m"; sourceTree = "<group>"; };
@@ -410,7 +410,7 @@
 		F0C2396249F18EE5ADC04D55A5261827 /* Turf.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Turf.h; path = Turf/Turf.h; sourceTree = "<group>"; };
 		F2ED8D6BF5BB976E7708697816E7FA45 /* NSString+PARStrings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+PARStrings.h"; path = "PARTagPicker/Classes/NSString+PARStrings.h"; sourceTree = "<group>"; };
 		F57D7B177C0298128CE88C6D2660286F /* CircularSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircularSlider.swift; path = CircularSlider/Classes/CircularSlider.swift; sourceTree = "<group>"; };
-		F7C7764AAD355AB8E9C6CAF3EB68E66A /* CircleMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CircleMenu.modulemap; sourceTree = "<group>"; };
+		F7C7764AAD355AB8E9C6CAF3EB68E66A /* CircleMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CircleMenu.modulemap; sourceTree = "<group>"; };
 		F8FA21836F3A97A4192EB324D54955FD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9600C7B5587032238F41D4B4F39BBE6 /* MBRouteOptions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MBRouteOptions.m; path = MapboxDirections/MBRouteOptions.m; sourceTree = "<group>"; };
 		F985E9FEAACD8A90D4A3225DEC5C2401 /* CircularSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircularSlider-umbrella.h"; sourceTree = "<group>"; };
@@ -585,7 +585,6 @@
 				78C6ECB2F38AF95B9E2FCC81C7E6BB16 /* MBWaypoint.swift */,
 				327823856A0FAD6D156555DD699324FD /* Support Files */,
 			);
-			name = MapboxDirections.swift;
 			path = MapboxDirections.swift;
 			sourceTree = "<group>";
 		};
@@ -631,7 +630,6 @@
 				4AF37BC38FC6B6C6D34F0BF771C9BF23 /* Frameworks */,
 				191DE827397E2ABE589AD0C694B3C955 /* Resources */,
 			);
-			name = GooglePlaces;
 			path = GooglePlaces;
 			sourceTree = "<group>";
 		};
@@ -694,7 +692,6 @@
 			children = (
 				DC5D1F99D6B4AE362FE9E60420AAF244 /* Frameworks */,
 			);
-			name = "Mapbox-iOS-SDK";
 			path = "Mapbox-iOS-SDK";
 			sourceTree = "<group>";
 		};
@@ -732,7 +729,6 @@
 				C7EAE0C0B54A4FB410F8E3A882F74CDF /* MBARAnchor.swift */,
 				9FEB7321B9482E5172EDCAFB0056AB36 /* Support Files */,
 			);
-			name = MapboxARKit;
 			path = MapboxARKit;
 			sourceTree = "<group>";
 		};
@@ -833,7 +829,6 @@
 				EBB67808152698B03B0C4F5C34E80811 /* Turf.swift */,
 				100DA8382412B57F349F999681E0843B /* Support Files */,
 			);
-			name = Turf;
 			path = Turf;
 			sourceTree = "<group>";
 		};
@@ -857,7 +852,6 @@
 				59A4597064D6616AB476DEE765F99061 /* Resources */,
 				D212099A358343D77020832F3545CA96 /* Support Files */,
 			);
-			name = PARTagPicker;
 			path = PARTagPicker;
 			sourceTree = "<group>";
 		};
@@ -870,7 +864,6 @@
 				D49B5DC53DC4455AB2BC82F831EB2785 /* Utils.swift */,
 				CF57562C8F48D8F4D89C5D11976B915A /* Support Files */,
 			);
-			name = CircularSlider;
 			path = CircularSlider;
 			sourceTree = "<group>";
 		};
@@ -889,7 +882,6 @@
 				AC26446CE4228F5722C6CF8010B015CE /* Polyline.swift */,
 				391730BF9B7E58D72CFAACD165CE56EA /* Support Files */,
 			);
-			name = Polyline;
 			path = Polyline;
 			sourceTree = "<group>";
 		};
@@ -908,7 +900,6 @@
 			children = (
 				7A7C76D953D279FCCA9733EFD6B7CB85 /* Base */,
 			);
-			name = GoogleMaps;
 			path = GoogleMaps;
 			sourceTree = "<group>";
 		};
@@ -977,7 +968,6 @@
 				633DED8DB0E682440CD67776FF745388 /* Validation.swift */,
 				65741E5AC563E1E0DBB2AF1E77EE57E1 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -995,7 +985,6 @@
 				5FCE5F8691EC37CF23285881F7FE20F4 /* UIImageView+AlamofireImage.swift */,
 				1DCD9DBB36FA6444AC2563A3400A4D62 /* Support Files */,
 			);
-			name = AlamofireImage;
 			path = AlamofireImage;
 			sourceTree = "<group>";
 		};
@@ -1007,7 +996,6 @@
 				1A393EE7335C7C5504147DA95512153A /* CircleMenuLoader.swift */,
 				CC5A0FD431289BB9662EC70F12EE029A /* Support Files */,
 			);
-			name = CircleMenu;
 			path = CircleMenu;
 			sourceTree = "<group>";
 		};
@@ -1389,7 +1377,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0910;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1773,6 +1761,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
