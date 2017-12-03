@@ -569,6 +569,13 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
                     addFavMaterial.diffuse.contents = UIImage(named: "star")
                     touchedNode.geometry?.materials = [addFavMaterial]
                     touchedNode.name = "addFavNode"
+                } else if(touchedNode.name == "WebsiteNode") {
+                    UIApplication.shared.openURL((currentPlace?.website)!)
+                } else if(touchedNode.name == "PhoneNoNode") {
+                    
+                    guard let number = URL(string: "tel://" + (currentPlace?.phoneNumber)!) else { return }
+                    UIApplication.shared.open(number)
+
                 }
         }
     }

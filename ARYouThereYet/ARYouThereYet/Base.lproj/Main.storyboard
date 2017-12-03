@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEg-f5-dR3">
-                                <rect key="frame" x="93" y="452" width="135" height="30"/>
+                                <rect key="frame" x="93" y="347" width="135" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Filter Menu">
@@ -40,12 +40,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTs-l6-15T" customClass="CircleMenu" customModule="CircleMenu">
-                                <rect key="frame" x="126" y="498" width="50" height="50"/>
+                                <rect key="frame" x="126" y="408" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="icon_menu"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="buttonsCount">
-                                        <integer key="value" value="3"/>
+                                        <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
                                         <real key="value" value="0.25"/>
@@ -188,33 +188,24 @@
             </objects>
             <point key="canvasLocation" x="811.875" y="596.30281690140851"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Favorites List View Controller-->
         <scene sceneID="zy4-De-A6M">
             <objects>
-                <tableViewController id="DGJ-o4-VWs" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="favoritesTableVC" id="DGJ-o4-VWs" customClass="FavoritesListViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ELK-Qy-wk3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="w52-kO-oq0">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w52-kO-oq0" id="0YF-q6-6Xp">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="DGJ-o4-VWs" id="F3C-n6-NH2"/>
                             <outlet property="delegate" destination="DGJ-o4-VWs" id="Fpm-CY-bKg"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="Bcx-R0-hI2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nXc-eH-HOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="971" y="1053"/>
+            <point key="canvasLocation" x="988" y="1053"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="qUz-2M-3rl">
@@ -230,12 +221,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-
                             <constraint firstItem="IdF-SI-QRP" firstAttribute="bottom" secondItem="Uva-eP-Fay" secondAttribute="bottom" id="5mn-KJ-84U"/>
                             <constraint firstItem="Uva-eP-Fay" firstAttribute="top" secondItem="9Fq-bd-awz" secondAttribute="top" id="8Y9-Lf-S1u"/>
                             <constraint firstItem="Uva-eP-Fay" firstAttribute="leading" secondItem="IdF-SI-QRP" secondAttribute="leading" id="ahy-mu-3vF"/>
                             <constraint firstItem="IdF-SI-QRP" firstAttribute="trailing" secondItem="Uva-eP-Fay" secondAttribute="trailing" id="kNV-gi-EHc"/>
-
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IdF-SI-QRP"/>
                     </view>

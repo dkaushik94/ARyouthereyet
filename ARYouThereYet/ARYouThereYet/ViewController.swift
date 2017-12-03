@@ -17,6 +17,7 @@ import Alamofire
 import GooglePlaces
 import AVFoundation
 import CircleMenu
+import CoreData
 
 class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, delegateForFilterView {
     
@@ -43,7 +44,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
         ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
         ("icon_search", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
         ("nearby-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
-        ("starFilled",UIColor.green)]
+        ("starFilled",UIColor.clear)]
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -140,6 +141,32 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
             break
         case 3:
             print("Favs")
+            
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
+            let fetchReq = NSFetchRequest<NSFetchRequestResult>()
+            let entityDesc = NSEntityDescription.entity(forEntityName: "Place", in: context)
+            fetchReq.entity = entityDesc
+            
+            do {
+                let results = try context.fetch(fetchReq) as! [Place]
+                if(results.count == 0) {
+                    return
+                } else{
+                    print(results)
+                    let favs = FavoritesListViewController()
+                    favs.favoritePlaces = results
+                    self.present(favs, animated: true, completion: nil)
+                }
+                
+            } catch {
+                let fetchError = error as NSError
+                print(fetchError)
+            }
+            
+            
+            
+            
             break
         default:
             print("button will selected: \(atIndex)")
