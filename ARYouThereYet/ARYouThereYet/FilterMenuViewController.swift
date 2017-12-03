@@ -43,7 +43,6 @@ class FilterMenuViewController: UIViewController {
         tagView?.allTags = Array(filterDict!.keys)
         
         distanceSelector.backgroundColor = UIColor.clear
-        doneBtn.backgroundColor = UIColor.cyan
     
         self.doneBtn.isUserInteractionEnabled = true
 //        self.view.backgroundColor = UIColor.color(240, green: 128, blue: 128, alpha: 1)

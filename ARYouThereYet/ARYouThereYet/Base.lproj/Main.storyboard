@@ -196,18 +196,20 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cea-fx-dcF">
-                                <rect key="frame" x="82" y="505" width="48" height="30"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="handleDismiss:" destination="dlc-F2-cbD" eventType="touchUpInside" id="9HZ-we-qGw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2g-xi-B5f">
-                                <rect key="frame" x="198" y="505" width="35" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2g-xi-B5f">
+                                <rect key="frame" x="215" y="485" width="50" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Filter"/>
                                 <connections>
                                     <action selector="doneClicked:" destination="dlc-F2-cbD" eventType="touchUpInside" id="S9I-aS-EeO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cea-fx-dcF">
+                                <rect key="frame" x="55" y="485" width="50" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="handleDismiss:" destination="dlc-F2-cbD" eventType="touchUpInside" id="9HZ-we-qGw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -229,7 +231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IAY-bL-DtK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="77.599999999999994" y="-663.41829085457277"/>
+            <point key="canvasLocation" x="76.875" y="-664.43661971830988"/>
         </scene>
         <!--Nav View Controller-->
         <scene sceneID="3aa-36-rcJ">
