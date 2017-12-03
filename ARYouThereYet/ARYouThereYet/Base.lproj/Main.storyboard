@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,19 +20,19 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BV1-FR-VrT" customClass="ViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TLO-Ti-zCw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwT-GU-ZEi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTs-l6-15T" customClass="CircleMenu" customModule="CircleMenu">
-                                <rect key="frame" x="162" y="534" width="50" height="50"/>
+                                <rect key="frame" x="126" y="408" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="icon_menu"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="buttonsCount">
-                                        <integer key="value" value="3"/>
+                                        <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
                                         <real key="value" value="0.25"/>
@@ -45,38 +45,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEg-f5-dR3">
-                                <rect key="frame" x="120" y="425" width="135" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Filter Menu">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="filterMenuClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="G7r-k5-9bJ"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQz-sh-QUV">
-                                <rect key="frame" x="16" y="622" width="120" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yxp-ke-g7U">
-                                <rect key="frame" x="284" y="621" width="75" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Camera State" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajS-Ym-V6L">
-                                <rect key="frame" x="85" y="253" width="204" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -99,24 +67,43 @@
             </objects>
             <point key="canvasLocation" x="79.200000000000003" y="70.614692653673174"/>
         </scene>
+        <!--Favorites List View Controller-->
+        <scene sceneID="zy4-De-A6M">
+            <objects>
+                <tableViewController storyboardIdentifier="favoritesTableVC" id="DGJ-o4-VWs" customClass="FavoritesListViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ELK-Qy-wk3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="DGJ-o4-VWs" id="F3C-n6-NH2"/>
+                            <outlet property="delegate" destination="DGJ-o4-VWs" id="Fpm-CY-bKg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Bcx-R0-hI2"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nXc-eH-HOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="988" y="1053"/>
+        </scene>
         <!--Detail View Controller-->
         <scene sceneID="qUz-2M-3rl">
             <objects>
                 <viewController storyboardIdentifier="detailsView" id="q1Q-cY-q10" customClass="DetailViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Fq-bd-awz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uva-eP-Fay">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </arscnView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Uva-eP-Fay" firstAttribute="leading" secondItem="IdF-SI-QRP" secondAttribute="leading" id="2jO-Q1-f9e"/>
-                            <constraint firstItem="Uva-eP-Fay" firstAttribute="bottom" secondItem="IdF-SI-QRP" secondAttribute="bottom" id="INy-NR-fyI"/>
-                            <constraint firstItem="Uva-eP-Fay" firstAttribute="trailing" secondItem="IdF-SI-QRP" secondAttribute="trailing" id="MQa-ns-zZE"/>
-                            <constraint firstItem="Uva-eP-Fay" firstAttribute="top" secondItem="9Fq-bd-awz" secondAttribute="top" id="uwm-hU-wY6"/>
+                            <constraint firstItem="IdF-SI-QRP" firstAttribute="bottom" secondItem="Uva-eP-Fay" secondAttribute="bottom" id="5mn-KJ-84U"/>
+                            <constraint firstItem="Uva-eP-Fay" firstAttribute="top" secondItem="9Fq-bd-awz" secondAttribute="top" id="8Y9-Lf-S1u"/>
+                            <constraint firstItem="Uva-eP-Fay" firstAttribute="leading" secondItem="IdF-SI-QRP" secondAttribute="leading" id="ahy-mu-3vF"/>
+                            <constraint firstItem="IdF-SI-QRP" firstAttribute="trailing" secondItem="Uva-eP-Fay" secondAttribute="trailing" id="kNV-gi-EHc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IdF-SI-QRP"/>
                     </view>
@@ -133,11 +120,11 @@
             <objects>
                 <viewController storyboardIdentifier="filterMenuVC" id="dlc-F2-cbD" customClass="FilterMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yQq-Q3-xrZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kQl-YB-OeR" customClass="CircularSlider" customModule="CircularSlider">
-                                <rect key="frame" x="55" y="267" width="210" height="210"/>
+                                <rect key="frame" x="55" y="222" width="210" height="210"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -173,12 +160,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeE-n9-FeA">
-                                <rect key="frame" x="142" y="518" width="37" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2g-xi-B5f">
+                                <rect key="frame" x="137" y="482" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Done"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="doneClicked:" destination="dlc-F2-cbD" eventType="touchUpInside" id="d6H-Ft-Udg"/>
+                                    <action selector="doneClicked:" destination="dlc-F2-cbD" eventType="touchUpInside" id="S9I-aS-EeO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -187,7 +174,7 @@
                     </view>
                     <connections>
                         <outlet property="distanceSelector" destination="kQl-YB-OeR" id="Phm-P0-Qut"/>
-                        <outlet property="doneBtn" destination="KeE-n9-FeA" id="TTW-iZ-a75"/>
+                        <outlet property="doneBtn" destination="X2g-xi-B5f" id="7KQ-uq-ZPj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IAY-bL-DtK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,20 +190,20 @@
                         <viewControllerLayoutGuide type="bottom" id="XaH-QQ-MTu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="caB-hp-2c2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPq-mS-fEX" customClass="ARSCNView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2m4-1N-Owi">
-                                        <rect key="frame" x="0.0" y="358" width="375" height="309"/>
+                                        <rect key="frame" x="0.0" y="259" width="320" height="309"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjG-Ja-8Cr" customClass="MGLMapView">
-                                                <rect key="frame" x="8" y="50" width="359" height="247"/>
+                                                <rect key="frame" x="8" y="50" width="304" height="247"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crosshairs" translatesAutoresizingMaskIntoConstraints="NO" id="5VX-iN-06n">
-                                                        <rect key="frame" x="154.5" y="98.5" width="50" height="50"/>
+                                                        <rect key="frame" x="127" y="98.5" width="50" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="312-QN-CFZ"/>
                                                             <constraint firstAttribute="width" constant="50" id="g6c-9G-isM"/>
@@ -234,7 +221,7 @@
                                                 </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move the camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIG-DP-S7K">
-                                                <rect key="frame" x="87" y="11" width="200" height="26.5"/>
+                                                <rect key="frame" x="59.5" y="11" width="200" height="26.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="fuR-IC-ams"/>
                                                 </constraints>
