@@ -20,11 +20,9 @@ import CircleMenu
 import CoreData
 
 class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, delegateForFilterView {
-    
 
-    
-    
-    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var menuButton: CircleMenu!
     @IBOutlet weak var cameraStateLabel: UILabel!
     @IBOutlet var sceneView: ARSCNView!
@@ -33,7 +31,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
     fileprivate var startedLoadingPOIs = false
     var listOfAnnotations: [Annotation] = []
     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    
+    var timer = Timer()
 
     var distanceRadius: Float? = 200
     
@@ -44,8 +42,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
         ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
         ("icon_search", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
         ("nearby-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
-        ("starFilled",UIColor.clear)]
-    
+        ("notifications",UIColor(red:0.98, green:0.74, blue:0.01, alpha:1))]
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let filterView = segue.destination as? FilterMenuViewController {
@@ -126,7 +123,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
     func circleMenu(_ circleMenu: CircleMenu, buttonWillSelected button: UIButton, atIndex: Int) {
         switch atIndex {
         case 0:
-            print("home button pressed")
+            print("share button pressed")
+            let loc = locationManager.location!
+            let textToShare = "I'm at \(loc.coordinate.latitude), \(loc.coordinate.longitude)!"
+            let objectsToShare = [textToShare] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.present(activityVC, animated: false, completion: nil)
+            })
             break
         case 1:
             print("search button pressed")
@@ -156,7 +160,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
                     print(results)
                     let favs = FavoritesListViewController()
                     favs.favoritePlaces = results
-                    self.present(favs, animated: true, completion: nil)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        self.present(favs, animated: false, completion: nil)
+                    })
                 }
                 
             } catch {
@@ -214,6 +220,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
         annotationManager.delegate = self
         annotationManager.originLocation = locationManager.location
         
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
         
         // Declare tap gesture recognizer
         let tapRecognizer = UITapGestureRecognizer()
@@ -221,6 +228,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
         tapRecognizer.numberOfTouchesRequired = 1
         tapRecognizer.addTarget(self, action:  #selector(tapped))
         sceneView.gestureRecognizers = [tapRecognizer]
+    }
+    
+    @objc func tick() {
+        timeLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
     }
     
     @IBAction func filterMenuClicked(_ sender: Any) {
@@ -343,7 +354,7 @@ extension ViewController : CLLocationManagerDelegate {
                             var temp = json.value(forKeyPath: "main.temp") as! Float
                             temp = temp * (9/5) - 459.67
                             temp = temp.rounded(.up)
-                            let tempString = "\(temp) f"
+                            let tempString = "\(temp)°f"
                             let tempNode = SCNText(string: tempString, extrusionDepth: 0.0)
                             tempNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
                             let mainTempNode = SCNNode(geometry: tempNode)
@@ -351,6 +362,7 @@ extension ViewController : CLLocationManagerDelegate {
                             mainTempNode.transform.m43 = -10.0
                             // mainTempNode.scale = SCNVector3(20, 20, 20)
                             self.sceneView.scene.rootNode.addChildNode(mainTempNode)
+                            self.weatherLabel.text = "\(tempString)"
                         }
                         /*if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                             print("data: \(utf8Text)")
