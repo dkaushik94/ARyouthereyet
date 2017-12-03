@@ -39,7 +39,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
 
     
     let items: [(icon: String, color: UIColor)] = [
-        ("settings", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
+        ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
         ("icon_search", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
         ("nearby-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
         ("notifications",UIColor(red:0.98, green:0.74, blue:0.01, alpha:1))]
