@@ -8,10 +8,15 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
-class FavoritesListViewController: UITableViewController{
+class FavoritesListViewController: UITableViewController, CLLocationManagerDelegate{
 
     var favoritePlaces : [Place]?
+    
+    let locationManager = CLLocationManager()
+    
+    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +26,11 @@ class FavoritesListViewController: UITableViewController{
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        locationManager.delegate = self as! CLLocationManagerDelegate
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 50
+        
         tableView.separatorStyle = .none
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
@@ -64,6 +74,17 @@ class FavoritesListViewController: UITableViewController{
  
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 61.5
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedPlace = self.favoritePlaces![indexPath.row]
+        
+        let nav = storyBoard.instantiateViewController(withIdentifier: "NavViewController") as! NavViewController
+        nav.currentLocation = locationManager.location!.coordinate
+        let destinationLocation = CLLocationCoordinate2D(latitude: (selectedPlace.lattitude), longitude: (selectedPlace.longitude))
+        nav.destinationLocationCustom = destinationLocation
+        self.present(nav, animated: true, completion: nil)
+        
     }
 
     /*

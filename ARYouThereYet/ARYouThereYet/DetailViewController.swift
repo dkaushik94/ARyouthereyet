@@ -165,7 +165,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
                 }
                 
                 if(node.name == "addFavNode") {
-                    node.transform.m42 = node.transform.m42 + 4.2
+                    node.transform.m42 = node.transform.m42 + 5.4
                 }
             }
         }
