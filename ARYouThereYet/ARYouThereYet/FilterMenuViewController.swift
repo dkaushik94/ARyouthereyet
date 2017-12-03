@@ -79,5 +79,8 @@ class FilterMenuViewController: UIViewController {
     
     @IBOutlet weak var doneBtn: UIButton!
 
+    @IBAction func handleDismiss(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
