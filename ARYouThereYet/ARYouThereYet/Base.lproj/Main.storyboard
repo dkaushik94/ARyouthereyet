@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,14 +16,14 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BV1-FR-VrT" customClass="ViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TLO-Ti-zCw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwT-GU-ZEi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </arscnView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera State" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajS-Ym-V6L">
-                                <rect key="frame" x="58" y="20" width="259" height="40"/>
+                                <rect key="frame" x="58" y="20" width="204" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="x1M-bD-b1G"/>
                                 </constraints>
@@ -38,7 +38,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQS-4e-jju">
-                                <rect key="frame" x="16" y="626" width="120" height="21"/>
+                                <rect key="frame" x="16" y="527" width="120" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="hQf-NI-vbH"/>
                                 </constraints>
@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTs-l6-15T" customClass="CircleMenu" customModule="CircleMenu">
-                                <rect key="frame" x="162.5" y="512" width="50" height="50"/>
+                                <rect key="frame" x="135" y="413" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="0qH-Sp-UPf"/>
                                     <constraint firstAttribute="height" constant="50" id="KiC-0k-a4x"/>
@@ -104,7 +104,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="favoritesTableVC" id="DGJ-o4-VWs" customClass="FavoritesListViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ELK-Qy-wk3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>
@@ -123,11 +123,11 @@
             <objects>
                 <viewController storyboardIdentifier="detailsView" id="q1Q-cY-q10" customClass="DetailViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Fq-bd-awz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uva-eP-Fay">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </arscnView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -152,11 +152,11 @@
             <objects>
                 <viewController storyboardIdentifier="filterMenuVC" id="dlc-F2-cbD" customClass="FilterMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yQq-Q3-xrZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQl-YB-OeR" customClass="CircularSlider" customModule="CircularSlider">
-                                <rect key="frame" x="83" y="296" width="210" height="210"/>
+                                <rect key="frame" x="55" y="246" width="210" height="210"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kQl-YB-OeR" secondAttribute="height" multiplier="1:1" id="LGP-EC-Ewj"/>
@@ -197,14 +197,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cea-fx-dcF">
-                                <rect key="frame" x="82" y="604" width="48" height="30"/>
+                                <rect key="frame" x="82" y="505" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="handleDismiss:" destination="dlc-F2-cbD" eventType="touchUpInside" id="9HZ-we-qGw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2g-xi-B5f">
-                                <rect key="frame" x="253" y="604" width="35" height="30"/>
+                                <rect key="frame" x="198" y="505" width="35" height="30"/>
                                 <state key="normal" title="Filter"/>
                                 <connections>
                                     <action selector="doneClicked:" destination="dlc-F2-cbD" eventType="touchUpInside" id="S9I-aS-EeO"/>
@@ -215,7 +215,7 @@
                         <constraints>
                             <constraint firstItem="Cea-fx-dcF" firstAttribute="leading" secondItem="oF2-OH-yKm" secondAttribute="leading" constant="82" id="4Uk-mF-yyR"/>
                             <constraint firstItem="oF2-OH-yKm" firstAttribute="trailing" secondItem="X2g-xi-B5f" secondAttribute="trailing" constant="87" id="9Am-4r-oP8"/>
-                            <constraint firstItem="oF2-OH-yKm" firstAttribute="bottom" secondItem="kQl-YB-OeR" secondAttribute="bottom" constant="161" id="MBG-Le-qtA"/>
+                            <constraint firstItem="X2g-xi-B5f" firstAttribute="top" secondItem="kQl-YB-OeR" secondAttribute="bottom" constant="49" id="K4d-kO-Xuh"/>
                             <constraint firstItem="kQl-YB-OeR" firstAttribute="centerX" secondItem="yQq-Q3-xrZ" secondAttribute="centerX" id="Pjf-WE-c61"/>
                             <constraint firstItem="oF2-OH-yKm" firstAttribute="bottom" secondItem="Cea-fx-dcF" secondAttribute="bottom" constant="33" id="YM1-ky-hB7"/>
                             <constraint firstItem="oF2-OH-yKm" firstAttribute="bottom" secondItem="X2g-xi-B5f" secondAttribute="bottom" constant="33" id="r2u-KF-YFk"/>
