@@ -15,7 +15,8 @@ class FilterMenuViewController: UIViewController {
     var tagView : PARTagPickerViewController?
     var distanceRadius: Float?
     var collectedFilters: [String]?
-    var delegate: delegateForFilterView?
+    var filterDict: [String:String]?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,120 +37,16 @@ class FilterMenuViewController: UIViewController {
         blurEffect.frame = self.view.frame
         self.view.insertSubview(blurEffect, at:0)
         
-        tagView?.allTags = ["accounting",
-                            "airport",
-                            "amusement_park",
-                            "aquarium",
-                            "art_gallery",
-                            "atm",
-                            "bakery",
-                            "bank",
-                            "bar",
-                            "beauty_salon",
-                            "bicycle_store",
-                            "book_store",
-                            "bowling_alley",
-                            "bus_station",
-                            "cafe",
-                            "campground",
-                            "car_dealer",
-                            "car_rental",
-                            "car_repair",
-                            "car_wash",
-                            "casino",
-                            "cemetery",
-                            "church",
-                            "city_hall",
-                            "clothing_store",
-                            "convenience_store",
-                            "courthouse",
-                            "dentist",
-                            "department_store",
-                            "doctor",
-                            "electrician",
-                            "electronics_store",
-                            "embassy",
-                            "finance",
-                            "fire_station",
-                            "florist",
-                            "food",
-                            "funeral_home",
-                            "furniture_store",
-                            "gas_station",
-                            "general_contractor",
-                            "grocery_or_supermarket",
-                            "gym", "hair_care",
-                            "hardware_store",
-                            "health",
-                            "hindu_temple",
-                            "home_goods_store",
-                            "hospital",
-                            "insurance_agency",
-                            "jewelry_store",
-                            "laundry",
-                            "lawyer",
-                            "library",
-                            "liquor_store",
-                            "local_government_office",
-                            "locksmith", "lodging",
-                            "meal_delivery",
-                            "meal_takeaway",
-                            "mosque",
-                            "movie_rental",
-                            "movie_theater",
-                            "moving_company",
-                            "museum",
-                            "night_club",
-                            "painter",
-                            "park",
-                            "parking",
-                            "pet_store",
-                            "pharmacy",
-                            "physiotherapist",
-                            "place_of_worship",
-                            "plumber",
-                            "police",
-                            "post_office",
-                            "real_estate_agency",
-                            "restaurant",
-                            "roofing_contractor",
-                            "rv_park",
-                            "school",
-                            "shoe_store",
-                            "shopping_mall",
-                            "spa",
-                            "stadium",
-                            "storage",
-                            "store",
-                            "subway_station",
-                            "synagogue",
-                            "taxi_stand",
-                            "train_station",
-                            "transit_station",
-                            "travel_agency",
-                            "university",
-                            "veterinary_care",
-                            "zoo"]
+        //Tags list.
+        filterDict = ["ATM": "atm", "Hospital": "hospital", "Department Store": "department_store", "Clothing Store": "clothing_store", "Mosque": "mosque", "Rv Park": "rv_park", "Store": "store", "Synagogue": "synagogue", "Night Club": "night_club", "Restaurant": "restaurant", "Cafe": "cafe", "Amusement Park": "amusement_park", "Shoe Store": "shoe_store", "University": "university", "Parking": "parking", "Transit Station": "transit_station", "City Hall": "city_hall", "Storage": "storage", "Insurance Agency": "insurance_agency", "Meal Delivery": "meal_delivery", "Movie Rental": "movie_rental", "Bowling Alley": "bowling_alley", "Library": "library", "Meal Takeaway": "meal_takeaway", "Taxi Stand": "taxi_stand", "Book Store": "book_store", "Liquor Store": "liquor_store", "Electrician": "electrician", "Roofing Contractor": "roofing_contractor", "Home Goods Store": "home_goods_store", "Accounting": "accounting", "Bar": "bar", "Church": "church", "Hindu Temple": "hindu_temple", "Gas Station": "gas_station", "Subway Station": "subway_station", "Museum": "museum", "Zoo": "zoo", "Hardware Store": "hardware_store", "Shopping Mall": "shopping_mall", "Gym": "gym", "Airport": "airport", "Car Wash": "car_wash", "Locksmith": "locksmith", "Local Government Office": "local_government_office", "Physiotherapist": "physiotherapist", "Funeral Home": "funeral_home", "Lawyer": "lawyer", "Bicycle Store": "bicycle_store", "Jewelry Store": "jewelry_store", "Police": "police", "Hair Care": "hair_care", "Veterinary Care": "veterinary_care", "Post Office": "post_office", "Casino": "casino", "Dentist": "dentist", "School": "school", "Real Estate Agency": "real_estate_agency", "Doctor": "doctor", "Travel Agency": "travel_agency", "Pharmacy": "pharmacy", "Pet Store": "pet_store", "Bus Station": "bus_station", "Courthouse": "courthouse", "Stadium": "stadium", "Car Rental": "car_rental", "Plumber": "plumber", "Cemetery": "cemetery", "Car Dealer": "car_dealer", "Bank": "bank", "Convenience Store": "convenience_store", "Art Gallery": "art_gallery", "Car Repair": "car_repair", "Laundry": "laundry", "Beauty Salon": "beauty_salon", "Train Station": "train_station", "Florist": "florist", "Movie Theater": "movie_theater", "Electronics Store": "electronics_store", "Lodging": "lodging", "Campground": "campground", "Furniture Store": "furniture_store", "Embassy": "embassy", "Spa": "spa", "Fire Station": "fire_station", "Painter": "painter", "Bakery": "bakery", "Aquarium": "aquarium", "Park": "park", "Moving Company": "moving_company"]
         
-//        distanceSelector.frame.size = CGSize(width: 250, height: 250)
-//        distanceSelector.frame.origin = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/3)
-//        distanceSelector.si
+        tagView?.allTags = Array(filterDict!.keys)
+        
         distanceSelector.backgroundColor = UIColor.clear
         doneBtn.backgroundColor = UIColor.cyan
     
         self.doneBtn.isUserInteractionEnabled = true
-        
-        self.view.backgroundColor = UIColor.color(240, green: 128, blue: 128, alpha: 1)
-        
-    }
-    
-    func buttonAction(_ sender: Any) {
-        print("DONE CLICKED")
-        self.view.isHidden = true
-    }
-    
-    @objc private func buttonClicked() {
-        print("DONE CLICKED")
+//        self.view.backgroundColor = UIColor.color(240, green: 128, blue: 128, alpha: 1)
     }
 
     @IBOutlet weak var distanceSelector: CircularSlider!
@@ -157,7 +54,6 @@ class FilterMenuViewController: UIViewController {
   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //Invoke request method for parent view.
@@ -165,8 +61,14 @@ class FilterMenuViewController: UIViewController {
         self.distanceRadius = distanceSelector.value
         self.collectedFilters = [String]()
         collectedFilters = self.tagView?.chosenTags as? [String]
+        
+        var filters = [String]()
+        for item in collectedFilters!{
+            filters.append(filterDict![item]!)
+        }
+        
         let parentVC = self.parent as! ViewController
-        parentVC.passFilters(radius: self.distanceRadius!, filters: self.collectedFilters!)
+        parentVC.passFilters(radius: self.distanceRadius!, filters: filters)
     }
     
     
@@ -178,38 +80,4 @@ class FilterMenuViewController: UIViewController {
     @IBOutlet weak var doneBtn: UIButton!
 
 }
-
-protocol delegateForFilterView: class {
-    func passFilters(radius: Float, filters: [String])
-}
-
-
-//let location = locationManager.location!
-//let latitude = location.coordinate.latitude
-//let longitude = location.coordinate.longitude
-//let itemTitleLabel = item.titleLabel!
-//var itemText = itemTitleLabel.text!
-//itemText = itemText.lowercased()
-//let apiURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(distanceSlider.value)&type=\(itemText)&key=AIzaSyCx3Y1vXE0PBpdSLCjqGn6G3z8JcOvYfmo"
-//Alamofire.request(apiURL).responseJSON { response in
-//    if let json = response.result.value {
-//        print("JSON: \(json)") // serialized json response
-//        guard let responseDict = json as? NSDictionary else {
-//            return
-//        }
-//        guard let placesArray = responseDict.object(forKey: "results") as? [NSDictionary] else { return }
-//        for placeDict in placesArray {
-//            let latitude = placeDict.value(forKeyPath: "geometry.location.lat") as! CLLocationDegrees
-//            let longitude = placeDict.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
-//            let reference = placeDict.object(forKey: "reference") as! String
-//            let name = placeDict.object(forKey: "name") as! String
-//            let address = placeDict.object(forKey: "vicinity") as! String
-//            let location = CLLocation(latitude: latitude, longitude: longitude)
-//            let rating = placeDict.object(forKey: "rating") as? Double ?? 0.0
-//            let iconURL = placeDict.object(forKey: "icon") as! String
-//            let placeID = placeDict.object(forKey: "place_id") as! String
-//        }
-//    }
-//}
-//}
 

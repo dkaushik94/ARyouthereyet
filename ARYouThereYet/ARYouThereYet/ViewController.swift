@@ -19,7 +19,8 @@ import AVFoundation
 import CircleMenu
 import CoreData
 
-class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, delegateForFilterView {
+
+class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate{
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
@@ -30,11 +31,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
     var annotationManager: AnnotationManager!
     fileprivate var startedLoadingPOIs = false
     var listOfAnnotations: [Annotation] = []
+    var filterMenuViewController: FilterMenuViewController? = nil
     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var timer = Timer()
 
     var distanceRadius: Float? = 200
-    
+    var places: [NSDictionary] = []
     var filters: [String]?
 
     
@@ -43,13 +45,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
         ("icon_search", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
         ("nearby-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
         ("notifications",UIColor(red:0.98, green:0.74, blue:0.01, alpha:1))]
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let filterView = segue.destination as? FilterMenuViewController {
-            filterView.delegate = self
-        }
-    }
-    
     
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
         button.backgroundColor = items[atIndex].color
@@ -65,65 +60,67 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
     
     //Delegate method invoke by child filterView.
     func passFilters(radius: Float, filters: [String]) {
-        print(radius, filters)
-//        radius = floor(radius)
-        
-        //Request goes here.
+
+        //Request goes here. Async handler will create
+        let group = DispatchGroup() //Callbacks in Swift are done like this. Completion handler for ASNYC req.
         if(filters.count > 0 || distanceRadius != radius){
+            //For every Filter. Fetch data and create node.
             if(filters.count > 0){
                 for item in filters{
+                    group.enter()
                     let location = locationManager.location!
                     let latitude = location.coordinate.latitude
                     let longitude = location.coordinate.longitude
-                    annotationManager.removeAllAnnotations()
-//                    print("here is the distance", item)
+                    self.annotationManager.removeAllAnnotations()
+                    
                     let apiURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(radius)&type=\(item)&key=AIzaSyCx3Y1vXE0PBpdSLCjqGn6G3z8JcOvYfmo"
-//                    print("APIURL: ", apiURL)
+                    
                     Alamofire.request(apiURL).responseJSON { response in
                         if let json = response.result.value {
-//                            print("JSON: \(json)") // serialized json response
                             guard let responseDict = json as? NSDictionary else {
                                 return
                             }
                             guard let placesArray = responseDict.object(forKey: "results") as? [NSDictionary] else { return }
                             for placeDict in placesArray {
-                                let latitude = placeDict.value(forKeyPath: "geometry.location.lat") as! CLLocationDegrees
-                                let longitude = placeDict.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
-                                let reference = placeDict.object(forKey: "reference") as! String
-                                let name = placeDict.object(forKey: "name") as! String
-                                let address = placeDict.object(forKey: "vicinity") as! String
-                                let location = CLLocation(latitude: latitude, longitude: longitude)
-                                let rating = placeDict.object(forKey: "rating") as? Double ?? 0.0
-                                let iconURL = placeDict.object(forKey: "icon") as! String
-                                let placeID = placeDict.object(forKey: "place_id") as! String
-                            
-                                print("This is the name:", name)
-                                print("distance", radius)
-                                //Create threads for every node.
-                                DispatchQueue.main.async {
-                                    Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
-                                        if let icon = response.result.value {
-                                            print("Creating annotations.")
-                                            
-                                            let annotation = Annotation(location: location, calloutImage: nil, name: name, reference: reference, address: address, latitude: latitude, longitude: longitude, distance: (self.locationManager.location?.distance(from: location))!, rating: rating, icon: icon, id: placeID)
-                                            
-                                            self.listOfAnnotations.append(annotation)
-                                            self.annotationManager.addAnnotation(annotation: annotation)
-                                        }
-                                    }
-                                }
+                                self.places.append(placeDict)
                             }
+                            group.leave()
                         }
                     }
                 }
             }
         }
+        //Calback on completion.
+        group.notify(queue: .main, execute:{
+            for item in self.places{
+                let lat = item.value(forKeyPath: "geometry.location.lat") as! CLLocationDegrees
+                let long = item.value(forKeyPath: "geometry.location.lng") as! CLLocationDegrees
+                let reference = item.value(forKey: "reference") as! String
+                let name = item.value(forKey: "name") as! String
+                let address = item.value(forKey: "vicinity") as! String
+                let location = CLLocation(latitude: lat, longitude: long)
+                let rating = item.value(forKey: "rating") as? Double ?? 0.0
+                let iconURL = item.value(forKey: "icon") as! String
+                let placeID = item.value(forKey: "place_id") as! String
+
+                //Fetch icon for each.
+                DispatchQueue.main.async {
+                    Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
+                        if let icon = response.result.value {
+                            let annotation = Annotation(location: location, calloutImage: nil, name: name, reference: reference, address: address, latitude: lat, longitude: long, distance: (self.locationManager.location?.distance(from: location))!, rating: rating, icon: icon, id: placeID)
+                            self.listOfAnnotations.append(annotation)
+                            self.annotationManager.addAnnotation(annotation: annotation)
+                        }
+                    }
+                }
+                
+            }
+        })
     }
     
     func circleMenu(_ circleMenu: CircleMenu, buttonWillSelected button: UIButton, atIndex: Int) {
         switch atIndex {
         case 0:
-            print("share button pressed")
             let loc = locationManager.location!
             let textToShare = "I'm at \(loc.coordinate.latitude), \(loc.coordinate.longitude)!"
             let objectsToShare = [textToShare] as [Any]
@@ -142,6 +139,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
             break
         case 2:
             print("filter button pressed")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                //If filter menu not initialised then initilize it. Or if not nil then toggle visibility of the controller.
+                if self.filterMenuViewController == nil {
+                    self.filterMenuViewController = self.storyboard?.instantiateViewController(withIdentifier: "filterMenuVC") as? FilterMenuViewController
+                    self.addChildViewController(self.filterMenuViewController!)
+                    self.view.addSubview((self.filterMenuViewController?.view)!)
+                }
+                else{
+                    self.filterMenuViewController?.view.isHidden = false
+                }
+            })
+            
             break
         case 3:
             print("Favs")
@@ -187,17 +196,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*let menuButton = CircleMenu(
-                        frame: CGRect(x: (self.view.frame.size.width / 2) - 25, y: self.view.frame.size.height - 100, width: 40, height: 40),
-                        normalIcon:"icon_menu",
-                        selectedIcon:"icon_close",
-                        buttonsCount: 3,
-                        duration: 0.25,
-                        distance: 70)
-        menuButton.backgroundColor = UIColor.lightGray
-        menuButton.delegate = self
-        menuButton.layer.cornerRadius = menuButton.frame.size.width / 2.0
-        view.addSubview(menuButton)*/
         menuButton.backgroundColor = UIColor.lightGray
         menuButton.layer.cornerRadius = menuButton.frame.size.width / 2.0
         menuButton.delegate = self
@@ -235,10 +233,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
     }
     
     @IBAction func filterMenuClicked(_ sender: Any) {
-        let filterView = storyboard?.instantiateViewController(withIdentifier: "filterMenuVC") as! FilterMenuViewController
-        self.addChildViewController(filterView)
-//        self.present(filterView, animated: true, completion: nil)
-        self.view.addSubview(filterView.view)
+        if filterMenuViewController == nil {
+            filterMenuViewController = storyboard?.instantiateViewController(withIdentifier: "filterMenuVC") as? FilterMenuViewController
+            self.addChildViewController(filterMenuViewController!)
+            self.view.addSubview((filterMenuViewController?.view)!)
+        }
+        else{
+            filterMenuViewController?.view.isHidden = false
+        }
     }
     
     
@@ -310,21 +312,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // locationManager.requestLocation()
-        // let currentLocation = locationManager.location!
-        // let identityLocation = matrix_identity_float4x4
-        
-        /*// MK-MapKit
-        var result = MKLocalSearchResponse()
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = "coffee"
-        request.region = MKCoordinateRegion(center: currentLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2))
-        let search = MKLocalSearch(request: request)
-        search.start { response, _ in
-            guard let response = response else {
-                return
-            }
-            result = response*/
+        //Necessary code if need be.
     }
 }
 
@@ -344,13 +332,11 @@ extension ViewController : CLLocationManagerDelegate {
             let location = locations.last!
             if location.horizontalAccuracy < 100 {
                 manager.stopUpdatingLocation()
-                // let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
-                // let region = MKCoordinateRegion(center: location.coordinate, span: span)
                 
                 DispatchQueue.main.async {
                     Alamofire.request(URL(string: "http://api.openweathermap.org/data/2.5/weather?APPID=2ea48577574b26c2d63d4e3bfcb19d59&lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)")!, method: .get).responseJSON { response in
                         if let json = response.result.value as? NSDictionary {
-                            // print(json)
+                             print(json)
                             var temp = json.value(forKeyPath: "main.temp") as! Float
                             temp = temp * (9/5) - 459.67
                             temp = temp.rounded(.up)
@@ -358,9 +344,7 @@ extension ViewController : CLLocationManagerDelegate {
                             let tempNode = SCNText(string: tempString, extrusionDepth: 0.0)
                             tempNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
                             let mainTempNode = SCNNode(geometry: tempNode)
-                            // mainTempNode.transform.m41
                             mainTempNode.transform.m43 = -10.0
-                            // mainTempNode.scale = SCNVector3(20, 20, 20)
                             self.sceneView.scene.rootNode.addChildNode(mainTempNode)
                             self.weatherLabel.text = "\(tempString)"
                         }
@@ -411,7 +395,7 @@ extension ViewController : CLLocationManagerDelegate {
 extension ViewController: AnnotationManagerDelegate {
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
-        print("camera did change tracking state: \(camera.trackingState)")
+//        print("camera did change tracking state: \(camera.trackingState)")
         
         switch camera.trackingState {
         case .normal:
@@ -443,7 +427,7 @@ extension ViewController: AnnotationManagerDelegate {
         } else {
             name = annotation.name
         }
-        print("Test: Name: \(name)")
+//        print("Test: Name: \(name)")
         //Create annotations on the street.
 
         let nameOfPlace = SCNText(string: name, extrusionDepth: 0.04)        //Replace string with incoming string value for every node.
@@ -476,7 +460,7 @@ extension ViewController: AnnotationManagerDelegate {
         let annotY = (max.y - min.y) + 0.5
         
         let annotSmall = SCNPlane(width: CGFloat(annotX), height: CGFloat(annotY))      //Create SCNPlane with the width matching the textNode.
-        annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 234.0/255.0, green: 67.0/255.0, blue: 53.0/255.0, alpha: 0.7)
+//        annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 234.0/255.0, green: 67.0/255.0, blue: 53.0/255.0, alpha: 0.7)
         if annotation.distance < 200.0 {
             annotSmall.firstMaterial?.diffuse.contents = UIColor(red: 52.0/255.0, green: 168.0/255.0, blue: 83.0/255.0, alpha: 0.7)
         } else if annotation.distance < 500.0 {
@@ -530,8 +514,6 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress!)")
         
         let text = "Navigating to \(place.name)"
         let utterance = AVSpeechUtterance(string: text)

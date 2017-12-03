@@ -52,12 +52,14 @@ public class AnnotationManager: NSObject {
         annotation.anchor = anchor
         
         annotationsByAnchor[anchor] = annotation
+        print("AnnotationSCNNode: ", annotationsByNode.count)
     }
     
     public func addAnnotations(annotations: [Annotation]) {
         for annotation in annotations {
             addAnnotation(annotation: annotation)
         }
+//        print(annotations.count)
     }
     
     public func removeAllAnnotations() {
@@ -125,10 +127,10 @@ extension AnnotationManager: ARSCNViewDelegate {
                         let xRatio = x/xValues[i]
                         let zRatio = z/zValues[i]
                         let mainRatio = 1-abs(xRatio-zRatio)
-                        print(xRatio/zRatio)
+//                        print(xRatio/zRatio)
                         if(mainRatio > 0.6) {
                             ystretchValue = 0
-                            print("Has another node in almost same direction")
+//                            print("Has another node in almost same direction")
                             let keys = directionDict.keys
                             if(keys.count != 0) {
                                 for key in keys {
@@ -175,7 +177,7 @@ extension AnnotationManager: ARSCNViewDelegate {
                 
                 //            newNode.scale = SCNVector3(scalingFactor, scalingFactor, scalingFactor)
                 newNode.scale = SCNVector3(linS, linS, linS)
-                print("SCALING for distance:\(anchor.transform.columns.3.z) :  \(linS)")
+//                print("SCALING for distance:\(anchor.transform.columns.3.z) :  \(linS)")
                 
                 xValues.append(anchor.transform.columns.3.x)
                 zValues.append(anchor.transform.columns.3.z)

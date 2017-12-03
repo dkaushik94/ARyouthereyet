@@ -37,11 +37,10 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         sceneView.showsStatistics = true
         
         // Config CLLocationManager object
-        locationManager.delegate = self as! CLLocationManagerDelegate
+        locationManager.delegate = self as CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.requestAlwaysAuthorization()
         locationManager.distanceFilter = 50
-//        locationManager.startUpdatingLocation()
         
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.numberOfTapsRequired = 1
@@ -54,7 +53,6 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
             if (err != nil) {
                 self.dismiss(animated: true, completion: nil)
             }
-        
             self.currentPlace = place
             self.loadFirstPhotoForPlace(placeID: (place?.placeID)!)
         }
@@ -108,12 +106,12 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         let distanceNode   = getNodeFor(distance: Float((annotation?.distance)!))
         let openStatusNode = getNodeFor(openStatus: place.openNowStatus.rawValue)
         
-        if let phNo = place.phoneNumber {
+        if place.phoneNumber != nil {
             let phoneNoNode    = getNodeFor(phoneNo: place.phoneNumber!)
             sceneView.scene.rootNode.addChildNode(phoneNoNode)
         }
         
-        if let website = place.website {
+        if place.website != nil {
             let websiteNode    = getNodeFor(website: (currentPlace?.website?.absoluteString)!)
             sceneView.scene.rootNode.addChildNode(websiteNode)
         
@@ -154,7 +152,6 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         if(!hasPhoto) {
             for node : SCNNode in sceneView.scene.rootNode.childNodes {
                 if(node.name != "MainNode") {
-                    print(node.name)
                     node.transform.m42 = node.transform.m42 - 5
                 }
                 if(node.name == "MainNode") {
@@ -269,7 +266,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         
         
         let webSiteText = SCNText(string: webAddr, extrusionDepth: 0.04)
-        print(webAddr)
+//        print(webAddr)
         webSiteText.font = UIFont(name: "Arial", size: 0.45)
         let websiteNode = SCNNode(geometry: webSiteText)
         websiteNode.transform.m41 = -5.0
@@ -461,12 +458,9 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
     
     func loadFirstPhotoForPlace(placeID: String) {
         GMSPlacesClient.shared().lookUpPhotos(forPlaceID: placeID) { (photos, error) -> Void in
-            if let error = error {
-                
-                print("Error: \(error.localizedDescription)")
+            if error != nil {
                 self.dismiss(animated: true, completion: nil)
             } else {
-                print("No of Photos : \(photos?.results.count)")
                 self.currentPlaceImages = photos?.results
                 if let firstPhoto = photos?.results.first {
                     self.loadImageForMetadata(photoMetadata: firstPhoto)
@@ -484,7 +478,6 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
             if (node.name == "ImageNode") {
                 let material = SCNMaterial()
                 material.diffuse.contents = nextImage
-//                node.geometry?.materials = nil
                 node.geometry?.materials = [material]
             }
         }
@@ -591,15 +584,4 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         }
     }
  }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
