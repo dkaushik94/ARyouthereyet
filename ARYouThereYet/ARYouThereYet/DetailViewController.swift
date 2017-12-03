@@ -54,8 +54,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
             if (err != nil) {
                 self.dismiss(animated: true, completion: nil)
             }
-            
-//            self.augmentDetailsView(place: place!, hasPhoto: true)
+        
             self.currentPlace = place
             self.loadFirstPhotoForPlace(placeID: (place?.placeID)!)
         }
@@ -163,6 +162,10 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
                 }
                 if(node.name == "backNode" || node.name == "navNode") {
                     node.transform.m42 = node.transform.m42 + 5.2
+                }
+                
+                if(node.name == "addFavNode") {
+                    node.transform.m42 = node.transform.m42 + 4.2
                 }
             }
         }
@@ -573,8 +576,16 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
                     UIApplication.shared.openURL((currentPlace?.website)!)
                 } else if(touchedNode.name == "PhoneNoNode") {
                     
-                    guard let number = URL(string: "tel://" + (currentPlace?.phoneNumber)!) else { return }
-                    UIApplication.shared.open(number)
+                    
+                    guard let place = self.currentPlace else {
+                        return
+                    }
+                    var num = place.phoneNumber!
+                    num = num.replacingOccurrences(of: "-", with: "")
+                    num = num.replacingOccurrences(of: " ", with: "")
+                    if let callUrl = URL(string: "tel:" + num) {
+                        UIApplication.shared.openURL(callUrl)
+                    }
 
                 }
         }
