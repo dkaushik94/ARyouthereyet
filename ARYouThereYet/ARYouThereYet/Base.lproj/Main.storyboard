@@ -156,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQl-YB-OeR" customClass="CircularSlider" customModule="CircularSlider">
-                                <rect key="frame" x="83" y="254" width="210" height="210"/>
+                                <rect key="frame" x="83" y="296" width="210" height="210"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kQl-YB-OeR" secondAttribute="height" multiplier="1:1" id="LGP-EC-Ewj"/>
@@ -214,8 +214,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Cea-fx-dcF" firstAttribute="leading" secondItem="oF2-OH-yKm" secondAttribute="leading" constant="82" id="4Uk-mF-yyR"/>
-                            <constraint firstItem="oF2-OH-yKm" firstAttribute="bottom" secondItem="kQl-YB-OeR" secondAttribute="bottom" constant="203" id="73f-X1-7lB"/>
                             <constraint firstItem="oF2-OH-yKm" firstAttribute="trailing" secondItem="X2g-xi-B5f" secondAttribute="trailing" constant="87" id="9Am-4r-oP8"/>
+                            <constraint firstItem="oF2-OH-yKm" firstAttribute="bottom" secondItem="kQl-YB-OeR" secondAttribute="bottom" constant="161" id="MBG-Le-qtA"/>
                             <constraint firstItem="kQl-YB-OeR" firstAttribute="centerX" secondItem="yQq-Q3-xrZ" secondAttribute="centerX" id="Pjf-WE-c61"/>
                             <constraint firstItem="oF2-OH-yKm" firstAttribute="bottom" secondItem="Cea-fx-dcF" secondAttribute="bottom" constant="33" id="YM1-ky-hB7"/>
                             <constraint firstItem="oF2-OH-yKm" firstAttribute="bottom" secondItem="X2g-xi-B5f" secondAttribute="bottom" constant="33" id="r2u-KF-YFk"/>
