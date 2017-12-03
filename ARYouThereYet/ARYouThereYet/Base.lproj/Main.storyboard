@@ -84,6 +84,84 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nXc-eH-HOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="812" y="71"/>
+        </scene>
+        <!--Control Menu View Controller-->
+        <scene sceneID="shd-yo-7n1">
+            <objects>
+                <viewController id="JrO-2L-5eh" customClass="ControlMenuViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="K1F-nh-pbq">
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="85"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OlL-dF-5q9">
+                                <rect key="frame" x="122" y="13" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="funnel"/>
+                                <connections>
+                                    <action selector="showFilterMenu:" destination="JrO-2L-5eh" eventType="touchUpInside" id="mL7-qI-mWJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBg-mN-VNr">
+                                <rect key="frame" x="223" y="13" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="search"/>
+                                <connections>
+                                    <action selector="showSearchOptions:" destination="JrO-2L-5eh" eventType="touchUpInside" id="Rip-6H-SO0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="685-jO-QPw">
+                                <rect key="frame" x="19" y="58" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLG-U3-8Em">
+                                <rect key="frame" x="125" y="60" width="39" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4it-vi-MBs">
+                                <rect key="frame" x="218" y="60" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Rm-vC-Owd">
+                                <rect key="frame" x="22" y="13" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="network 2"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Pww-OC-1WP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y2E-V0-mHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="811.875" y="596.30281690140851"/>
+        </scene>
+        <!--Favorites List View Controller-->
+        <scene sceneID="zy4-De-A6M">
+            <objects>
+                <tableViewController storyboardIdentifier="favoritesTableVC" id="DGJ-o4-VWs" customClass="FavoritesListViewController" customModule="ARYouThereYet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ELK-Qy-wk3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="DGJ-o4-VWs" id="F3C-n6-NH2"/>
+                            <outlet property="delegate" destination="DGJ-o4-VWs" id="Fpm-CY-bKg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Bcx-R0-hI2"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nXc-eH-HOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="988" y="1053"/>
         </scene>
         <!--Detail View Controller-->
@@ -113,7 +191,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QrR-PV-z5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79" y="761"/>
+            <point key="canvasLocation" x="80.625" y="1053.1690140845071"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7wP-3L-bG1">
+            <objects>
+                <viewController id="koB-a4-PcN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B7Q-m6-yfh">
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="323"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Search here" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qof-M6-a28">
+                                <rect key="frame" x="16" y="20" width="256" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" textContentType="location"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kaU-9b-2MT">
+                                <rect key="frame" x="24" y="74" width="240" height="229"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="pFe-6Y-FTd"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="MZv-83-fr2" id="jfp-Hg-00i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mc5-w7-SKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="MZv-83-fr2">
+                    <connections>
+                        <outlet property="delegate" destination="koB-a4-PcN" id="8NY-Sz-RrU"/>
+                        <outlet property="searchContentsController" destination="koB-a4-PcN" id="Hbt-1Y-08T"/>
+                        <outlet property="searchResultsDataSource" destination="koB-a4-PcN" id="cfM-hq-5mz"/>
+                        <outlet property="searchResultsDelegate" destination="koB-a4-PcN" id="tfg-om-ikK"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1905" y="324.82394366197184"/>
         </scene>
         <!--Filter Menu View Controller-->
         <scene sceneID="al0-Hv-4t6">
@@ -179,7 +297,93 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IAY-bL-DtK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="-621"/>
+            <point key="canvasLocation" x="77.599999999999994" y="-663.41829085457277"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Jz5-hc-bVO">
+            <objects>
+                <viewController id="7ce-Ay-jQK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CHc-4m-DE3">
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="323"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AS-IW-9LW">
+                                <rect key="frame" x="16" y="20" width="46" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="funnel"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnG-nY-bZ9">
+                                <rect key="frame" x="121" y="20" width="46" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="funnel"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywb-3T-r5l">
+                                <rect key="frame" x="226" y="20" width="46" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="funnel"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzz-JY-3Ru">
+                                <rect key="frame" x="16" y="97" width="46" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="funnel"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibh-n2-Cve">
+                                <rect key="frame" x="121" y="97" width="46" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="funnel"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAR-i9-6eX">
+                                <rect key="frame" x="226" y="97" width="46" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="funnel"/>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="M0b-Iw-eZJ">
+                                <rect key="frame" x="14" y="186" width="260" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="7ce-Ay-jQK" eventType="valueChanged" id="MPs-Vx-PZH"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3S-Le-eDW">
+                                <rect key="frame" x="115" y="273" width="58" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Within" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jh-ui-TJi">
+                                <rect key="frame" x="82" y="234" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOq-jd-Z3f">
+                                <rect key="frame" x="141" y="234" width="24" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rr2-Q7-sww">
+                                <rect key="frame" x="166" y="234" width="40" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dc6-NF-nLZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="distanceLabel" destination="tOq-jd-Z3f" id="0Ei-GE-klK"/>
+                        <outlet property="distanceSlider" destination="M0b-Iw-eZJ" id="Dlt-u5-tnZ"/>
+                        <outlet property="filterView" destination="CHc-4m-DE3" id="oT9-CH-X5a"/>
+                        <outlet property="searchButton" destination="c3S-Le-eDW" id="Dmq-DF-3Vk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6tQ-Cw-pvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1905" y="-264.61267605633805"/>
         </scene>
         <!--Nav View Controller-->
         <scene sceneID="3aa-36-rcJ">
@@ -294,6 +498,10 @@
     </scenes>
     <resources>
         <image name="crosshairs" width="640" height="638"/>
+        <image name="error" width="256" height="256"/>
+        <image name="funnel" width="256" height="256"/>
         <image name="icon_menu" width="120" height="120"/>
+        <image name="network 2" width="256" height="256"/>
+        <image name="search" width="256" height="256"/>
     </resources>
 </document>

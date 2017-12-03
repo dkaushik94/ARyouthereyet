@@ -20,7 +20,6 @@ import CircleMenu
 import CoreData
 
 class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, delegateForFilterView {
-
     @IBOutlet weak var menuButton: CircleMenu!
     @IBOutlet weak var cameraStateLabel: UILabel!
     @IBOutlet var sceneView: ARSCNView!
@@ -36,7 +35,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
     var distanceRadius: Float? = 200
 
     var filters: [String]?
-
+    
+    var distanceRadius: Float? = 200
+    
+    var filters: [String]?
 
     let items: [(icon: String, color: UIColor)] = [
         ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
@@ -44,13 +46,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
         ("nearby-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
         ("starFilled",UIColor.clear)]
 
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let filterView = segue.destination as? FilterMenuViewController {
             filterView.delegate = self
         }
     }
-
 
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
         button.backgroundColor = items[atIndex].color
@@ -62,13 +62,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
         button.setImage(highlightedImage, for: .highlighted)
         button.tintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.3)
     }
-
-
     //Delegate method invoke by child filterView.
     func passFilters(radius: Float, filters: [String]) {
         print(radius, filters)
 //        radius = floor(radius)
-
         //Request goes here.
         if(filters.count > 0 || distanceRadius != radius){
             if(filters.count > 0){
@@ -97,7 +94,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
                                 let rating = placeDict.object(forKey: "rating") as? Double ?? 0.0
                                 let iconURL = placeDict.object(forKey: "icon") as! String
                                 let placeID = placeDict.object(forKey: "place_id") as! String
-
                                 print("This is the name:", name)
                                 print("distance", radius)
                                 //Create threads for every node.
@@ -105,9 +101,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
                                     Alamofire.request(URL(string: iconURL)!, method: .get).responseImage { response in
                                         if let icon = response.result.value {
                                             print("Creating annotations.")
-
                                             let annotation = Annotation(location: location, calloutImage: nil, name: name, reference: reference, address: address, latitude: latitude, longitude: longitude, distance: (self.locationManager.location?.distance(from: location))!, rating: rating, icon: icon, id: placeID)
-
                                             self.listOfAnnotations.append(annotation)
                                             self.annotationManager.addAnnotation(annotation: annotation)
                                         }
@@ -120,7 +114,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
             }
         }
     }
-
     func circleMenu(_ circleMenu: CircleMenu, buttonWillSelected button: UIButton, atIndex: Int) {
         switch atIndex {
         case 0:
@@ -139,13 +132,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
             break
         case 3:
             print("Favs")
-
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+            
             let fetchReq = NSFetchRequest<NSFetchRequestResult>()
             let entityDesc = NSEntityDescription.entity(forEntityName: "Place", in: context)
             fetchReq.entity = entityDesc
-
             do {
                 let results = try context.fetch(fetchReq) as! [Place]
                 if(results.count == 0) {
@@ -156,15 +147,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
                     favs.favoritePlaces = results
                     self.present(favs, animated: true, completion: nil)
                 }
-
             } catch {
                 let fetchError = error as NSError
                 print(fetchError)
             }
-
-
-
-
             break
         default:
             print("button will selected: \(atIndex)")
@@ -200,10 +186,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, d
         annotationManager = AnnotationManager(sceneView: sceneView)
         annotationManager.delegate = self
         annotationManager.originLocation = locationManager.location
-
-
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
-
         // Declare tap gesture recognizer
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.numberOfTapsRequired = 1
@@ -546,7 +529,6 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
-
 }
 
 extension UIColor {
