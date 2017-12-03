@@ -17,10 +17,12 @@ import Alamofire
 import GooglePlaces
 import AVFoundation
 import CircleMenu
+import Speech
 
-class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
-    
-    
+class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate, SFSpeechRecognizerDelegate {
+
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var menuButton: CircleMenu!
     @IBOutlet weak var cameraStateLabel: UILabel!
     @IBOutlet var sceneView: ARSCNView!
@@ -29,6 +31,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
     fileprivate var startedLoadingPOIs = false
     var listOfAnnotations: [Annotation] = []
     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    var timer = Timer()
     
     let items: [(icon: String, color: UIColor)] = [
         ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
@@ -71,17 +74,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*let menuButton = CircleMenu(
-                        frame: CGRect(x: (self.view.frame.size.width / 2) - 25, y: self.view.frame.size.height - 100, width: 40, height: 40),
-                        normalIcon:"icon_menu",
-                        selectedIcon:"icon_close",
-                        buttonsCount: 3,
-                        duration: 0.25,
-                        distance: 70)
-        menuButton.backgroundColor = UIColor.lightGray
-        menuButton.delegate = self
-        menuButton.layer.cornerRadius = menuButton.frame.size.width / 2.0
-        view.addSubview(menuButton)*/
         menuButton.backgroundColor = UIColor.lightGray
         menuButton.layer.cornerRadius = menuButton.frame.size.width / 2.0
         menuButton.delegate = self
@@ -110,12 +102,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
         // Set the scene to the view
         //sceneView.scene = scene
         
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
+        
         // Declare tap gesture recognizer
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.numberOfTapsRequired = 1
         tapRecognizer.numberOfTouchesRequired = 1
         tapRecognizer.addTarget(self, action:  #selector(tapped))
         sceneView.gestureRecognizers = [tapRecognizer]
+    }
+    
+    @objc func tick() {
+        timeLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
     }
     
     @IBAction func filterMenuClicked(_ sender: Any) {
@@ -125,7 +123,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
         self.view.addSubview(filterView.view)
         filterView.view.isHidden = false
     }
-    
     
     @objc func tapped(recognizer: UITapGestureRecognizer) {
         let location = recognizer.location(in: sceneView)
@@ -171,7 +168,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // Pause the view's session
         sceneView.session.pause()
     }
@@ -180,7 +176,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CircleMenuDelegate {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     // MARK: - ARSCNViewDelegate
     
 /*
@@ -252,14 +248,15 @@ extension ViewController : CLLocationManagerDelegate {
                             var temp = json.value(forKeyPath: "main.temp") as! Float
                             temp = temp * (9/5) - 459.67
                             temp = temp.rounded(.up)
-                            let tempString = "\(temp) f"
-                            let tempNode = SCNText(string: tempString, extrusionDepth: 0.0)
+                            let tempString = "\(temp)°F"
+                            /*let tempNode = SCNText(string: tempString, extrusionDepth: 0.0)
                             tempNode.font = UIFont(name: "HelveticaNeue", size: 3.0)
                             let mainTempNode = SCNNode(geometry: tempNode)
                             // mainTempNode.transform.m41
                             mainTempNode.transform.m43 = -10.0
                             // mainTempNode.scale = SCNVector3(20, 20, 20)
-                            self.sceneView.scene.rootNode.addChildNode(mainTempNode)
+                            self.sceneView.scene.rootNode.addChildNode(mainTempNode)*/
+                            self.weatherLabel.text = tempString
                         }
                         /*if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                             print("data: \(utf8Text)")
@@ -424,8 +421,7 @@ class customNode: SCNNode {
 }
 
 extension ViewController: GMSAutocompleteViewControllerDelegate {
-    
-    // Handle the user's selection.
+    // Handle the user's selection.a
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         print("Place name: \(place.name)")
         print("Place address: \(place.formattedAddress!)")

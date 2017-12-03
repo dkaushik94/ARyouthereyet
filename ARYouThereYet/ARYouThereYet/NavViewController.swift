@@ -54,7 +54,8 @@ class NavViewController: UIViewController {
         configureMapboxMapView()
         
         // SceneKit
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        // sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         sceneView.scene = SCNScene()
         
         // Create an AR annotation manager and give it a reference to the AR scene view
@@ -197,7 +198,7 @@ class NavViewController: UIViewController {
                         annotationsToAdd.append(annotation)
                 }
                 
-                let metersPerNode: CLLocationDistance = 5
+                let metersPerNode: CLLocationDistance = 15
                 let turfPolyline = Polyline(polyline)
                 
                 // Walk the route line and add a small AR node and map view annotation every metersPerNode
@@ -332,16 +333,17 @@ extension NavViewController: AnnotationManagerDelegate {
         
         let sphereNode = SCNNode(geometry: geometry)
         sphereNode.animateInterpolatedColor(from: firstColor, to: secondColor, duration: 1)
+        sphereNode.name = "NavigationNode"
         return sphereNode
     }
     
     func createLightBulbNode() -> SCNNode {
         // let lightBulbNode = collada2SCNNode(filepath: "art.scnassets/light-bulb.dae")
         // let lightBulbNode = SCNNode(geometry: SCNSphere(radius: 0.1))
-        let lightBulbNode = SCNNode(geometry: SCNBox(width: 1.0, height: 0.1, length: 1.0, chamferRadius: 0.0))
+        let lightBulbNode = SCNNode(geometry: SCNBox(width: 1.0, height: 0.1, length: 10.0, chamferRadius: 0.5))
         lightBulbNode.scale = SCNVector3Make(1, 1, 1)
         lightBulbNode.name = "NavigationNode"
-
+        // lightBulbNode.position.y = -10
         return lightBulbNode
     }
     
@@ -352,6 +354,7 @@ extension NavViewController: AnnotationManagerDelegate {
         for childNode in nodeArray {
             node.addChildNode(childNode as SCNNode)
         }
+        node.name = "NavigationNode"
         return node
     }
     

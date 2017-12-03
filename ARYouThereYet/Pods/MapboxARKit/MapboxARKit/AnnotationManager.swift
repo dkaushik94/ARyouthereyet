@@ -67,6 +67,10 @@ public class AnnotationManager: NSObject {
         
         anchors.removeAll()
         annotationsByAnchor.removeAll()
+        annotationsByNode.removeAll()
+        print("Anchors: \(anchors)")
+        print("AnnotationsByNode: \(annotationsByNode)")
+        print("AnnotationsByAnchor: \(annotationsByAnchor)")
     }
     
     public func removeAnnotations(annotations: [Annotation]) {
@@ -162,8 +166,6 @@ extension AnnotationManager: ARSCNViewDelegate {
                 let newS = 45.0/426.0
                 //            let scalingFactor = 45
                 let scalingFactor = newS * Double(abs(anchor.transform.columns.3.z))
-                
-                
                 
                 let f = 0.579 * powf(abs(anchor.transform.columns.3.z), 0.806)
                 
