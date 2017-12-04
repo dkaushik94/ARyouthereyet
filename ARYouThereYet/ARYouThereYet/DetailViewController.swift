@@ -12,7 +12,7 @@ import SceneKit
 import MapboxARKit
 import GooglePlaces
 import CoreData
-
+import AVFoundation
 
 class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManagerDelegate {
 
@@ -570,7 +570,14 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
                     nav.currentLocation = locationManager.location!.coordinate
                     let destinationLocation = CLLocationCoordinate2D(latitude: (self.annotation?.latitude)!, longitude: (self.annotation?.longitude)!)
                     nav.destinationLocationCustom = destinationLocation
-                    self.present(nav, animated: true, completion: nil)
+                    
+                    let text = "Navigating to \(currentPlace!.name)"
+                    let utterance = AVSpeechUtterance(string: text)
+                    utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+                    let synthesizer = AVSpeechSynthesizer()
+                    synthesizer.speak(utterance)
+                    
+                    self.present(nav, animated: false, completion: nil)
                     
                 }
                 

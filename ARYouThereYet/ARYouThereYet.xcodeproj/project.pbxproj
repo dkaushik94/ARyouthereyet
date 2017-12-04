@@ -23,7 +23,6 @@
 		492019201FB294E900CA476C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4920191F1FB294E900CA476C /* art.scnassets */; };
 		492019221FB294E900CA476C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019211FB294E900CA476C /* ViewController.swift */; };
 		492019251FB294E900CA476C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492019231FB294E900CA476C /* Main.storyboard */; };
-		4920192A1FB294E900CA476C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492019281FB294E900CA476C /* LaunchScreen.storyboard */; };
 		492019351FB294E900CA476C /* ARYouThereYetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492019341FB294E900CA476C /* ARYouThereYetTests.swift */; };
 		492019401FB294E900CA476C /* ARYouThereYetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920193F1FB294E900CA476C /* ARYouThereYetUITests.swift */; };
 		8A017BCBDC882F4894500B5E /* Pods_ARYouThereYetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1576E4498CC30F976830864B /* Pods_ARYouThereYetTests.framework */; };
@@ -69,7 +68,6 @@
 		4920191F1FB294E900CA476C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		492019211FB294E900CA476C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		492019241FB294E900CA476C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		492019291FB294E900CA476C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4920192B1FB294E900CA476C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		492019301FB294E900CA476C /* ARYouThereYetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARYouThereYetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		492019341FB294E900CA476C /* ARYouThereYetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARYouThereYetTests.swift; sourceTree = "<group>"; };
@@ -176,7 +174,6 @@
 				3037760A1FD362A9006D823D /* FavoriteTableViewCell.swift */,
 				3037760B1FD362A9006D823D /* FavoriteTableViewCell.xib */,
 				492019231FB294E900CA476C /* Main.storyboard */,
-				492019281FB294E900CA476C /* LaunchScreen.storyboard */,
 				4920192B1FB294E900CA476C /* Info.plist */,
 				303775C61FD351BA006D823D /* Assets.xcassets */,
 			);
@@ -319,7 +316,6 @@
 			files = (
 				303775C71FD351BA006D823D /* Assets.xcassets in Resources */,
 				492019201FB294E900CA476C /* art.scnassets in Resources */,
-				4920192A1FB294E900CA476C /* LaunchScreen.storyboard in Resources */,
 				492019251FB294E900CA476C /* Main.storyboard in Resources */,
 				303775C51FD23F39006D823D /* tags.txt in Resources */,
 				3037760D1FD362A9006D823D /* FavoriteTableViewCell.xib in Resources */,
@@ -572,14 +568,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		492019281FB294E900CA476C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				492019291FB294E900CA476C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -695,13 +683,14 @@
 			baseConfigurationReference = 41D41A0FBD97E0B5607B39E9 /* Pods-ARYouThereYet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M678K3T63A;
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.nav;
+				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.nav1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -714,13 +703,14 @@
 			baseConfigurationReference = 6FC8780DEFDC539229EB1357 /* Pods-ARYouThereYet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M678K3T63A;
 				INFOPLIST_FILE = ARYouThereYet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.nav;
+				PRODUCT_BUNDLE_IDENTIFIER = com.octabit.nav1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
