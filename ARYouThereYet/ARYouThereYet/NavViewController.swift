@@ -197,7 +197,7 @@ class NavViewController: UIViewController {
                         annotationsToAdd.append(annotation)
                 }
                 
-                let metersPerNode: CLLocationDistance = 20
+                let metersPerNode: CLLocationDistance = 5
                 let turfPolyline = Polyline(polyline)
                 
                 // Walk the route line and add a small AR node and map view annotation every metersPerNode
@@ -339,8 +339,13 @@ extension NavViewController: AnnotationManagerDelegate {
     func createLightBulbNode() -> SCNNode {
         // let lightBulbNode = collada2SCNNode(filepath: "art.scnassets/light-bulb.dae")
         // let lightBulbNode = SCNNode(geometry: SCNSphere(radius: 0.1))
-        let lightBulbNode = SCNNode(geometry: SCNBox(width: 1.0, height: 0.1, length: 20.0, chamferRadius: 0.5))
+        // let lightBulbNode = SCNNode(geometry: SCNBox(width: 1.0, height: 0.1, length: 20.0, chamferRadius: 0.5))
+        // let lightBulbNode = SCNNode(geometry: SCNBox(width:1.0, height: 1.0, length: 1.0, chamferRadius: 0.2))
+        let lightBulbNode = SCNNode(geometry: SCNSphere(radius: 0.2))
         lightBulbNode.scale = SCNVector3Make(1, 1, 1)
+        let mat = SCNMaterial()
+        mat.diffuse.contents = UIColor(red:0.19, green:0.57, blue:1, alpha:1)
+        lightBulbNode.geometry?.materials = [mat]
         lightBulbNode.name = "NavigationNode"
 
         return lightBulbNode
