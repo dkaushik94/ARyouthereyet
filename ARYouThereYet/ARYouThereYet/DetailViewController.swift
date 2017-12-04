@@ -11,6 +11,7 @@ import ARKit
 import SceneKit
 import MapboxARKit
 import GooglePlaces
+import CoreData
 
 
 class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManagerDelegate {
@@ -26,6 +27,10 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
     
     let addFavMaterial = SCNMaterial()
     let remFavMaterial = SCNMaterial()
+    
+    var currentPlaceInFavoriteList  = false
+    
+    var favoritePlaces = [Place]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,15 +53,47 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         tapRecognizer.addTarget(self, action:  #selector(tapped))
         sceneView.gestureRecognizers = [tapRecognizer]
         
+
+        
         GMSPlacesClient.shared().lookUpPlaceID((annotation?.id)!) { (place, err) in
             
             if (err != nil) {
                 self.dismiss(animated: true, completion: nil)
             }
             self.currentPlace = place
+            if(self.isInFavoriteList()) {
+                self.currentPlaceInFavoriteList = true
+            }
             self.loadFirstPhotoForPlace(placeID: (place?.placeID)!)
         }
     }
+    
+    
+    func isInFavoriteList() -> Bool {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let fetchReq = NSFetchRequest<NSFetchRequestResult>()
+        let entityDesc = NSEntityDescription.entity(forEntityName: "Place", in: context)
+        fetchReq.entity = entityDesc
+        
+        do {
+            let results = try context.fetch(fetchReq) as! [Place]
+            if(results.count != 0) {
+                favoritePlaces = results
+                for place in results {
+                    if(place.name == currentPlace?.name) {
+                        return true
+                    }
+                }
+            }
+        } catch {
+            print("Error fetching results for favorite places")
+        }
+        return false
+    }
+    
+    
+    
 // street_number route
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -161,7 +198,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
                     node.transform.m42 = node.transform.m42 + 5.2
                 }
                 
-                if(node.name == "addFavNode") {
+                if(node.name == "addFavNode" || node.name == "remFavNode") {
                     node.transform.m42 = node.transform.m42 + 5.4
                 }
             }
@@ -176,12 +213,19 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
     func getfavoriteNode() -> SCNNode {
         
         self.addFavMaterial.diffuse.contents = UIImage(named: "star")
+        self.remFavMaterial.diffuse.contents = UIImage(named: "starFilled")
         let favPlane = SCNPlane(width: 2.0, height: 2.0)
         favPlane.cornerRadius = 0.25
         favPlane.firstMaterial?.diffuse.contents = UIColor(red: 74/255.0, green: 35/255.0, blue: 90/255.0, alpha: 0.8)
         let favNode = SCNNode(geometry: favPlane)
-        favNode.geometry?.materials = [addFavMaterial]
-        favNode.name = "addFavNode"
+        if(currentPlaceInFavoriteList) {
+            favNode.geometry?.materials = [remFavMaterial]
+            favNode.name = "remFavNode"
+        } else {
+            favNode.geometry?.materials = [addFavMaterial]
+            favNode.name = "addFavNode"
+        }
+        
         favNode.transform.m43 = -18.0
         favNode.transform.m42 = -7.2
         favNode.transform.m41 = 0.0
@@ -264,9 +308,7 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
             webAddr = website
         }
         
-        
         let webSiteText = SCNText(string: webAddr, extrusionDepth: 0.04)
-//        print(webAddr)
         webSiteText.font = UIFont(name: "Arial", size: 0.45)
         let websiteNode = SCNNode(geometry: webSiteText)
         websiteNode.transform.m41 = -5.0
@@ -311,7 +353,6 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
         } else {
             name = locationName
         }
-        
         
         let locName     = SCNText(string: name, extrusionDepth: 0.04)
         locName.font    = UIFont(name: "Futura", size: 0.6)
@@ -543,6 +584,8 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
                 } else if(touchedNode.name == "backNode") {
                     self.dismiss(animated: false, completion: nil)
                 } else if(touchedNode.name == "addFavNode") {
+                    
+                    
                     remFavMaterial.diffuse.contents = UIImage(named: "starFilled")
                     touchedNode.geometry?.materials = [remFavMaterial]
                     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -562,13 +605,31 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
                     
                     touchedNode.name = "remFavNode"
                 } else if (touchedNode.name == "remFavNode") {
+                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                    var index = 0
+                    for place in favoritePlaces {
+                        if(place.name == currentPlace?.name) {
+                            context.delete(place)
+                            do {
+                                try context.save()
+                            } catch {
+                                let nserror = error as NSError
+                                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                            }
+                            break
+                        }
+                        index = index + 1
+                    }
                     addFavMaterial.diffuse.contents = UIImage(named: "star")
                     touchedNode.geometry?.materials = [addFavMaterial]
                     touchedNode.name = "addFavNode"
+                    self.currentPlaceInFavoriteList = false
+                    favoritePlaces.remove(at: index)
                 } else if(touchedNode.name == "WebsiteNode") {
-                    UIApplication.shared.openURL((currentPlace?.website)!)
-                } else if(touchedNode.name == "PhoneNoNode") {
                     
+                    UIApplication.shared.openURL((currentPlace?.website)!)
+                    
+                } else if(touchedNode.name == "PhoneNoNode") {
                     
                     guard let place = self.currentPlace else {
                         return

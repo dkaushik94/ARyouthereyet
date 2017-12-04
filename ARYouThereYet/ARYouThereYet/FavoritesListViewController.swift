@@ -86,6 +86,28 @@ class FavoritesListViewController: UITableViewController, CLLocationManagerDeleg
         self.present(nav, animated: true, completion: nil)
         
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            context.delete(favoritePlaces![indexPath.row])
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+            favoritePlaces?.remove(at: indexPath.row)
+            if(favoritePlaces?.count == 0) {
+                self.dismiss(animated: false, completion: nil)
+            } else {
+                self.tableView.reloadData()
+            }
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
