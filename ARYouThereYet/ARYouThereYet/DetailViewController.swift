@@ -280,8 +280,12 @@ class DetailViewController: UIViewController, ARSCNViewDelegate,CLLocationManage
     
     func getNodeFor(priceLevel: Int) -> SCNNode{
         var priceString: String = ""
-        for _ in 0..<priceLevel {
-            priceString = priceString + "$ "
+        if(priceLevel == 0) {
+            priceString = "Free"
+        } else {
+            for _ in 0..<priceLevel-1 {
+                priceString = priceString + "$ "
+            }
         }
         
         let priceText = SCNText(string: "Price Level " + priceString, extrusionDepth: 0.04)
