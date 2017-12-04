@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import AVFoundation
 
 class FavoritesListViewController: UITableViewController, CLLocationManagerDelegate{
 
@@ -83,6 +84,14 @@ class FavoritesListViewController: UITableViewController, CLLocationManagerDeleg
         nav.currentLocation = locationManager.location!.coordinate
         let destinationLocation = CLLocationCoordinate2D(latitude: (selectedPlace.lattitude), longitude: (selectedPlace.longitude))
         nav.destinationLocationCustom = destinationLocation
+        
+        let placeName = selectedPlace.name!
+        let text = "Navigating to \(placeName)"
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
+        
         self.present(nav, animated: true, completion: nil)
         
     }
