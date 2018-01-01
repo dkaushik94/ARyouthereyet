@@ -9,7 +9,7 @@ Clone the master branch and build the app using Xcode 9 or above. The app will r
 Note: Just to be safe, reorient your digital compass by rotating your phone in the shaoe of an 'infinity'. It will recalibrate the compass in the phone.
 
 ### Documentation:
-You can refer the documentation [here](https://debojitkaushikblog.wordpress.com).
+You can refer the documentation [here](https://debojitkaushikblog.wordpress.com/finally-some-augmented-reality-aryouthereyet/).
 
 ### Dependencies:
 For installing and updating the podfiles,
@@ -20,7 +20,10 @@ For installing and updating the podfiles,
 - Amlaan Bhoi (https://www.github.com/amlaanb)
 - Sandeep Joshi (https://github.com/sandeepjoshi1910)
 
-
+##### You can contact any of us for any query at:
+- abhoi3@uic.edu (Amlaan)
+- dkaush4@uic.edu (Debojit)
+- sjoshi37@uic.edu (Sandeep)
 
 
 
